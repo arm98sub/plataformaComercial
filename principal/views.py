@@ -26,7 +26,7 @@ def lista(request):
 	productos = Producto.objects.all()
 	servicios = Servicio.objects.all()
 	
-	return render(request, 'store/lista.html', {'productos': productos, 'servicios': servicios})
+	return render(request, 'principal/lista.html', {'productos': productos, 'servicios': servicios})
 
 # Listado de productos/servicios para administradores
 
@@ -34,7 +34,7 @@ def lista_admin(request):
 	productos = Producto.objects.all()
 	servicios = Servicio.objects.all()
 	
-	return render(request, 'store/lista_admin.html', {'productos': productos, 'servicios': servicios})
+	return render(request, 'principal/lista_admin.html', {'productos': productos, 'servicios': servicios})
 
 
 # CRUD Productos
@@ -43,7 +43,7 @@ class NuevoProducto(PermissionRequiredMixin, CreateView):
 	permission_required = 'usuarios.permiso_administradores'
 	model = Producto
 	form_class = ProductoForm
-	success_url = reverse_lazy('principal:lista')
+	success_url = reverse_lazy('principal:lista_admin')
 
 	extra_context = {
 		'etiqueta': "Nuevo",
@@ -54,7 +54,7 @@ class EditarProducto(PermissionRequiredMixin, UpdateView):
 	permission_required = 'usuarios.permiso_administradores'
 	model = Producto
 	form_class = ProductoForm
-	success_url = reverse_lazy('principal:lista')
+	success_url = reverse_lazy('principal:lista_admin')
 
 	extra_context = {
 		'etiqueta': "Actualizar",
@@ -64,7 +64,7 @@ class EditarProducto(PermissionRequiredMixin, UpdateView):
 class EliminarProducto(PermissionRequiredMixin, DeleteView):
 	permission_required = 'usuarios.permiso_administradores'
 	model = Producto
-	success_url = reverse_lazy('principal:lista')
+	success_url = reverse_lazy('principal:lista_admin')
 
 class VerProducto(DetailView):
 	model = Producto
@@ -77,7 +77,7 @@ class NuevoServicio(PermissionRequiredMixin, CreateView):
 	permission_required = 'usuarios.permiso_administradores'
 	model = Servicio
 	form_class = ServicioForm
-	success_url = reverse_lazy('principal:lista')
+	success_url = reverse_lazy('principal:lista_admin')
 
 	extra_context = {
 		'etiqueta': "Nuevo",
@@ -88,7 +88,7 @@ class EditarServicio(PermissionRequiredMixin, UpdateView):
 	permission_required = 'usuarios.permiso_administradores'
 	model = Servicio
 	form_class = ServicioForm
-	success_url = reverse_lazy('principal:lista')
+	success_url = reverse_lazy('principal:lista_admin')
 
 	extra_context = {
 		'etiqueta': "Actualizar",
@@ -98,5 +98,5 @@ class EditarServicio(PermissionRequiredMixin, UpdateView):
 class EliminarServicio(PermissionRequiredMixin, DeleteView):
 	permission_required = 'usuarios.permiso_administradores'
 	model = Servicio
-	success_url = reverse_lazy('principal:lista')
+	success_url = reverse_lazy('principal:lista_admin')
 

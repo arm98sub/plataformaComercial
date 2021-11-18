@@ -4,6 +4,8 @@ from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.sites. shortcuts import get_current_site
 from django.core.mail import EmailMessage
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
@@ -18,6 +20,7 @@ from .forms import UsuarioForm
 
 # CRUD Usuarios
 
+
 class UsuariosList(ListView):
     # permission_required = 'usuarios.view_usuario'
     model = Usuario
@@ -26,14 +29,17 @@ class UsuariosList(ListView):
     paginate_by = 5
 
     extra_context = {
-        'us_lista' : True,
+        'us_lista': True,
         'lista_grupos': lista_grupos
     }
+
 
 class UsuariosDetalle(DetailView):
     model = Usuario
 
-class NuevoUsuario(CreateView):
+
+class NuevoUsuario(PermissionRequiredMixin, CreateView):
+    permission_required = 'users.permiso_administradores'
     model = Usuario
     form_class = UsuarioForm
     success_url = reverse_lazy('usuarios:lista')
@@ -44,23 +50,27 @@ class NuevoUsuario(CreateView):
         'us_nuevo': True
     }
 
-class UsuariosActualizar(SuccessMessageMixin, UpdateView):
+class UsuariosActualizar(PermissionRequiredMixin,SuccessMessageMixin, UpdateView):
+    permission_required = 'users.permiso_administradores'
     model = Usuario
     form_class = UsuarioForm
     extra_context = {'etiqueta': 'Actualizar', 'boton': 'Guardar'}
     success_url = reverse_lazy('usuarios:lista')
     success_message = "El usuario %(first_name)s se actualizo con exito" 
 
-class UsuariosEliminar(DeleteView):
+class UsuariosEliminar(PermissionRequiredMixin,DeleteView):
+    permission_required = 'users.permiso_administradores'
     model = Usuario
     success_url = reverse_lazy('usuarios:lista')
+
+    
 
 
 # Sesiones de Usuarios
 
 class LoginUsuario(LoginView):
     template_name = 'login.html'
-    #form_class = AuthenticationForm
+    # form_class = AuthenticationForm
 
     def get_success_url(self):
         self.request.session['articulos'] = {}
@@ -163,7 +173,7 @@ def modificar_usuario_grupo(request, id):
 # Metodo para municipios
 
 def obtiene_municipios(request):
-    estado = get_object_or_404(Estado, id=id_estado)
+    # estado = get_object_or_404(Estado, id=id_estado)
     if request.method == 'GET':
         return JsonResponse({'error':'Petición incorrecta'}, safe=False,  status=403)
     id_estado = request.POST.get('id')
