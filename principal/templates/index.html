@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}
+	Inicio
+{% endblock title %}
+
+{% block body %}
+	<!--====== Header Style 1 Part Start ======-->
+    <section class="header-style-1">
+        <div class="header-big">
+            <div class="header-items-active">
+                {% for p in productos %}
+                <div class="single-header-item bg_cover"
+                    style="background-image: url(/media/{{MEDIA_URL}}{{p.imagen}});">
+                    <div class="header-item-content">
+                        <h3 class="title">{{p.descripcion}}</h3>
+                        <a href="{% url 'principal:ver_producto' p.id %}" class="link">{{p.nombre}}</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- <div class="header-min">
+            <div class="header-min-item product-style-25 bg_cover"
+                style="background-image: url(static/images/header-1/header-min-1.jpg);">
+                <div class="product-content">
+                    <h4 class="title"><a href="product-details-page.html">Metro 38 Date</a></h4>
+                    <p>Reference 1102</p>
+                    <a href="javascript:void(0)" class="main-btn primary-btn-border"> <img src="{% static 'images/icon-svg/cart-5.svg' %}" alt="">$
+                        399</a>
+                </div>
+            </div>
+            <div class="header-min-item product-style-25 bg_cover"
+                style="background-image: url(static/images/header-1/header-min-2.jpg);">
+                <div class="product-content">
+                    <h4 class="title"><a href="product-details-page.html">Metro 38 Date</a></h4>
+                    <p>Reference 1102</p>
+                    <a href="javascript:void(0)" class="main-btn primary-btn-border"> <img src="{% static 'images/icon-svg/cart-5.svg' %}" alt="">$
+                        399</a>
+                </div>
+            </div>
+        </div> -->
+    </section>
+{% endblock body%}

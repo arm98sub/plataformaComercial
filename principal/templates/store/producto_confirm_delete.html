@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+	Eliminar Producto
+{% endblock title %}
+
+{% block body %}
+	<form method="post">
+		{% csrf_token %}
+		<p>Quieres eliminar el producto "{{ object }}"?</p>
+		<input type="submit" value="Si, si quiero">
+		<a href="{% url 'principal:lista' %}"><i class="fa fa-times"> </i>Mejor no</a>
+	</form>
+{% endblock body %}

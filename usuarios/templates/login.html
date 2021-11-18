@@ -1,0 +1,76 @@
+{% load static %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+{% block title %}
+
+{% endblock title%}
+
+{% block body %}
+{% if form.errors %}
+<div class="alert alert-warning">
+	<p>Usuario no encontrado</p>
+</div>
+{% endif %}
+
+{% if messages %}
+{% for message in messages  %}
+<div class="alert alert--{% if message.tags == 'error' %}danger{%else%}success{%endif%}">
+	{{message}}
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="container justify-content-center">
+	<hr>
+	<div class="row">
+		<aside class="col-sm-4">
+			<div class="card">
+				<article class="card-body">
+					<h4 class="card-title mb-4 mt-1">Login</h4>
+					<form method="POST">
+						{% csrf_token %}
+						<div class="form-group">
+							<label>Usuario</label>
+							<input class="form-group" id="id_username" name="username" type="text"
+								placeholder="Nombre de usuario" required>
+						</div>
+
+						<div class="form-group">
+							<label>Contraseña</label>
+							<input class="form-control" id="id_password" name="password" type="password"
+								placeholder="********" required>
+							<br>
+							<div>
+								<div>
+									<div>
+										<input class="form-check-input" type="checkbox" value="" id="RememberPassword">
+										<label class="form-check-label" for="RememberPassword">Recordar</label>
+									</div>
+								</div>
+								<div>
+									<div>
+										<a href="reset-password.html">Olvide la contraseña</a>
+									</div>
+								</div>
+							</div>
+							<!--//extra-->
+						</div>
+						<!--//form-group-->
+
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary btn-block theme-btn mx-auto">Ingresar</button>
+						</div>
+						<input type="hidden" name="next" value={{next}}>
+					</form>
+				</article>
+				<div>
+					No tengo cuenta: <a href="{% url 'usuarios:signup' %}"
+						class="float-right btn btn-outline-primary">Crear cuenta.</a>
+				</div>
+			</div> <!-- end card -->
+	</div> <!-- row -->
+</div> <!-- container -->
+	{% endblock body %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <h1>{{object.first_name}}</h1>
+    <h2>{{object.username}}</h2>
+    <h2>{{object.estado}}</h2>
+    <p>{{object.municipio}}</p>
+    
+
+        
+    <a href="{% url 'usuarios:lista' %}" class="btn btn-success">Regresar</a>
+{% endblock body %}
+
+
+    {% block js %}
+    {% endblock js %}
