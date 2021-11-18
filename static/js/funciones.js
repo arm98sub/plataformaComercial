@@ -1,6 +1,6 @@
-function modal(url, text){
+function modalUsuario(url, first_name){
     document.getElementById('form_eliminar').action = url;
-    document.getElementById('modal_body').innerHTML = '¿Deseas eliminar el ' + text + '?'; 
+    document.getElementById('modal_body').innerHTML = `¿Deseas eliminar el usuario' + ${first_name} + ?`; 
 }
 
 $("#id_estado").on('change',function () { 

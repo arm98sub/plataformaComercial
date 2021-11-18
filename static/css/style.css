@@ -6460,25 +6460,25 @@ p {
   flex-wrap: nowrap;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 400px) {
   .header-style-1 {
     display: block;
   }
 }
 
 .header-style-1 .header-big {
-  width: 66.67%;
+  width: 22%;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 400px) {
   .header-style-1 .header-big {
-    width: 100%;
+    width: 50%;
   }
 }
 
 .header-style-1 .header-big .single-header-item {
   position: relative;
-  height: 760px;
+  height: 400px;
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
@@ -6507,10 +6507,11 @@ p {
 
 .header-style-1 .header-big .single-header-item .header-item-content {
   position: absolute;
+  align-items: center;
   bottom: 0;
   left: 0;
   width: 70%;
-  padding: 40px;
+  padding: 25px;
   background-color: rgba(255, 255, 255, 0.74);
 }
 
