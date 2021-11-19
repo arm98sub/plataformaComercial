@@ -65,7 +65,6 @@ class UsuariosEliminar(PermissionRequiredMixin,DeleteView):
 
     
 
-
 # Sesiones de Usuarios
 
 class LoginUsuario(LoginView):

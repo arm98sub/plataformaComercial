@@ -2,45 +2,55 @@
 {% load static %}
 
 {% block title%}
-	Inicio
+Inicio
 {% endblock title %}
 
 {% block body %}
-	<!--====== Header Style 1 Part Start ======-->
-    <section class="header-style-1">
-        <div class="header-big">
-            <div class="header-items-active">
-                {% for p in productos %}
-                <div class="single-header-item bg_cover"
-                    style="background-image: url(/media/{{MEDIA_URL}}{{p.imagen}});">
-                    <div class="header-item-content">
-                        <h3 class="title">{{p.descripcion}}</h3>
-                        <a href="{% url 'principal:ver_producto' p.id %}" class="link">{{p.nombre}}</a>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
 
-        <!-- <div class="header-min">
-            <div class="header-min-item product-style-25 bg_cover"
-                style="background-image: url(static/images/header-1/header-min-1.jpg);">
-                <div class="product-content">
-                    <h4 class="title"><a href="product-details-page.html">Metro 38 Date</a></h4>
-                    <p>Reference 1102</p>
-                    <a href="javascript:void(0)" class="main-btn primary-btn-border"> <img src="{% static 'images/icon-svg/cart-5.svg' %}" alt="">$
-                        399</a>
-                </div>
-            </div>
-            <div class="header-min-item product-style-25 bg_cover"
-                style="background-image: url(static/images/header-1/header-min-2.jpg);">
-                <div class="product-content">
-                    <h4 class="title"><a href="product-details-page.html">Metro 38 Date</a></h4>
-                    <p>Reference 1102</p>
-                    <a href="javascript:void(0)" class="main-btn primary-btn-border"> <img src="{% static 'images/icon-svg/cart-5.svg' %}" alt="">$
-                        399</a>
-                </div>
-            </div>
-        </div> -->
-    </section>
+
+<!-- Carrusel de productos -->
+<!-- 
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+    
+    <img src="{% static 'images/menu-1.jpg' %}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>First slide label</h5>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/menu-2.jpg' %}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Second slide label</h5>
+          <p>Some representative placeholder content for the second slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/logo_principal.png' %}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Third slide label</h5>
+          <p>Some representative placeholder content for the third slide.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+ -->
+
+
 {% endblock body%}
+<!-- <img src="url(/media/{{MEDIA_URL}}{{p.imagen}});" class="d-block w-100" alt="..."> -->

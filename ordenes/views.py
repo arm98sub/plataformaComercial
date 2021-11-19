@@ -75,7 +75,7 @@ def comprar(request):
     request.session['cantidad']=0
     request.session['articulos']={}
     
-    return redirect('store:principal')
+    return redirect('principal:principal')
 
 @login_required
 @permission_required('usuarios.permiso_usuario', raise_exception=True)

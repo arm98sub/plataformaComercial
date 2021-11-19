@@ -68,7 +68,7 @@ class EliminarProducto(PermissionRequiredMixin, DeleteView):
 
 class VerProducto(DetailView):
 	model = Producto
-	template_name = "store/detalleProducto.html"
+	template_name = "principal/detalleProducto.html"
 	context_object_name = "producto"
 
 # CRUD Servicios

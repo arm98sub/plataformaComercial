@@ -5,7 +5,7 @@ class UsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuario
 
-        fields = ('first_name','username','password','email','estado','municipio','foto')
+        fields = ('first_name','username','password','email','foto','estado','municipio')
 
         widgets = {
             'password': forms.PasswordInput(attrs={'placeholder':'Contraseña'}),

@@ -18,12 +18,12 @@
 			<divd class="row">
 				{% for p in productos %}
 					<div class="col-lg-4 col-sm-6">
-						<div class="product-style-1 mt-30">
+						<div class="product-style-1 mt-100">
 							<div class="product-image">
 								<span class="icon-text text-style-1">Nuevo</span>
 								<div class="product-active">
 									<div class="product-item active">
-										<img src="{% if p.imagen %}/media/principal/{{MEDIA_URL}}{{p.imagen}}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}" alt="{{p.nombre}}">
+										<img src="{% if p.imagen %}/media/{{MEDIA_URL}}{{p.imagen}}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}" class="rounded mx-auto" alt="{{p.nombre}}">
 									</div>
 								</div>
 							</div>

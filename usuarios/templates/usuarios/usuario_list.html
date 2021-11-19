@@ -17,7 +17,7 @@ Lista de Usuario
 <h1>Lista de Usuarios</h1>
 <br>
 
-<a href="{% url 'usuarios:nuevo' %}"><i class="fa fa-plus"></i> Nuevo Usuario</a>
+<a class="btn btn-primary" href="{% url 'usuarios:nuevo' %}">Nuevo Usuario</a>
 <br>
 
 <table class="table" style='margin-top: 1em'>
@@ -97,3 +97,4 @@ Lista de Usuario
 {block js}
 <script src="{% static 'js/funciones.js'%}"></script>
 {endblock js}
+

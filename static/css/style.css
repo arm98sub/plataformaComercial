@@ -2584,11 +2584,12 @@ p {
 }
 
 .product-style-1 .product-image .product-active .product-item img {
-  width: 100%;
+  width: 350px;
+  max-height: 150px;
 }
 
 .product-style-1 .product-image .product-active .slick-arrow {
-  position: absolute;
+  position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -2636,10 +2637,10 @@ p {
 
 .product-style-1 .product-content {
   background-color: rgba(0, 0, 0, 0.64);
-  margin: -50px 42px 0;
+  margin: -30px 42px 0;
   position: relative;
   z-index: 5;
-  padding: 30px 20px 35px;
+  padding: 30px 20px 25px;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -7625,4 +7626,14 @@ p {
 table tbody td div .imagen-carrito{
   height: 100px;
   width: 100px;
+}
+
+input[type=submit], input[type=reset] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
 }
