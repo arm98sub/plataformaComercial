@@ -363,7 +363,8 @@
                             <!-- navbar menu Start -->
                             <div class="navbar-menu">
                                 <ul class="main-menu">
-                                    <li><a href="{% url 'principal:principal'%}">Home</a></li>
+                                    <li><a href="{%
+                                         url 'principal:principal'%}">Home</a></li>
                                     <li><a href="{% url 'principal:lista'%}">Tienda</a></li>
                                     {% if perms.usuarios.permiso_administradores %}
                                     <li><a href="{% url 'principal:lista_admin'%}">Administrar Productos</a></li>

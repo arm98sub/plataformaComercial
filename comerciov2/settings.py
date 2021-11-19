@@ -136,5 +136,5 @@ LOGOUT_REDIRECT_URL = reverse_lazy('usuarios:login')
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'plataformadigitalc@gmail.com'
-EMAIL_HOST_PASSWORD = 'comercial2021'
+EMAIL_HOST_PASSWORD = 'comercial_21'
 EMAIL_PORT = 587
