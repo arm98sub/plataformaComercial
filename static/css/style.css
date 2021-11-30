@@ -17,6 +17,43 @@
 
 -----------------------------------------------------------------------------------*/
 /*==================================================================
+                            0 Custom CSS
+==================================================================*/
+.bg-image-vertical {
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
+}
+
+@media (min-width: 1025px) {
+  .h-custom-2 {
+    height: 100%;
+  }
+}
+
+.boton-ingresar{
+  color: white; 
+  background-color: #a72727;
+  border-color: #a72727;
+}
+.imagen-zac{
+  height: 100vh;
+  width: 100vw;
+}
+
+.boton-ingresar:hover{
+  color: black; 
+}
+.crear-cuenta{
+  color: #a72727;
+}
+.crear-cuenta:hover{
+  color: black;
+}
+
+/*==================================================================
                             01.Common css
 ==================================================================*/
 /*=====  Common Style =====*/
@@ -29,6 +66,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 
 * {
   margin: 0;
