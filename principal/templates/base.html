@@ -18,7 +18,7 @@
 
     {% endblock css %}
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/png">
+    <link rel="shortcut icon" href="{% static 'images/imagenes-tuneadas/zac.png' %}" type="image/png">
 
     <!--====== Slick CSS ======-->
     <link rel="stylesheet" href="{% static 'css/slick.css' %}">
@@ -89,7 +89,7 @@
                             <!-- desktop logo Start -->
                             <div class="mobile-logo text-center">
                                 <a href="{% url 'principal:principal' %}"><img
-                                        src="{% static 'images/logo_principal.png' %}" alt="Logo" width="222px"></a>
+                                        src="{% static 'images/imagenes-tuneadas/images.jpg' %}"  width="222px"></a>
                             </div>
                             <!-- desktop logo Ends -->
                         </div>
@@ -356,15 +356,14 @@
                             <!-- desktop logo Start -->
                             <div class="desktop-logo d-none d-lg-block">
                                 <a href="{% url 'principal:principal'%}"><img
-                                        src="{% static 'images/logo_principal.png' %}" alt="Logo" width="250px"></a>
+                                        src="{% static 'images/imagenes-tuneadas/Logo.png' %}" alt="Logo" width="250px" height="70"></a>
                             </div>
                             <!-- desktop logo Ends -->
 
                             <!-- navbar menu Start -->
                             <div class="navbar-menu">
                                 <ul class="main-menu">
-                                    <li><a href="{%
-                                         url 'principal:principal'%}">Home</a></li>
+                                    <li><a href="{% url 'principal:principal' %}">Home</a></li>
                                     <li><a href="{% url 'principal:lista'%}">Tienda</a></li>
                                     {% if perms.usuarios.permiso_administradores %}
                                     <li><a href="{% url 'principal:lista_admin'%}">Administrar Productos</a></li>
@@ -415,7 +414,7 @@
                     <div class="col-lg-5 col-md-7 col-sm-10">
                         <div class="footer-logo text-center">
                             <a href="{% url 'principal:principal' %}">
-                                <img src="{% static 'images/logo_principal.png' %}" alt="Logo" width="300px">
+                                <img src="{% static 'images/imagenes-tuneadas/images.png' %}" alt="Logo" width="300px">
                             </a>
                         </div>
                         <h5 class="heading-5 text-center mt-30">S&iacute;guenos</h5>
