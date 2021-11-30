@@ -11,7 +11,7 @@ from usuarios.models import Usuario
 
 grupo_administradores = Group.objects.create(name='administradores')
 grupo_usuarios = Group.objects.create(name='usuarios')
-
+grupo_vendedores = Group.objects.create(name='vendedores')
 content_type = ContentType.objects.get_for_model(Usuario)
 
 permiso_usuarios = Permission.objects.create(
@@ -26,9 +26,15 @@ permiso_administradoes = Permission.objects.create(
     content_type=content_type
 )
 
+permiso_vendedores = Permission.objects.create(
+    codename='permiso_vendedores',
+    name='Permiso requerido para el grupo vendedores',
+    content_type = content_type
+)
+
 grupo_usuarios.permissions.add(permiso_usuarios)
 grupo_administradores.permissions.add(permiso_administradoes)
-
+grupo_vendedores.permissions.add(permiso_vendedores)
 # administrador = Usuario.objects.create_user('luis@asdas.mx', password='luis123')
 # administrador.groups.add(grupo_administradores)
 

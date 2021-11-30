@@ -22,7 +22,7 @@ from .forms import UsuarioForm
 
 
 class UsuariosList(ListView):
-    # permission_required = 'usuarios.view_usuario'
+    permission_required = 'users.permiso_administradores'
     model = Usuario
     template_name = 'usuario_list.html'
     lista_grupos = Group.objects.all()
