@@ -97,7 +97,7 @@
                             <!-- navbar cart start -->
                             <div class="navbar-cart">
                                 <a class="icon-btn primary-icon-text icon-text-btn" href="javascript:void(0)">
-                                    <img src="{%static 'images/icon-svg/cart-1.svg'%}" alt="Icon">
+                                    <img src="{%static 'images/icon-svg/'%}" alt="Icon">
                                     <span class="icon-text text-style-1">{{request.session.cantidad}}</span>
                                 </a>
 
@@ -372,14 +372,14 @@
                                 </ul>
                             </div>
                             <!-- navbar menu Ends -->
-                            <div class="navbar-search-cart d-none d-lg-flex">
+                            <div class="navbar-search-cart d-none d-lg-flex boton-buscar">
                                 <!-- navbar search start -->
                                 <div class="navbar-search search-style-5">
                                     <div class="search-input">
                                         <input type="text" placeholder="Buscar...">
                                     </div>
                                     <div class="search-btn">
-                                        <button><i class="lni lni-search-alt"></i></button>
+                                        <button ><i class="lni lni-search-alt" ></i></button>
                                     </div>
                                 </div>
                                 <!-- navbar search Ends -->
@@ -387,7 +387,7 @@
                                 <div class="navbar-cart">
                                     <a class="icon-btn primary-icon-text icon-text-btn"
                                         href="{% url 'ordenes:lista_carrito'%}">
-                                        <img src="{% static 'images/icon-svg/cart-1.svg' %}" alt="Icon">
+                                        <img src="{% static 'images/icon-svg/cart-fill.svg' %}" alt="Icon">
                                         <span class="icon-text text-style-1">{{request.session.cantidad}}</span>
                                     </a>
                                 </div>

@@ -21,7 +21,7 @@ from .forms import UsuarioForm
 # CRUD Usuarios
 
 
-class UsuariosList(ListView):
+class UsuariosList(PermissionRequiredMixin,ListView):
     # permission_required = 'usuarios.view_usuario'
     model = Usuario
     template_name = 'usuario_list.html'

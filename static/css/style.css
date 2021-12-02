@@ -32,6 +32,17 @@
     height: 100%;
   }
 }
+.boton-buscar button{
+  background-color: #a72727;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 20px;
+  border: 0;
+  border-radius: 4px;
+  margin-left: -2px;
+}
 
 .boton-ingresar{
   color: white; 
@@ -1264,7 +1275,7 @@ p {
 /*===== Secondary 1 Button Style =====*/
 .secondary-1-icon,
 .secondary-1-btn {
-  background-color: #E14C7B;
+  background-color: #a72727;
   color: #fff;
 }
 
@@ -1655,7 +1666,7 @@ p {
 }
 
 .icon-text.text-style-1 {
-  background-color: #E14C7B;
+  background-color: #a72727;
   color: #fff;
 }
 
@@ -4077,8 +4088,20 @@ p {
 }
 
 .search-style-5 .search-btn button {
-  background-color: #2e3578;
+  background-color: #a72727;
   color: #fff;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 20px;
+  border: 0;
+  border-radius: 4px;
+  margin-left: -2px;
+}
+
+.search-style-5 .search-btn button:hover {
+  background-color: #a72727;
+  color: black;
   width: 40px;
   height: 40px;
   padding: 0;
@@ -4359,7 +4382,7 @@ p {
 }
 
 .breadcrumbs-style.breadcrumbs-style-1 .breadcrumb-left .breadcrumb .breadcrumb-item a:hover {
-  color: #2e3578;
+  color: #a72727;
 }
 
 .breadcrumbs-style.breadcrumbs-style-1 .breadcrumb-right .nice-select::after {
@@ -4521,7 +4544,7 @@ p {
 }
 
 .navbar-style-7 .navbar-container .navbar-close a:hover {
-  color: #2e3578;
+  color: #a72727;
 }
 
 .navbar-style-7 .navbar-container .navbar-top-wrapper {
@@ -4602,7 +4625,7 @@ p {
 }
 
 .navbar-style-7 .navbar-container .navbar-top .navbar-top-left .navbar-top-link li a:hover {
-  color: #2e3578;
+  color: black;
 }
 
 .navbar-style-7 .navbar-container .navbar-top .navbar-top-right .navbar-top-link li {
@@ -4742,7 +4765,7 @@ p {
 }
 
 .navbar-style-7 .navbar-container .navbar-top .navbar-top-right .navbar-top-link li a:hover {
-  color: #2e3578;
+  color: #0007;
 }
 
 .navbar-style-7 .navbar-container .main-navbar .navbar-menu .main-menu {
@@ -4880,7 +4903,7 @@ p {
 }
 
 .navbar-style-7 .navbar-container .main-navbar .navbar-menu .main-menu li:hover > a {
-  background-color: #2e3578;
+  background-color: #a72727;
   color: #fff;
   -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.32);
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.32);
@@ -5426,7 +5449,7 @@ p {
 }
 
 .navbar-dark-7 .navbar-container .navbar-close a:hover {
-  color: #FAE5EC;
+  color: #a72727;
 }
 
 .navbar-dark-7 .navbar-container .navbar-top-wrapper {
@@ -5450,7 +5473,7 @@ p {
 }
 
 .navbar-dark-7 .navbar-container .navbar-top .navbar-top-left .navbar-top-link li a:hover {
-  color: #00D4E0;
+  color: #a72727;
 }
 
 .navbar-dark-7 .navbar-container .navbar-top .navbar-top-right .navbar-top-link li .nice-select::after {
