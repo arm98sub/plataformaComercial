@@ -7,22 +7,23 @@ from django.core.mail import EmailMessage
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
 from django.http import JsonResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import ListView, TemplateView
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .token import token_activacion
-from .models import Usuario, Municipio, Estado
-from .forms import UsuarioForm
+from .models import Usuario, Municipio, Usuario_Vendedor
+from .forms import UsuarioForm, Usuario_Vendedor_Form
 
 # CRUD Usuarios
 
 
 class UsuariosList(PermissionRequiredMixin,ListView):
-    # permission_required = 'usuarios.view_usuario'
+    permission_required = 'users.permiso_administradores'
     model = Usuario
     template_name = 'usuario_list.html'
     lista_grupos = Group.objects.all()
@@ -122,6 +123,16 @@ class SignUpUsuario(CreateView):
 
 		return super().form_valid(form)
 
+class Sign_up_usuario_vendedor(CreateView):
+    model = Usuario_Vendedor
+    template_name = 'sign_up_vendor.html'
+    form_class = Usuario_Vendedor_Form
+
+    success_url = reverse_lazy('usuarios:login')
+	
+
+
+ 
 class ActivarCuenta(TemplateView):
     def get(self, request, *args, **kwargs):
         try:
