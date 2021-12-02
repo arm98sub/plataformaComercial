@@ -1,5 +1,5 @@
 from django import forms
-from .models import Usuario
+from .models import Usuario, Usuario_Vendedor
 
 class UsuarioForm(forms.ModelForm):
     class Meta:
@@ -25,3 +25,30 @@ class UsuarioForm(forms.ModelForm):
         if self.data['password'] != self.data['password2']:
             raise forms.ValidationError("Las contraseñas no coinciden")
         return self.data['password']
+    
+class Usuario_Vendedor_Form(forms.ModelForm):
+    class Meta:
+        model = Usuario_Vendedor
+        
+        fields = ('first_name', 'username', 'password', 'password_rev', 'email', 'foto_perfil', 'estado', 'municipio', 'direccion','telefono', 'descripcion')
+        
+        widgets = {
+            'password': forms.PasswordInput(),
+            'password_Rev': forms.PasswordInput(),
+            'estado': forms.Select(), 
+            'descripcion': forms.Textarea()
+        }
+        
+    def save(self, commit=True):
+        user = super(UsuarioForm, self).save(commit=False)
+        user.set_password(self.cleaned_data['password'])
+        if commit:
+            user.save()
+        return user
+    
+    
+    def clean_password(self, *args, **kwargs):
+        if self.data['password'] != self.data['password2']:
+            raise forms.ValidationError("Las contraseñas no coinciden")
+        return self.data['password']
+        

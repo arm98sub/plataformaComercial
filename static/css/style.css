@@ -53,6 +53,11 @@
   color: black;
 }
 
+.img-lista-usuarios{
+  width: 75;
+  height: 75;
+}
+
 /*==================================================================
                             01.Common css
 ==================================================================*/
@@ -604,7 +609,7 @@ p {
 
 /*========== Primary Color =========*/
 .primary-color {
-  color: #2e3578;
+  color: #a72727;
 }
 
 .primary-variant {
@@ -616,7 +621,7 @@ p {
 }
 
 .bg-primary-color {
-  background-color: #2e3578;
+  background-color: #a72727;
 }
 
 .bg-primary-variant {
@@ -1222,7 +1227,7 @@ p {
 /*===== Primary Button Style =====*/
 .primary-icon,
 .primary-btn {
-  background-color: #2e3578;
+  background-color: #a72727;
   color: #fff;
 }
 
@@ -1750,7 +1755,7 @@ p {
 }
 
 .product-quantity.quantity-1 {
-  background-color: #2e3578;
+  background-color: #a72727;
 }
 
 .product-quantity.quantity-1 button {
@@ -3455,7 +3460,7 @@ p {
   border: 1px solid transparent;
   height: 40px;
   line-height: 40px;
-  background-color: #2e3578;
+  background-color: #a72727;
   padding-left: 40px;
   float: none;
 }
@@ -4077,7 +4082,7 @@ p {
 }
 
 .search-style-5 .search-btn button {
-  background-color: #2e3578;
+  background-color: #a72727;
   color: #fff;
   width: 40px;
   height: 40px;
@@ -4880,7 +4885,7 @@ p {
 }
 
 .navbar-style-7 .navbar-container .main-navbar .navbar-menu .main-menu li:hover > a {
-  background-color: #2e3578;
+  background-color: #a72727;
   color: #fff;
   -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.32);
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.32);
@@ -6643,7 +6648,7 @@ p {
 }
 
 .header-style-1 .header-big .header-items-active .slick-dots li.slick-active button {
-  background-color: #2e3578;
+  background-color: #a72727;
   -webkit-transform: scale(2);
   transform: scale(2);
 }
@@ -7565,7 +7570,7 @@ p {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #2e3578;
+  background: #a72727;
   color: #fff;
   margin-bottom: 25px;
   display: -webkit-box;

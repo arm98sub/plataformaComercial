@@ -18,6 +18,7 @@ urlpatterns = [
     path('login/', views.LoginUsuario.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('signup/', views.SignUpUsuario.as_view(), name='signup'),
+    path('signup/vendor/', views.Sign_up_usuario_vendedor.as_view(), name='signup_vendor'),
     path('activar/<slug:uid64>/<slug:token>', views.ActivarCuenta.as_view(), name='activar'),
 
     # Grupos
