@@ -1,0 +1,13 @@
+{% extends 'base2.html' %}
+
+{% block title %}
+	P&aacute;gina de Administraci&oacute;n
+{% endblock title%}
+
+{% block body %}
+	<h1>M&oacute;dulos:</h1>
+	<br>
+
+	<h3><a href="{% url 'principal:lista_admin' %}">Productos/Servicios</a></h3>
+	<h3><a href="{% url 'usuarios:lista' %}">Usuarios</a></h3>
+{% endblock body %}

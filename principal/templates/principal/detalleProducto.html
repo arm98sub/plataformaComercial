@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Ver producto
+{% endblock title %}
+
+{% block body %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6">
+                <div class="product-style-1 mt-30">
+                    <div class="product-image">
+                        <span class="icon-text text-style-1">Nuevo</span>
+                        <div class="product-active">
+                            <div class="product-item active">
+                                <img src="{% if producto.imagen %}/media/{{MEDIA_URL}}{{producto.imagen}}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
+                                    alt="{{producto.nombre}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-content text-center">
+                        <h4 class="title"><a
+                                href="{% url 'principal:ver_producto' producto.id %}">{{producto.nombre}}</a></h4>
+                        <form action="{% url 'ordenes:agregar'%}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{producto.id}}">
+                            <button type="submit" class="main-btn secondary-1-btn">
+                                <img src="{% static 'images/icon-svg/cart-7.svg' %}" alt="">
+                                ${{producto.precio}}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+
+            </div>
+        </div>
+    </div>
+
+
+</section>
+{% endblock body %}

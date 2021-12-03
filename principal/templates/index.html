@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}
+Inicio
+{% endblock title %}
+
+{% block body %}
+
+
+<!-- Carrusel de productos -->
+<div class="container">
+  <div class="row">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        {% for p in productos %}
+        <div class="carousel-item {% if forloop.first %} active {% endif %}">
+          <img class="d-block w-100" src="/media/{{MEDIA_URL}}{{p.imagen}}" alt="First slide" width="520px"
+            height="450px">
+        </div>
+        {% endfor %}
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+ 
+
+
+{% endblock body%}

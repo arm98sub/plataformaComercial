@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Mi Carrito
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/mis_estilos.css'%}">
+{% endblock css %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="page-header">
+                Carrito de compra
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 mb-4">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <th></th>
+                        <th class="mob-hide">Nombre</th>
+                        <th class="mob-hide">Precio Unitario</th>
+                        <th class="mob-hide">Cantidad</th>
+                        <th>Subtotal</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        {% for dato in datos %}
+                            <tr>
+                            <td>
+                                <div class="imagen-carrito">
+                                    <img src="{% if dato.imagen %}/media/{{MEDIA_URL}}{{dato.imagen}}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}" alt="{{dato.nombre}}"> 
+                                </div>
+                            </td>
+                            <td>{{dato.nombre}}</td>
+                            <td>${{dato.precio}}</td>
+                            <td>{{dato.cantidad}}</td>
+                            <td>${{dato.subtotal }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mb-4">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td colspan="1" class="text-left">
+                                <strong>Total</strong>
+                            </td>
+                            <td colspan="1" class="text-right">
+                                <strong>${{total}}</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <a class="btn btn-primary btn-block" href="{% url 'ordenes:comprar' %}"> Finalizar compra</a>
+                    <a class="btn btn-link btn-block" href="{% url 'principal:principal'%}">← Continuar Comprando</a>
+                    <a class="btn btn-danger btn-block" href="{% url 'ordenes:cancelar_carrito' %}"> Cancelar compra</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+
+{% block js %}
+    <script src="{% static 'js/funciones.js'%}"></script>
+{% endblock js %}
