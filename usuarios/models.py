@@ -18,7 +18,7 @@ class Usuario_Vendedor(User):
     foto_perfil = models.ImageField("Foto de Perfil", upload_to= "perfil", blank=True, null=True)
     direccion = models.CharField("Direccion", max_length=255, null=False, blank=False, default="")
     telefono = models.CharField("Telefono", max_length=10, null = False, blank=False, default="")
-    password_rev = models.CharField("Verifica tu contraseña", blank=False, null=False, max_length=150)
+    password_rev = models.CharField("Verifica tu contraseña", blank=False, null=False, max_length= 62, default="")
     descripcion = models.CharField("Descripcion", max_length=255, null = True, blank = True)
     
                             

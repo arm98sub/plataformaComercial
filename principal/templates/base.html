@@ -367,12 +367,15 @@
                                     <li><a href="{% url 'principal:principal' %}">Home</a></li>
                                     <li><a href="{% url 'principal:lista'%}">Tienda</a></li>
                                     {% if perms.usuarios.permiso_administradores %}
-                                    <li><a href="{% url 'principal:lista_admin'%}">Administrar Productos</a></li>
-                                    <li><a href="{% url 'usuarios:lista'%}">Administrar Usuarios</a></li>
+                                        <li><a href="{% url 'usuarios:lista'%}">Administrar Usuarios</a></li>
+                                    {% endif %}
+                                    {% if perms.usuarios.permiso_vendedores %}
+                                        <li><a href="{% url 'principal:lista_admin'%}">Administrar Productos</a></li>
                                     {% endif %}
                                 </ul>
                             </div>
                             <!-- navbar menu Ends -->
+                            
                             <div class="navbar-search-cart d-none d-lg-flex boton-buscar">
                                 <!-- navbar search start -->
                                 <div class="navbar-search search-style-5">
