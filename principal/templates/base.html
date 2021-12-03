@@ -18,7 +18,7 @@
 
     {% endblock css %}
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="{% static 'images/imagenes-tuneadas/zac.png' %}" type="image/png">
+    <link  rel="shortcut icon" href="{% static 'images/imagenes-tuneadas/zac.png' %}"  type="image/png">
 
     <!--====== Slick CSS ======-->
     <link rel="stylesheet" href="{% static 'css/slick.css' %}">
@@ -88,7 +88,7 @@
                         <div class="col-6">
                             <!-- desktop logo Start -->
                             <div class="mobile-logo text-center">
-                                <a href="{% url 'principal:principal' %}"><img
+                                <a  href="{% url 'principal:principal' %}"><img
                                         src="{% static 'images/imagenes-tuneadas/images.jpg' %}"  width="222px"></a>
                             </div>
                             <!-- desktop logo Ends -->
@@ -119,7 +119,7 @@
                                                                 </div>
                                                                 <div class="product-content media-body">
                                                                     <h5 class="title">
-                                                                        <a href="product-details-page.html">Hollow
+                                                                        <a href="product-details-page.html">Hollows
                                                                             Port</a>
                                                                     </h5>
                                                                     <ul>
@@ -349,7 +349,6 @@
                     </div>
                 </div>
                 <!-- navbar top Ends -->
-
                 <!-- main navbar Start -->
                 <div class="navbar-wrapper">
                     <div class="container-lg">
@@ -357,25 +356,89 @@
                             <!-- desktop logo Start -->
                             <div class="desktop-logo d-none d-lg-block">
                                 <a href="{% url 'principal:principal'%}"><img
-                                        src="{% static 'images/imagenes-tuneadas/Logo.png' %}" alt="Logo" width="250px" height="70"></a>
+                                        src="{% static 'images/imagenes-tuneadas/Logo.png' %}" alt="Logo" width="250px" height="65px"></a>
                             </div>
                             <!-- desktop logo Ends -->
 
-                            <!-- navbar menu Start -->
-                            <div class="navbar-menu">
+                            
+                            <div class="navbar-menu ">
                                 <ul class="main-menu">
-                                    <li><a href="{% url 'principal:principal' %}">Home</a></li>
+                                    <li>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle" type="button" id="dropdownMenu1" 
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Arte/Cultura</a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item hoverMenu" href="#">Exposiciones</a>
+                                                <a class="dropdown-item hover" href="#">Festivales</a>
+                                                 <a class="dropdown-item" href="#">Talleres de Artes</a>
+                                                 <a class="dropdown-item" href="#">Artes Plásticas</a>
+                                                 <a class="dropdown-item" href="#">Galerías de Arte</a>
+                                                 <a class="dropdown-item" href="#">Artistas</a>
+                                            </div>
+                                        </div>        
+                                    </li>
+                                    <li>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle" type="button" id="dropdownMenu2" 
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Artesanías</a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="#">Plata</a>
+                                                <a class="dropdown-item" href="#">Talabartería</a>
+                                                 <a class="dropdown-item" href="#">Cerámica</a>
+                                                 <a class="dropdown-item" href="#">Joyería</a>
+                                                 <a class="dropdown-item" href="#">Indígenas</a>
+                                            </div>
+                                        </div>  
+                                    </li>
+                                    <li>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle" type="button" id="dropdownMenu3" 
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Comercial</a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="#">Agro-industria</a>
+                                                <a class="dropdown-item" href="#">Conservas</a>
+                                                 <a class="dropdown-item" href="#">Joyería</a>
+                                            </div>
+                                        </div>  
+                                    <li>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle" type="button" id="dropdownMenu4" 
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Turismo</a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="#">Hoteles</a>
+                                                <a class="dropdown-item" href="#">Restaurantes</a>
+                                                 <a class="dropdown-item" href="#">Recorridos</a>
+                                                 <a class="dropdown-item" href="#">Museos</a>
+                                                 <a class="dropdown-item" href="#">Teleférico</a>
+                                                 <a class="dropdown-item" href="#">Mina</a>
+                                                 <a class="dropdown-item" href="#">Cerro La Bufa</a>
+                                                 <a class="dropdown-item" href="#">Callejoneadas</a>
+                                                 <a class="dropdown-item" href="#">Puertas Digitales</a>
+                                            </div>
+                                        </div> 
+                                    <li>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle" type="button" id="dropdownMenu5" 
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Servicios</a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="#">Renta Autos</a>
+                                                <a class="dropdown-item" href="#">Médicos</a>
+                                                 <a class="dropdown-item" href="#">Aeropuerto</a>
+                                                 <a class="dropdown-item" href="#">Autobuses</a>
+                                                 <a class="dropdown-item" href="#">Transporte Público</a>
+                                                 <a class="dropdown-item" href="#">Conectividad</a>
+                                                 <a class="dropdown-item" href="#">Pronóstico</a>
+                                                 <a class="dropdown-item" href="#">Trámites</a>
+                                            </div>
+                                        </div>                                    
                                     <li><a href="{% url 'principal:lista'%}">Tienda</a></li>
                                     {% if perms.usuarios.permiso_administradores %}
-                                        <li><a href="{% url 'usuarios:lista'%}">Administrar Usuarios</a></li>
-                                    {% endif %}
-                                    {% if perms.usuarios.permiso_vendedores %}
-                                        <li><a href="{% url 'principal:lista_admin'%}">Administrar Productos</a></li>
+                                    <li><a href="{% url 'principal:lista_admin'%}">Administrar Productos</a></li>
+                                    <li><a href="{% url 'usuarios:lista'%}">Administrar Usuarios</a></li>
                                     {% endif %}
                                 </ul>
                             </div>
                             <!-- navbar menu Ends -->
-                            
                             <div class="navbar-search-cart d-none d-lg-flex boton-buscar">
                                 <!-- navbar search start -->
                                 <div class="navbar-search search-style-5">
@@ -399,12 +462,13 @@
                             </div>
                         </nav>
                     </div>
-                </div>
+                </div>                
                 <!-- main navbar Ends -->
             </div>
             <div class="overlay-7"></div>
         </header>
     </div>
+
 
     {% block body %}
 

@@ -27,6 +27,11 @@
   background-size: auto 100%;
 }
 
+
+.imagen-zac{
+  height: 20px;
+}
+
 @media (min-width: 1025px) {
   .h-custom-2 {
     height: 100%;
@@ -56,6 +61,18 @@
 
 .boton-ingresar:hover{
   color: black; 
+}
+.dropdown-menu>a:hover {
+  color: white;
+  background-color: #a72727;
+}
+
+.hoverMenu :hover{
+  background-color: #a72727;
+  color: white;
+}
+.hover:hover{
+  color:white
 }
 .crear-cuenta{
   color: #a72727;
@@ -4826,7 +4843,7 @@ p {
 .navbar-style-7 .navbar-container .main-navbar .navbar-menu .main-menu li a {
   padding: 0 16px;
   line-height: 36px;
-  color: #4C4C4C;
+  color: rgb(0 0 0 / 80%);
   font-size: 16px;
   text-transform: uppercase;
   font-weight: 500;
