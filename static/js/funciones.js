@@ -7,7 +7,7 @@ $("#id_estado").on('change',function () {
     var token = $('[name="csrfmiddlewaretoken"]').val();
     $.ajax({
         type: "post",
-        url: `/users/municipios/`,
+        url: `/usuarios/municipios/`,
         data:{'id':this.value, 'csrfmiddlewaretoken':token},
         success: function (response) {
             var html = ""
