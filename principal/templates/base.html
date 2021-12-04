@@ -1,4 +1,5 @@
 {% load static %}
+{% load auth_extras %}
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -432,10 +433,13 @@
                                             </div>
                                         </div>                                    
                                     <li><a href="{% url 'principal:lista'%}">Tienda</a></li>
-                                    {% if perms.usuarios.permiso_administradores %}
-                                    <li><a href="{% url 'principal:lista_admin'%}">Administrar Productos</a></li>
-                                    <li><a href="{% url 'usuarios:lista'%}">Administrar Usuarios</a></li>
-                                    {% endif %}
+                                    {% if perms.usuarios.permiso_administradores%}
+                                        <li><a href="{% url 'principal:lista_admin'%}">Administrar Productos</a></li>
+                                        <li><a href="{% url 'usuarios:lista'%}">Administrar Usuarios</a></li>
+                                    {% elif request.user|has_group:"vendedores" %}
+                                        <li><a href="{% url 'principal:nuevo_producto'%}">Agregar Producto</a></li>
+                                    {%endif %}
+
                                 </ul>
                             </div>
                             <!-- navbar menu Ends -->

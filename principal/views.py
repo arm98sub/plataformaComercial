@@ -49,7 +49,7 @@ class NuevoProducto(PermissionRequiredMixin, CreateView):
 		'etiqueta': "Nuevo",
 		'boton': "Agregar",
 	}
-
+    
 class EditarProducto(PermissionRequiredMixin, UpdateView):
 	permission_required = 'usuarios.permiso_administradores'
 	model = Producto

@@ -12,7 +12,7 @@ class Usuario(User):
     puede_vender = models.BooleanField(default=False)
     
     
-class Usuario_Vendedor(User):
+class Usuario_Vendedor(User):    
     estado = ForeignKey("usuarios.Estado", verbose_name = "Estado", on_delete=CASCADE)
     municipio = ForeignKey("usuarios.Municipio", verbose_name="Municipio", on_delete=CASCADE)
     foto_perfil = models.ImageField("Foto de Perfil", upload_to= "perfil", blank=True, null=True)
@@ -34,3 +34,7 @@ class Municipio(models.Model):
     
     def __str__(self):
         return self.nombre
+    
+# class Permisos_Grupos(models.Model):
+#     class Meta:
+#         permissions = (('permiso_vendedores','Permiso creado para los vendedores'))
