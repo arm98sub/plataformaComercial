@@ -27,6 +27,14 @@
   background-size: auto 100%;
 }
 
+img.logo{
+  position: right;
+  max-width: 50%;
+
+}
+.navbar-custom {
+  color: #000000;
+}
 
 .imagen-zac{
   height: 20px;
@@ -102,8 +110,6 @@ body {
 
 
 * {
-  margin: 0;
-  padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
@@ -4503,8 +4509,8 @@ p {
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .navbar-style-7 .navbar-container {
     position: fixed;
-    top: 0;
-    left: -290px;
+    top: 220;
+    left: -100px;
     width: 280px;
     height: 100%;
     background-color: #fff;
