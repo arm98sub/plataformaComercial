@@ -61,3 +61,4 @@ class Usuario_Vendedor_Form(forms.ModelForm):
             raise forms.ValidationError("Las contraseñas no coinciden")
         return self.data['password']
         
+        

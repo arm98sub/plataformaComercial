@@ -9,6 +9,7 @@ urlpatterns = [
 
     # CRUD Usuarios
     path('', views.UsuariosList.as_view(), name='lista'),
+    path('pruebona/', views.PruebaUsuarios.as_view(), name = 'pruebona'),
     path('nuevo/', views.NuevoUsuario.as_view(), name='nuevo'),
     path('ver/<int:pk>', views.UsuariosDetalle.as_view(), name='ver'),
     path('editar/<int:pk>', views.UsuariosActualizar.as_view(), name='editar'),
