@@ -36,6 +36,8 @@ def lista_admin(request):
 	
 	return render(request, 'principal/lista_admin.html', {'productos': productos, 'servicios': servicios})
 
+def lista_productos(request):
+    productos = Producto.objects.filter(user = request.user)
 
 # CRUD Productos
 
