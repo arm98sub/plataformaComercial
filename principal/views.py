@@ -1,11 +1,12 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.http import request
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
-from .forms import ProductoForm, ServicioForm
-from .models import Producto, Servicio
+from .forms import ProductoForm, ServicioForm, ProductoFormVendedor
+from .models import Producto, ProductoVendedor, Servicio
 
 
 # Home del sitio
@@ -40,7 +41,7 @@ def lista_admin(request):
 # CRUD Productos
 
 class NuevoProducto(PermissionRequiredMixin, CreateView):
-	permission_required = 'usuarios.permiso_administradores'
+	permission_required = 'usuarios.permiso'
 	model = Producto
 	form_class = ProductoForm
 	success_url = reverse_lazy('principal:lista_admin')
@@ -49,6 +50,19 @@ class NuevoProducto(PermissionRequiredMixin, CreateView):
 		'etiqueta': "Nuevo",
 		'boton': "Agregar",
 	}
+
+class NuevoProductoVendedor(CreateView):
+	# permission_required = 'usuarios.'
+	template_name = 'principal\producto_form_vendedor.html'
+	model = ProductoVendedor
+	success_url = reverse_lazy('principal/lista')
+
+	extra_context = {
+		'etiqueta': "Nuevo",
+		'boton': "Agregar",
+	}
+	
+
 
 class EditarProducto(PermissionRequiredMixin, UpdateView):
 	permission_required = 'usuarios.permiso_administradores'

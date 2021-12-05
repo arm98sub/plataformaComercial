@@ -16,6 +16,7 @@ urlpatterns = [
 	path('lista_admin/', views.lista_admin, name='lista_admin'),
 
     # CRUD Productos
+    path('nuevo_producto_vendedor/', views.NuevoProductoVendedor.as_view(), name='nuevo_producto_vendedor'),
     path('nuevo_producto/', views.NuevoProducto.as_view(), name='nuevo_producto'),
     path('editar_producto/<int:pk>', views.EditarProducto.as_view(), name='editar_producto'),
     path('eliminar_producto/<int:pk>', views.EliminarProducto.as_view(), name='eliminar_producto'),
