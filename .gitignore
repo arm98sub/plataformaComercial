@@ -133,4 +133,5 @@ dmypy.json
 .pyre/
 >>>>>>> 0759b421581a849893f3ca4fe22ab4cc1fe48cb8
 *.pyc
-*.pyc
+db.sqlite3
+principal/migrations/__pycache__/0002_initial.cpython-310.pyc

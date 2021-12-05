@@ -1,3 +1,4 @@
+from typing import List
 from django.contrib import messages
 from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView
@@ -34,7 +35,18 @@ class UsuariosList(PermissionRequiredMixin,ListView):
         'lista_grupos': lista_grupos
     }
 
+# class UsuariosVendedoresLista(ListView):
+#     # permission_required = 'users.permiso_administradores'
+#     model = Usuario
+#     template_name = 'usuario_list.html'
+#     lista_grupos_filtrado = ""
+#     paginate_by = 5
 
+#     extra_context = {
+#         'us_lista': True,
+#         'lista_grupos': lista_grupos_filtrado
+#     }
+        
 class UsuariosDetalle(DetailView):
     model = Usuario
 
@@ -50,6 +62,15 @@ class NuevoUsuario(PermissionRequiredMixin, CreateView):
         'boton': 'Agregar',
         'us_nuevo': True
     }
+    
+class PruebaUsuarios(CreateView):
+    model = Usuario
+    form_class = UsuarioForm
+    template_name = 'prueba.html'
+    success_url = reverse_lazy('usuarios:login')
+    
+    
+    
 
 class UsuariosActualizar(PermissionRequiredMixin,SuccessMessageMixin, UpdateView):
     permission_required = 'users.permiso_administradores'
@@ -129,10 +150,8 @@ class Sign_up_usuario_vendedor(CreateView):
     form_class = Usuario_Vendedor_Form
 
     success_url = reverse_lazy('usuarios:login')
-	
-
-
- 
+     
+     
 class ActivarCuenta(TemplateView):
     def get(self, request, *args, **kwargs):
         try:

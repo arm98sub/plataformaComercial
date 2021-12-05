@@ -1,4 +1,5 @@
 {% load static %}
+{% load auth_extras %}
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -236,10 +237,12 @@
                           <li class="nav-item">
                             <a class="nav-link" href="{% url 'principal:lista'%}" style="color: black; font-size: large;">Tienda</a>
                           </li>
-                            {% if perms.usuarios.permiso_administradores %}
+                            {% if perms.usuarios.permiso_administradores%}
                                 <li><a class="nav-link" href="{% url 'principal:lista_admin'%}" style="color: black; font-size: large;">Administrar Productos</a></li>
-                                <li><a  class="nav-link"href="{% url 'usuarios:lista'%}" style="color: black; font-size: large;">Administrar Usuarios</a></li>
-                            {% endif %}
+                                <li><a class="nav-link" href="{% url 'usuarios:lista'%}" style="color: black; font-size: large;">Administrar Usuarios</a></li>
+                            {% elif request.user|has_group:"vendedores" %}
+                                <li><a class="nav-link" href="{% url 'principal:nuevo_producto'%}" style="color: black; font-size: large;">Agregar Producto</a></li>
+                            {%endif %}
                         </ul>
                       <div class="navbar-search search-style-5">
                         <div class="search-input">

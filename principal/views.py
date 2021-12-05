@@ -44,6 +44,7 @@ class NuevoProducto(PermissionRequiredMixin, CreateView):
 	permission_required = 'usuarios.permiso'
 	model = Producto
 	form_class = ProductoForm
+	template_name = 'principal/nuevo_producto.html'
 	success_url = reverse_lazy('principal:lista_admin')
 
 	extra_context = {
