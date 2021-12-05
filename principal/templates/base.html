@@ -88,218 +88,23 @@
                         </div>
                         <div class="col-6">
                             <!-- desktop logo Start -->
-                            <div class="mobile-logo text-center">
-                                <a  href="{% url 'principal:principal' %}"><img
-                                        src="{% static 'images/imagenes-tuneadas/images.jpg' %}"  width="222px"></a>
+                            <div>
+                                <a  href="{% url 'principal:principal' %}">
+                                    <img class="responsive" src="{% static 'images/imagenes-tuneadas/ZacatecasLogo.jpg' %}" ></a>
                             </div>
                             <!-- desktop logo Ends -->
                         </div>
-                        <div class="col-3">
-                            <!-- navbar cart start -->
-                            <div class="navbar-cart">
-                                <a class="icon-btn primary-icon-text icon-text-btn" href="javascript:void(0)">
-                                    <img src="{%static 'images/icon-svg/'%}" alt="Icon">
-                                    <span class="icon-text text-style-1">{{request.session.cantidad}}</span>
-                                </a>
-
-                                <div class="navbar-cart-dropdown">
-                                    <div class="checkout-style-2">
-                                        <div class="checkout-header d-flex justify-content-between">
-                                            <h6 class="title">Carrito</h6>
-                                        </div>
-
-                                        <div class="checkout-table table-responsive">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="checkout-product">
-                                                            <div class="product-cart d-flex">
-                                                                <div class="product-thumb">
-                                                                    <img src="{% static 'images/product-cart/product-1.png' %}"
-                                                                        alt="Product">
-                                                                </div>
-                                                                <div class="product-content media-body">
-                                                                    <h5 class="title">
-                                                                        <a href="product-details-page.html">Hollows
-                                                                            Port</a>
-                                                                    </h5>
-                                                                    <ul>
-                                                                        <li><span>Brown</span></li>
-                                                                        <li><span>XL</span></li>
-                                                                        <li>
-                                                                            <a class="delete" href="javascript:void(0)">
-                                                                                <i class="mdi mdi-delete"></i>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="checkout-quantity">
-                                                            <div class="product-quantity d-inline-flex">
-                                                                <button type="button" id="sub" class="sub">
-                                                                    <i class="mdi mdi-minus"></i>
-                                                                </button>
-                                                                <input type="text" value="1">
-                                                                <button type="button" id="add" class="add">
-                                                                    <i class="mdi mdi-plus"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                        <td class="checkout-price">
-                                                            <p class="price">$36.00</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="checkout-product">
-                                                            <div class="product-cart d-flex">
-                                                                <div class="product-thumb">
-                                                                    <img src="{% static 'images/product-cart/product-2.png' %}"
-                                                                        alt="Product">
-                                                                </div>
-                                                                <div class="product-content media-body">
-                                                                    <h5 class="title">
-                                                                        <a href="product-details-page.html">Mist Black
-                                                                            Triblend</a>
-                                                                    </h5>
-                                                                    <ul>
-                                                                        <li><span>Brown</span></li>
-                                                                        <li><span>XL</span></li>
-                                                                        <li>
-                                                                            <a class="delete" href="javascript:void(0)">
-                                                                                <i class="mdi mdi-delete"></i>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="checkout-quantity">
-                                                            <div class="product-quantity d-inline-flex">
-                                                                <button type="button" id="sub" class="sub">
-                                                                    <i class="mdi mdi-minus"></i>
-                                                                </button>
-                                                                <input type="text" value="1">
-                                                                <button type="button" id="add" class="add">
-                                                                    <i class="mdi mdi-plus"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                        <td class="checkout-price">
-                                                            <p class="price">$36.00</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="checkout-product">
-                                                            <div class="product-cart d-flex">
-                                                                <div class="product-thumb">
-                                                                    <img src="{% static 'images/product-cart/product-3.png' %}"
-                                                                        alt="Product">
-                                                                </div>
-                                                                <div class="product-content media-body">
-                                                                    <h5 class="title">
-                                                                        <a href="product-details-page.html">Realm
-                                                                            Bone</a>
-                                                                    </h5>
-                                                                    <ul>
-                                                                        <li><span>Brown</span></li>
-                                                                        <li><span>XL</span></li>
-                                                                        <li>
-                                                                            <a class="delete" href="javascript:void(0)">
-                                                                                <i class="mdi mdi-delete"></i>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="checkout-quantity">
-                                                            <div class="product-quantity d-inline-flex">
-                                                                <button type="button" id="sub" class="sub">
-                                                                    <i class="mdi mdi-minus"></i>
-                                                                </button>
-                                                                <input type="text" value="1">
-                                                                <button type="button" id="add" class="add">
-                                                                    <i class="mdi mdi-plus"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                        <td class="checkout-price">
-                                                            <p class="price">$36.00</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="checkout-product">
-                                                            <div class="product-cart d-flex">
-                                                                <div class="product-thumb">
-                                                                    <img src="{% static 'images/product-cart/product-4.png' %}"
-                                                                        alt="Product">
-                                                                </div>
-                                                                <div class="product-content media-body">
-                                                                    <h5 class="title">
-                                                                        <a href="product-details-page.html">Circular
-                                                                            Sienna</a></h5>
-                                                                    <ul>
-                                                                        <li><span>Brown</span></li>
-                                                                        <li><span>XL</span></li>
-                                                                        <li>
-                                                                            <a class="delete" href="javascript:void(0)">
-                                                                                <i class="mdi mdi-delete"></i>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="checkout-quantity">
-                                                            <div class="product-quantity d-inline-flex">
-                                                                <button type="button" id="sub" class="sub">
-                                                                    <i class="mdi mdi-minus"></i>
-                                                                </button>
-                                                                <input type="text" value="1">
-                                                                <button type="button" id="add" class="add">
-                                                                    <i class="mdi mdi-plus"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                        <td class="checkout-price">
-                                                            <p class="price">$36.00</p>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                        <div class="checkout-footer">
-                                            <div class="checkout-sub-total d-flex justify-content-between">
-                                                <p class="value">Subtotal Price:</p>
-                                                <p class="price">$144</p>
-                                            </div>
-                                            <div class="checkout-btn">
-                                                <a href="cart-page.html" class="main-btn primary-btn-border">View
-                                                    Cart</a>
-                                                <a href="checkout-page.html" class="main-btn primary-btn">Checkout</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- navbar cart Ends -->
-                        </div>
                     </div>
                     <!-- navbar search start -->
-                    <div class="navbar-search mt-15 search-style-5">
-                        <div class="search-select">
-                            <select>
-                                <option value="">All</option>
-                                <option value="1">option 01</option>
-                                <div class="search-input">
-                            <input type="text" placeholder="Search">
-                        </div>
-                        <div class="search-btn">
-                            <button><i class="lni lni-search-alt"></i></button>
+                    <div class="col-6">
+                        <div class="navbar-search mt-15 search-style-5">                            
+                            <div class="search-btn">
+                                <input type="text" placeholder="Search">
+                                <button><i class="lni lni-search-alt"></i></button>
+                            </div>
                         </div>
                     </div>
+                    
                     <!-- navbar search Ends -->
                 </div>
                 <!-- navbar mobile Start -->
@@ -314,7 +119,7 @@
 
                 <!-- navbar top Start -->
                 <div class="navbar-top-wrapper">
-                    <div class="container-lg">
+                    <div>
                         <div class="navbar-top d-lg-flex justify-content-between">
                             <!-- navbar top left Start -->
                             <div class="navbar-top-left">
@@ -345,128 +150,113 @@
                                     </li>
                                 </ul>
                             </div>
+                            
                             <!-- navbar top right Ends -->
                         </div>
                     </div>
                 </div>
                 <!-- navbar top Ends -->
-                <!-- main navbar Start -->
-                <div class="navbar-wrapper">
-                    <div class="container-lg">
-                        <nav class="main-navbar d-lg-flex justify-content-between align-items-center">
-                            <!-- desktop logo Start -->
-                            <div class="desktop-logo d-none d-lg-block">
-                                <a href="{% url 'principal:principal'%}"><img
-                                        src="{% static 'images/imagenes-tuneadas/Logo.png' %}" alt="Logo" width="250px" height="65px"></a>
+                <nav class="navbar navbar-expand-lg navbar-custom" style="padding-right: 10px;" >
+                    <a class="navbar-brand" href="{% url 'principal:principal'%}">
+                        <img src="{% static 'images/imagenes-tuneadas/ZacatecasLogo.png' %}" alt="Logo"  width="200px">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                  
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'principal:principal'%}" style="color: black; font-size: large;" >Inicio <span class="sr-only">(current)</span></a>
+                          </li>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black; font-size: large;">
+                            Arte/Cultura
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item hoverMenu" href="#">Exposiciones</a>
+                            <a class="dropdown-item hover" href="#">Festivales</a>
+                            <a class="dropdown-item" href="#">Talleres de Artes</a>
+                            <a class="dropdown-item" href="#">Artes Plásticas</a>
+                            <a class="dropdown-item" href="#">Galerías de Arte</a>
+                            <a class="dropdown-item" href="#">Artistas</a>
+                          </div>
+                        </li>
+                        <li class="nav-item dropdown letras">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black; font-size: large;">
+                                Artesanías
+                              </a>
+                              <div class="dropdown-menu letras" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Plata</a>
+                                <a class="dropdown-item" href="#">Talabartería</a>
+                                <a class="dropdown-item" href="#">Cerámica</a>
+                                <a class="dropdown-item" href="#">Joyería</a>
+                                <a class="dropdown-item" href="#">Indígenas</a>
+                              </div>
+                          </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black; font-size: large;">
+                                Comercial
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Agro-industria</a>
+                                <a class="dropdown-item" href="#">Conservas</a>
                             </div>
-                            <!-- desktop logo Ends -->
-
-                            
-                            <div class="navbar-menu ">
-                                <ul class="main-menu">
-                                    <li>
-                                        <div class="dropdown">
-                                            <a class="dropdown-toggle" type="button" id="dropdownMenu1" 
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Arte/Cultura</a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item hoverMenu" href="#">Exposiciones</a>
-                                                <a class="dropdown-item hover" href="#">Festivales</a>
-                                                 <a class="dropdown-item" href="#">Talleres de Artes</a>
-                                                 <a class="dropdown-item" href="#">Artes Plásticas</a>
-                                                 <a class="dropdown-item" href="#">Galerías de Arte</a>
-                                                 <a class="dropdown-item" href="#">Artistas</a>
-                                            </div>
-                                        </div>        
-                                    </li>
-                                    <li>
-                                        <div class="dropdown">
-                                            <a class="dropdown-toggle" type="button" id="dropdownMenu2" 
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Artesanías</a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="#">Plata</a>
-                                                <a class="dropdown-item" href="#">Talabartería</a>
-                                                 <a class="dropdown-item" href="#">Cerámica</a>
-                                                 <a class="dropdown-item" href="#">Joyería</a>
-                                                 <a class="dropdown-item" href="#">Indígenas</a>
-                                            </div>
-                                        </div>  
-                                    </li>
-                                    <li>
-                                        <div class="dropdown">
-                                            <a class="dropdown-toggle" type="button" id="dropdownMenu3" 
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Comercial</a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="#">Agro-industria</a>
-                                                <a class="dropdown-item" href="#">Conservas</a>
-                                                 <a class="dropdown-item" href="#">Joyería</a>
-                                            </div>
-                                        </div>  
-                                    <li>
-                                        <div class="dropdown">
-                                            <a class="dropdown-toggle" type="button" id="dropdownMenu4" 
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Turismo</a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="#">Hoteles</a>
-                                                <a class="dropdown-item" href="#">Restaurantes</a>
-                                                 <a class="dropdown-item" href="#">Recorridos</a>
-                                                 <a class="dropdown-item" href="#">Museos</a>
-                                                 <a class="dropdown-item" href="#">Teleférico</a>
-                                                 <a class="dropdown-item" href="#">Mina</a>
-                                                 <a class="dropdown-item" href="#">Cerro La Bufa</a>
-                                                 <a class="dropdown-item" href="#">Callejoneadas</a>
-                                                 <a class="dropdown-item" href="#">Puertas Digitales</a>
-                                            </div>
-                                        </div> 
-                                    <li>
-                                        <div class="dropdown">
-                                            <a class="dropdown-toggle" type="button" id="dropdownMenu5" 
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Servicios</a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="#">Renta Autos</a>
-                                                <a class="dropdown-item" href="#">Médicos</a>
-                                                 <a class="dropdown-item" href="#">Aeropuerto</a>
-                                                 <a class="dropdown-item" href="#">Autobuses</a>
-                                                 <a class="dropdown-item" href="#">Transporte Público</a>
-                                                 <a class="dropdown-item" href="#">Conectividad</a>
-                                                 <a class="dropdown-item" href="#">Pronóstico</a>
-                                                 <a class="dropdown-item" href="#">Trámites</a>
-                                            </div>
-                                        </div>                                    
-                                    <li><a href="{% url 'principal:lista'%}">Tienda</a></li>
-                                    {% if perms.usuarios.permiso_administradores%}
-                                        <li><a href="{% url 'principal:lista_admin'%}">Administrar Productos</a></li>
-                                        <li><a href="{% url 'usuarios:lista'%}">Administrar Usuarios</a></li>
-                                    {% elif request.user|has_group:"vendedores" %}
-                                        <li><a href="{% url 'principal:nuevo_producto'%}">Agregar Producto</a></li>
-                                    {%endif %}
-
-                                </ul>
+                          </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black; font-size: large;">
+                              Turismo
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Hoteles</a>
+                                <a class="dropdown-item" href="#">Restaurantes</a>
+                                <a class="dropdown-item" href="#">Recorridos</a>
+                                <a class="dropdown-item" href="#">Museos</a>
+                                <a class="dropdown-item" href="#">Teleférico</a>
+                                <a class="dropdown-item" href="#">Mina</a>
+                                <a class="dropdown-item" href="#">Cerro La Bufa</a>
+                                <a class="dropdown-item" href="#">Callejoneadas</a>
+                                <a class="dropdown-item" href="#">Puertas Digitales</a>
                             </div>
-                            <!-- navbar menu Ends -->
-                            <div class="navbar-search-cart d-none d-lg-flex boton-buscar">
-                                <!-- navbar search start -->
-                                <div class="navbar-search search-style-5">
-                                    <div class="search-input">
-                                        <input type="text" placeholder="Buscar...">
-                                    </div>
-                                    <div class="search-btn">
-                                        <button ><i class="lni lni-search-alt" ></i></button>
-                                    </div>
-                                </div>
-                                <!-- navbar search Ends -->
-                                <!-- navbar cart start -->
-                                <div class="navbar-cart">
-                                    <a class="icon-btn primary-icon-text icon-text-btn"
-                                        href="{% url 'ordenes:lista_carrito'%}">
-                                        <img src="{% static 'images/icon-svg/cart-fill.svg' %}" alt="Icon">
-                                        <span class="icon-text text-style-1">{{request.session.cantidad}}</span>
-                                    </a>
-                                </div>
-                                <!-- navbar cart Ends -->
+                          </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black; font-size: large;">
+                              Servicios
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Renta Autos</a>
+                                <a class="dropdown-item" href="#">Médicos</a>
+                                <a class="dropdown-item" href="#">Aeropuerto</a>
+                                <a class="dropdown-item" href="#">Autobuses</a>
+                                <a class="dropdown-item" href="#">Transporte Público</a>
+                                <a class="dropdown-item" href="#">Conectividad</a>
+                                <a class="dropdown-item" href="#">Pronóstico</a>
+                                <a class="dropdown-item" href="#">Trámites</a>
                             </div>
-                        </nav>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="{% url 'principal:lista'%}" style="color: black; font-size: large;">Tienda</a>
+                          </li>
+                            {% if perms.usuarios.permiso_administradores %}
+                                <li><a href="{% url 'principal:lista_admin'%}">Administrar Productos</a></li>
+                                <li><a href="{% url 'usuarios:lista'%}">Administrar Usuarios</a></li>
+                            {% endif %}
+                        </ul>
+                      <div class="navbar-search search-style-5">
+                        <div class="search-input">
+                            <input type="text" placeholder="Buscar...">
+                        </div>
+                        <div class="search-btn">
+                            <button ><i class="lni lni-search-alt" ></i></button>
+                        </div>
+                      </div>
+                        <a class="icon-btn primary-icon-text icon-text-btn"
+                            href="{% url 'ordenes:lista_carrito'%}">
+                            <img src="{% static 'images/icon-svg/cart-fill.svg' %}" alt="Icon">
+                            <span class="icon-text text-style-1">{{request.session.cantidad}}</span>
+                        </a>
                     </div>
-                </div>                
+                  </nav>   
                 <!-- main navbar Ends -->
             </div>
             <div class="overlay-7"></div>
@@ -479,6 +269,7 @@
     {% endblock body %}
 
     <!--====== Footer Style 3 Part Start ======-->
+    <br>
     <section class="footer-style-3 pt-100 pb-100">
         <div class="container">
             <div class="footer-top">
@@ -486,7 +277,7 @@
                     <div class="col-lg-5 col-md-7 col-sm-10">
                         <div class="footer-logo text-center">
                             <a href="{% url 'principal:principal' %}">
-                                <img src="{% static 'images/imagenes-tuneadas/images.png' %}" alt="Logo" width="300px">
+                                <img src="{% static 'images/imagenes-tuneadas/ZacatecasLogo.png' %}" alt="Logo" width="300px">
                             </a>
                         </div>
                         <h5 class="heading-5 text-center mt-30">S&iacute;guenos</h5>
