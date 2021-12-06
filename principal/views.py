@@ -66,8 +66,8 @@ class EditarProducto(PermissionRequiredMixin, UpdateView):
 		'boton': "Guardar",
 	}
 
-class EliminarProducto(PermissionRequiredMixin, DeleteView):
-	permission_required = 'usuarios.permiso_administradores'
+class EliminarProducto(DeleteView):
+	# permission_required = 'usuarios.permiso_administradores'
 	model = Producto
 	success_url = reverse_lazy('principal:lista_admin')
 
@@ -110,12 +110,15 @@ class AgregarProductoVendedor(PermissionRequiredMixin,CreateView):
 	# usuario_actual = request.user
 	permission_required = 'usuarios.permiso_vendedores'
 	model = Producto
-	# form_class = ProductoForm
+	form_class = ProductoForm
 	template_name = "principal/nuevo_producto_vendedor.html"
 
 	def form_valid(self, form):
 		obj = form.save(commit=False)
-		obj.vendedor = self.request.user
+		# obj.vendedor = self.request.user
 		obj.save()
-		success_url = reverse_lazy('principal')
+		# success_url = reverse_lazy('principal:lista_prod_vendedor')
+		productos = Producto.objects.filter(vendedor = self.request.user)
+		return render(self.request, 'principal/lista_vendedor.html',{'productos':productos})
+
   

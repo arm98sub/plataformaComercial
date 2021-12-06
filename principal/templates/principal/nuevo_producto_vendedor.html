@@ -17,6 +17,12 @@ Nuevo Producto
                     {% csrf_token %}
                     {% comment %} {{form.vendedor | as_crispy_field}} {% endcomment %}
                     {{form.vendedor | as_crispy_field}}
+                    {{ form.nombre | as_crispy_field }}
+                    {{ form.imagen | as_crispy_field }}
+                    {{ form.precio | as_crispy_field }}
+                    {{ form.stock | as_crispy_field }}
+                    {{ form.categoria | as_crispy_field }}
+                    {{ form.descripcion | as_crispy_field }}
                     
                     <br>
                     <br>

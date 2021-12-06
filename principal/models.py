@@ -1,5 +1,4 @@
 from django.db import models
-from usuarios.models import Usuario_Vendedor
 
 
 class Producto(models.Model):
