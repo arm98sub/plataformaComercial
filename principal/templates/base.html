@@ -241,7 +241,7 @@
                                 <li><a href="{% url 'principal:lista_admin'%}">Administrar Productos</a></li>
                                 <li><a href="{% url 'usuarios:lista'%}">Administrar Usuarios</a></li>
                             {% elif perms.usuarios.permiso_vendedores %}
-                                <li><a href="{% url 'principal:lista_admin'%}">Administrar Productos</a></li>
+                                <li><a href="{% url 'principal:lista_prod_vendedor'%}">Administrar Productos</a></li>
                             {% endif %}
                         </ul>
                       <div class="navbar-search search-style-5">

@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -13,7 +13,7 @@ from .models import Producto, Servicio
 def index(request):
 	productos = Producto.objects.all()[:3]
 	servicios = Servicio.objects.all()[:3]
-    
+	
 	return render(request, 'index.html', {'productos': productos, 'servicios': servicios})
 
 def admin(request):
@@ -37,7 +37,9 @@ def lista_admin(request):
 	return render(request, 'principal/lista_admin.html', {'productos': productos, 'servicios': servicios})
 
 def lista_productos(request):
-    productos = Producto.objects.filter(user = request.user)
+	productos = Producto.objects.filter(vendedor = request.user)
+	
+	return render(request, 'principal/lista_vendedor.html',{'productos':productos})
 
 # CRUD Productos
 
@@ -52,9 +54,9 @@ class NuevoProducto(PermissionRequiredMixin, CreateView):
 		'etiqueta': "Nuevo",
 		'boton': "Agregar",
 	}
-    
+	
 class EditarProducto(PermissionRequiredMixin, UpdateView):
-	permission_required = 'usuarios.permiso_administradores'
+	# permission_required = 'usuarios.permiso_administradores'
 	model = Producto
 	form_class = ProductoForm
 	success_url = reverse_lazy('principal:lista_admin')
@@ -102,4 +104,18 @@ class EliminarServicio(PermissionRequiredMixin, DeleteView):
 	permission_required = 'usuarios.permiso_administradores'
 	model = Servicio
 	success_url = reverse_lazy('principal:lista_admin')
+ 
 
+class AgregarProductoVendedor(PermissionRequiredMixin,CreateView):
+	# usuario_actual = request.user
+	permission_required = 'usuarios.permiso_vendedores'
+	model = Producto
+	# form_class = ProductoForm
+	template_name = "principal/nuevo_producto_vendedor.html"
+
+	def form_valid(self, form):
+		obj = form.save(commit=False)
+		obj.vendedor = self.request.user
+		obj.save()
+		success_url = reverse_lazy('principal')
+  

@@ -33,7 +33,7 @@ Lista de Usuario
     <tbody>
         {% for usuarios in object_list  %}
         <tr>
-            <td><img class="profile-pict" src="/media/{{MEDIA_URL}}{{usuarios.foto}}" alt="{{usuarios.username}}"></td>
+            <td><img class="profile-pict img-lista-usuarios" src="/media/{{MEDIA_URL}}{{usuarios.foto}}" alt="{{usuarios.username}}"></td>
             <td>{{usuarios.first_name}}</td>
             <td><a href="{% url 'usuarios:ver' usuarios.id %}">{{usuarios.username}}</a></td>
             <td>{{usuarios.estado}}</td>

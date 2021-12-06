@@ -1,8 +1,9 @@
 from django.db import models
+from usuarios.models import Usuario_Vendedor
 
 
 class Producto(models.Model):
-	vendedor = models.ForeignKey('usuarios.Usuario', verbose_name='Vendedor', on_delete=models.CASCADE)
+	vendedor = models.ForeignKey('usuarios.Usuario_Vendedor', verbose_name='Vendedor', on_delete=models.CASCADE)
 	nombre = models.CharField(max_length=30, blank=False, null=False)
 	imagen = models.ImageField("Imagen", upload_to='principal', blank=True, null=True)
 	precio = models.DecimalField(max_digits=10, decimal_places=2)
@@ -12,6 +13,7 @@ class Producto(models.Model):
 
 	def __str__(self):
 		return self.nombre
+
 
 class Servicio(models.Model):
 	vendedor = models.ForeignKey('usuarios.Usuario', verbose_name='Vendedor', on_delete=models.CASCADE)
