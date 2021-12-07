@@ -135,3 +135,4 @@ dmypy.json
 *.pyc
 db.sqlite3
 principal/migrations/__pycache__/0002_initial.cpython-310.pyc
+*.pyc
