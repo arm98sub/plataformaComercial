@@ -43,10 +43,6 @@ urlpatterns = [
         views.NuevoServicio.as_view(),
         name='nuevo_servicio'),
     path(
-        'editar_servicio/<int:pk>',
-        views.EditarServicio.as_view(),
-        name='editar_servicio'),
-    path(
         'eliminar_servicio/<int:pk>',
         views.EliminarServicio.as_view(),
         name='eliminar_servicio')

@@ -105,17 +105,6 @@ class NuevoServicio(PermissionRequiredMixin, CreateView):
     }
 
 
-class EditarServicio(UpdateView):
-	# permission_required = 'usuarios.permiso_administradores'
-	model = Servicio
-	form_class = ServicioForm
-	success_url = reverse_lazy('principal:lista_admin')
-
-    extra_context = {
-        'etiqueta': "Actualizar",
-        'boton': "Guardar",
-    }
-
 class EliminarServicio(PermissionRequiredMixin, DeleteView):
 	permission_required = 'usuarios.permiso_administradores'
 	model = Servicio
