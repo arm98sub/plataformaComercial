@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import Textarea
 
-from .models import Producto, Servicio
+from .models import Producto, ProductoVendedor, Servicio
 
 class ProductoForm(forms.ModelForm):
 
@@ -13,6 +13,16 @@ class ProductoForm(forms.ModelForm):
 		widgets = {
 			'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'descripcion': Textarea(attrs={'cols': 20, 'rows': 5}),
+		}
+		
+class ProductoFormVendedor(forms.ModelForm):
+	class Meta:
+		model = ProductoVendedor
+		fields = '__all__'
+		widgets = {
+			'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'descripcion': Textarea(attrs={'cols': 20, 'rows': 5}),
+
 		}
 		
 
