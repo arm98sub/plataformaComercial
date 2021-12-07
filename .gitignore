@@ -136,3 +136,16 @@ dmypy.json
 db.sqlite3
 principal/migrations/__pycache__/0002_initial.cpython-310.pyc
 *.pyc
+usuarios/__pycache__/__init__.cpython-310.pyc
+usuarios/__pycache__/admin.cpython-310.pyc
+usuarios/__pycache__/apps.cpython-310.pyc
+usuarios/__pycache__/forms.cpython-310.pyc
+usuarios/__pycache__/models.cpython-310.pyc
+usuarios/__pycache__/token.cpython-310.pyc
+usuarios/__pycache__/urls.cpython-310.pyc
+usuarios/__pycache__/views.cpython-310.pyc
+usuarios/migrations/__pycache__/0001_initial.cpython-310.pyc
+usuarios/migrations/__pycache__/0002_usuario_password2.cpython-310.pyc
+usuarios/migrations/__pycache__/0003_usuario_vendedor.cpython-310.pyc
+usuarios/migrations/__pycache__/0004_alter_usuario_vendedor_password_rev.cpython-310.pyc
+usuarios/migrations/__pycache__/__init__.cpython-310.pyc
