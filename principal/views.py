@@ -6,6 +6,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from .forms import ProductoForm, ServicioForm
 from .models import Producto, Servicio
+from usuarios.models import Usuario_Vendedor
 
 
 # Home del sitio
@@ -55,7 +56,7 @@ class NuevoProducto(PermissionRequiredMixin, CreateView):
 		'boton': "Agregar",
 	}
 	
-class EditarProducto(PermissionRequiredMixin, UpdateView):
+class EditarProducto(UpdateView):
 	# permission_required = 'usuarios.permiso_administradores'
 	model = Producto
 	form_class = ProductoForm
@@ -89,8 +90,8 @@ class NuevoServicio(PermissionRequiredMixin, CreateView):
 		'boton': "Agregar",
 	}
 
-class EditarServicio(PermissionRequiredMixin, UpdateView):
-	permission_required = 'usuarios.permiso_administradores'
+class EditarServicio(UpdateView):
+	# permission_required = 'usuarios.permiso_administradores'
 	model = Servicio
 	form_class = ServicioForm
 	success_url = reverse_lazy('principal:lista_admin')
@@ -112,13 +113,6 @@ class AgregarProductoVendedor(PermissionRequiredMixin,CreateView):
 	model = Producto
 	form_class = ProductoForm
 	template_name = "principal/nuevo_producto_vendedor.html"
-
-	def form_valid(self, form):
-		obj = form.save(commit=False)
-		# obj.vendedor = self.request.user
-		obj.save()
-		# success_url = reverse_lazy('principal:lista_prod_vendedor')
-		productos = Producto.objects.filter(vendedor = self.request.user)
-		return render(self.request, 'principal/lista_vendedor.html',{'productos':productos})
+	success_url = reverse_lazy('principal:lista_prod_vendedor')
 
   
