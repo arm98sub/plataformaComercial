@@ -13,8 +13,7 @@ class UsuarioForm(forms.ModelForm):
 
         widgets = {
             'password': forms.PasswordInput(),
-            'password2': forms.PasswordInput(),
-            'estado': forms.Select()
+            'password2': forms.PasswordInput()
         }
 
     # Método por el cual se guardan los usuarios.
