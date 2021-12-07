@@ -15,26 +15,15 @@ urlpatterns = [
     # Listado de productos/servicios para administradores
     path('lista_admin/', views.lista_admin, name='lista_admin'),
 
+    path('lista_productos_vendedor/', views.lista_productos, 
+         name = 'lista_prod_vendedor'),
+    
     # CRUD Productos
-    path('nuevo_producto_vendedor/',
-         views.NuevoProductoVendedor.as_view(),
-         name='nuevo_producto_vendedor'),
-    path(
-        'nuevo_producto/',
-        views.NuevoProducto.as_view(),
-        name='nuevo_producto'),
-    path(
-        'editar_producto/<int:pk>',
-        views.EditarProducto.as_view(),
-        name='editar_producto'),
-    path(
-        'eliminar_producto/<int:pk>',
-        views.EliminarProducto.as_view(),
-        name='eliminar_producto'),
-    path(
-        'ver_producto/<int:pk>',
-        views.VerProducto.as_view(),
-        name='ver_producto'),
+    path('nuevo_producto/', views.NuevoProducto.as_view(), name='nuevo_producto'),
+    path('editar_producto/<int:pk>', views.EditarProducto.as_view(), name='editar_producto'),
+    path('eliminar_producto/<int:pk>', views.EliminarProducto.as_view(), name='eliminar_producto'),
+    path('ver_producto/<int:pk>', views.VerProducto.as_view(), name='ver_producto'),
+    path('nuevo_producto_vendedor/', views.AgregarProductoVendedor.as_view(), name='nuevo_producto_vendedor'),
 
 
     # CRUD Servicios

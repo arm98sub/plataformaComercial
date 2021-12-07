@@ -9,8 +9,7 @@ class UsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuario
 
-        fields = ('first_name', 'username', 'password', 'password2',
-                  'email', 'foto', 'estado', 'municipio')
+        fields = ('first_name','username','password', 'password2','email','foto')
 
         widgets = {
             'password': forms.PasswordInput(),
@@ -40,9 +39,8 @@ class Usuario_Vendedor_Form(forms.ModelForm):
         model = Usuario_Vendedor
 
         # Campos que tendra este usuario.
-        fields = ('first_name', 'username', 'password', 'password_rev', 'email',
-                  'direccion', 'telefono', 'descripcion')
-
+        fields = ('first_name', 'username', 'password', 'password_rev', 'email', 'foto_perfil', 'direccion','telefono', 'descripcion')
+        
         # Se especifica el tipo de widget que sera utilizado para algunos de los campos.
         widgets = {
             'password': forms.PasswordInput(),
