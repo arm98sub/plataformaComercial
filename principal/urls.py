@@ -35,6 +35,8 @@ urlpatterns = [
         'ver_producto/<int:pk>',
         views.VerProducto.as_view(),
         name='ver_producto'),
+    path('lista_productos_vendedor/', views.lista_productos, 
+         name = 'lista_prod_vendedor'),
 
 
     # CRUD Servicios

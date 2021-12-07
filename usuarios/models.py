@@ -17,6 +17,8 @@ class Usuario(User):
 
 
 class Usuario_Vendedor(User):
+    foto = models.ImageField(
+        "Foto de Perfil", upload_to="perfiles", blank=True, null=True)
     direccion = models.CharField(
         "Direccion", max_length=255, null=False, blank=False, default="")
     telefono = models.CharField(
