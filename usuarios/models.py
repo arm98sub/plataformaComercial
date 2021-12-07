@@ -5,16 +5,16 @@ from django.db.models.fields.related import ForeignKey
 
 
 class Usuario(User):
-    estado = ForeignKey("usuarios.Estado",verbose_name="Estado",on_delete=CASCADE)
-    municipio = ForeignKey("usuarios.Municipio",verbose_name="Municipio",on_delete=CASCADE)
+    # estado = ForeignKey("usuarios.Estado",verbose_name="Estado",on_delete=CASCADE)
+    # municipio = ForeignKey("usuarios.Municipio",verbose_name="Municipio",on_delete=CASCADE)
     foto = models.ImageField("Foto de Perfil", upload_to= "perfiles", blank = True, null=True)
     password2 = models.CharField("Verfica tu contraseña", blank=False, null=False, max_length = 62, default = "")
     puede_vender = models.BooleanField(default=False)
     
     
 class Usuario_Vendedor(User):    
-    estado = ForeignKey("usuarios.Estado", verbose_name = "Estado", on_delete=CASCADE)
-    municipio = ForeignKey("usuarios.Municipio", verbose_name="Municipio", on_delete=CASCADE)
+    # estado = ForeignKey("usuarios.Estado", verbose_name = "Estado", on_delete=CASCADE)
+    # municipio = ForeignKey("usuarios.Municipio", verbose_name="Municipio", on_delete=CASCADE)
     foto_perfil = models.ImageField("Foto de Perfil", upload_to= "perfil", blank=True, null=True)
     direccion = models.CharField("Direccion", max_length=255, null=False, blank=False, default="")
     telefono = models.CharField("Telefono", max_length=10, null = False, blank=False, default="")
