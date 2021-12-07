@@ -5,10 +5,6 @@ from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .forms import ProductoForm, ProductoFormVendedor, ServicioForm
 from .models import Producto, Servicio
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of b3f677b (Se hizo lo que se pudo)
 
 # Home del sitio
 
@@ -77,19 +73,12 @@ class NuevoProductoVendedor(CreateView):
         'boton': "Agregar",
     }
 
-<<<<<<< HEAD
-=======
-	extra_context = {
-		'etiqueta': "Nuevo",
-		'boton': "Agregar",
-	}
 	
 class EditarProducto(PermissionRequiredMixin, UpdateView):
 	# permission_required = 'usuarios.permiso_administradores'
 	model = Producto
 	form_class = ProductoForm
 	success_url = reverse_lazy('principal:lista_admin')
->>>>>>> parent of b3f677b (Se hizo lo que se pudo)
 
 class EditarProducto(PermissionRequiredMixin, UpdateView):
     permission_required = 'usuarios.permiso_administradores'
@@ -123,18 +112,11 @@ class NuevoServicio(PermissionRequiredMixin, CreateView):
     form_class = ServicioForm
     success_url = reverse_lazy('principal:lista_admin')
 
-<<<<<<< HEAD
-    extra_context = {
-        'etiqueta': "Nuevo",
-        'boton': "Agregar",
-    }
-=======
 class EditarServicio(PermissionRequiredMixin, UpdateView):
 	permission_required = 'usuarios.permiso_administradores'
 	model = Servicio
 	form_class = ServicioForm
 	success_url = reverse_lazy('principal:lista_admin')
->>>>>>> parent of b3f677b (Se hizo lo que se pudo)
 
 
 class EliminarServicio(PermissionRequiredMixin, DeleteView):
