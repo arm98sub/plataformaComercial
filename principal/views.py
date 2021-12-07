@@ -7,6 +7,8 @@ from .forms import ProductoForm, ProductoFormVendedor, ServicioForm
 from .models import Producto, Servicio
 
 # Home del sitio
+
+
 def index(request):
     productos = Producto.objects.all()[:3]
     servicios = Servicio.objects.all()[:3]
@@ -29,6 +31,8 @@ def lista(request):
                   {'productos': productos, 'servicios': servicios})
 
 # Listado de productos/servicios para administradores
+
+
 def lista_admin(request):
     productos = Producto.objects.all()
     servicios = Servicio.objects.all()
@@ -37,6 +41,8 @@ def lista_admin(request):
                   {'productos': productos, 'servicios': servicios})
 
 # CRUD Productos
+
+
 class NuevoProducto(PermissionRequiredMixin, CreateView):
     permission_required = 'usuarios.permiso'
     model = Producto
@@ -77,6 +83,7 @@ class EliminarProducto(DeleteView):
 	# permission_required = 'usuarios.permiso_administradores'
 	model = Producto
 	success_url = reverse_lazy('principal:lista_admin')
+
 
 class VerProducto(DetailView):
     model = Producto

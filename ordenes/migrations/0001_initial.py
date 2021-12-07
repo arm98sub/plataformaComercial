@@ -15,7 +15,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Orden',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('fecha_compra', models.DateField(auto_now_add=True)),
                 ('usuario', models.CharField(max_length=150)),
             ],
@@ -23,10 +24,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='DetalleOrden',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('cantidad', models.IntegerField(verbose_name='Cantidad')),
                 ('precio', models.FloatField(verbose_name='Precio unitario')),
-                ('orden', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ordenes.orden', verbose_name='Orden')),
+                ('orden', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 to='ordenes.orden', verbose_name='Orden')),
             ],
         ),
     ]

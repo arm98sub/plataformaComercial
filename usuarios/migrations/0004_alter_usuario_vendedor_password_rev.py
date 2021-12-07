@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='usuario_vendedor',
             name='password_rev',
-            field=models.CharField(default='', max_length=62, verbose_name='Verifica tu contraseña'),
+            field=models.CharField(
+                default='', max_length=62, verbose_name='Verifica tu contraseña'),
         ),
     ]

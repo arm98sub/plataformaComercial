@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Producto(models.Model):
     vendedor = models.ForeignKey(
         'usuarios.Usuario_Vendedor',
@@ -22,7 +23,6 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.nombre
-
 
 
 class Servicio(models.Model):
