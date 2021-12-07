@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+	{{etiqueta}} Servicio
+{% endblock title %}
+
+{% block css %}
+{% endblock css %}
+
+{% block body %}
+	<h1>{{etiqueta}} Servicio</h1>
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">{{boton}}</button>
+		<a href="javascript:history.back()">Regresar</a>
+	</form>
+{% endblock body %}

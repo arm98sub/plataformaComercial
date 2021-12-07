@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+	Lista de Productos/Servicios
+{% endblock title %}
+
+{% block body %}
+	<section class="product-wrapper pt-30 pb-30">
+		<div class="container">
+			<divd class="row">
+				{% for p in productos %}
+					<div class="col-lg-4 col-sm-6">
+						<div class="product-style-1 mt-100">
+							<div class="product-image">
+								<span class="icon-text text-style-1">Nuevo</span>
+								<div class="product-active">
+									<div class="product-item active">
+										<img src="{% if p.imagen %}/media/{{MEDIA_URL}}{{p.imagen}}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}" class="rounded mx-auto" alt="{{p.nombre}}">
+									</div>
+								</div>
+							</div>
+							<div class="product-content text-center">
+								<h4 class="title"><a href="{% url 'principal:ver_producto' p.id %}">{{p.nombre}}</a></h4>
+								<form action="{% url 'ordenes:agregar'%}" method="post">
+									{% csrf_token %}
+									<input type="hidden" name="id" value="{{p.id}}">
+									<button type="submit" class="main-btn secondary-1-btn">
+										<img src="{% static 'images/icon-svg/cart-7.svg' %}" alt="">
+										${{p.precio}}
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+	<section class="product-wrapper pt-100 pb-70">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+				</div>
+			</div>
+			<div class="row">
+				{% for s in servicios %}
+					<div class="col-lg-4 col-sm-6">
+						<div class="product-style-1 mt-30">
+							<div class="product-image">
+								<span class="icon-text text-style-1">Nuevo</span>
+								<div class="product-active">
+									<div class="product-item active">
+										<img src="{% if s.imagen %}/media/{{MEDIA_URL}}{{s.imagen}}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}" alt="{{s.nombre}}">
+									</div>
+								</div>
+							</div>
+							<div class="product-content text-center">
+								<h4 class="title"><a href="{% url 'principal:ver_producto' p.id %}">{{p.nombre}}</a></h4>
+								<form action="{% url 'ordenes:agregar'%}" method="post">
+									{% csrf_token %}
+									<input type="hidden" name="id" value="{{s.id}}">
+									<button type="submit" class="main-btn secondary-1-btn">
+										<img src="{% static 'images/icon-svg/cart-7.svg' %}" alt="">
+										${{s.precio}}
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	
+{% endblock body %}
+
+
+<!--====== Product Style 1 Part Start ======-->

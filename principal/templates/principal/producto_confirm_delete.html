@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Eliminar Producto
+{% endblock title %}
+
+{% block body %}
+{% load crispy_forms_tags%}
+<br>
+<div class="row">
+	<div class="col-12 col-md-6 offset-md-3">
+		<div class="card">
+			<div class="card-body">
+				<form method="post">
+					{% csrf_token %}
+					<h1>Quieres eliminar el producto "{{ object }}"?</h1>
+					<input class="btn btn-success" type="submit" value="Si, si quiero">
+					<a class="btn btn-danger" href="{% url 'principal:lista_admin' %}"><i class="fa fa-times"> </i>Mejor no</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock body %}

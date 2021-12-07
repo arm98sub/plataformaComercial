@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar cuenta</title>
+</head>
+<body>
+    <div>
+        <h3>Validar cuenta</h3>
+        <p>Hola {{user.username}}</p>
+        <p>Para completar tu registro en el sistema de <b>Plataforma comercial Digital</b> debes dar click en el siguiente enlace:
+        </p>
+        <br>
+        <hr>
+        <p>
+            <a href="http://{{dominio}}{% url 'usuarios:activar' uid64=uid token=token %}">
+                Activar mi cuenta
+            </a>
+        </p>
+        <br>
+        <p>Saludos!!!!</p>
+    </div>
+</body>
+</html>
