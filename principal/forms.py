@@ -2,7 +2,7 @@ from django import forms
 from django.db.models import fields
 from django.forms import widgets, ModelForm, Textarea,ChoiceField
 
-from .models import Producto, ProductoVendedor, Servicio
+from .models import Producto, Servicio
 
 class ProductoForm(forms.ModelForm):
 
@@ -19,7 +19,7 @@ class ProductoForm(forms.ModelForm):
 		
 class ProductoFormVendedor(forms.ModelForm):
 	class Meta:
-		model = ProductoVendedor
+		model = Producto
 		fields = '__all__'
 		widgets = {
 			'nombre': forms.TextInput(attrs={'class': 'form-control'}),
@@ -29,7 +29,6 @@ class ProductoFormVendedor(forms.ModelForm):
 		
 
 class ServicioForm(forms.ModelForm):
-
 	class Meta:
 		model = Servicio
 

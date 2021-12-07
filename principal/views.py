@@ -5,8 +5,10 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
-from .forms import ProductoForm, ServicioForm, ProductoFormVendedor
-from .models import Producto, ProductoVendedor, Servicio
+from usuarios.models import Usuario
+
+from .forms import ProductoForm, ProductoFormVendedor, ServicioForm
+from .models import Producto, Servicio
 
 
 # Home del sitio
@@ -37,7 +39,6 @@ def lista_admin(request):
 	
 	return render(request, 'principal/lista_admin.html', {'productos': productos, 'servicios': servicios})
 
-
 # CRUD Productos
 
 class NuevoProducto(PermissionRequiredMixin, CreateView):
@@ -55,9 +56,9 @@ class NuevoProducto(PermissionRequiredMixin, CreateView):
 class NuevoProductoVendedor(CreateView):
 	# permission_required = 'usuarios.'
 	template_name = 'principal\producto_form_vendedor.html'
-	model = ProductoVendedor
+	model = Producto
+	form_class = ProductoFormVendedor
 	success_url = reverse_lazy('principal/lista')
-
 	extra_context = {
 		'etiqueta': "Nuevo",
 		'boton': "Agregar",

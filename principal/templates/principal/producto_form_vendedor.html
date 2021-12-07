@@ -9,8 +9,7 @@
 {% endblock css %}
 
 {% block body %}
-{% load crispy_forms_tags%}
-{% crispy aform%}
+{% load crispy_forms_tags %}
 <br>
 <div class="container justify-content-center">
 	<div class="row">
@@ -19,9 +18,8 @@
 				<div class="card-body">
 					<h4 class="card-title mb-4 mt-1">Nuevo Producto</h4>
 					<form method="post" enctype="multipart/form-data">
-						{% csrf_token %}
-                        {{ aform.instance.field_name }}
-						{{form | crispy }}
+						{% csrf_token %}                        
+						{{form | crispy}}
 						<br>
 
 						<div class="d-flex justify-content-end">
