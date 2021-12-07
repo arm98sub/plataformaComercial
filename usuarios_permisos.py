@@ -1,12 +1,12 @@
-from usuarios.models import Usuario
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth.models import Permission, Group
 import os
 import django
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'comerciov2.settings')
 django.setup()
 
+from usuarios.models import Usuario
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import Permission, Group
 
 content_type = ContentType.objects.get_for_model(Usuario)
 

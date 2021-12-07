@@ -15,6 +15,9 @@ urlpatterns = [
     # Listado de productos/servicios para administradores
     path('lista_admin/', views.lista_admin, name='lista_admin'),
 
+    path('lista_productos_vendedor/', views.lista_productos, 
+         name = 'lista_prod_vendedor'),
+    
     # CRUD Productos
     path('nuevo_producto_vendedor/',
          views.NuevoProductoVendedor.as_view(),

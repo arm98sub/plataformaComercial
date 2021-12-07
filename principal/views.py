@@ -29,6 +29,13 @@ def lista(request):
 
     return render(request, 'principal/lista.html',
                   {'productos': productos, 'servicios': servicios})
+    
+def lista_productos(request):
+    productos = Producto.objects.filter(vendedor = request.user)
+    # servicios = Servicio.objects.all()
+
+    return render(request, 'principal/lista_vendedor.html',
+                  {'productos': productos})
 
 # Listado de productos/servicios para administradores
 
