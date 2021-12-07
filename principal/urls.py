@@ -19,6 +19,7 @@ urlpatterns = [
          name = 'lista_prod_vendedor'),
     
     # CRUD Productos
+<<<<<<< HEAD
     path('nuevo_producto_vendedor/',
          views.NuevoProductoVendedor.as_view(),
          name='nuevo_producto_vendedor'),
@@ -38,6 +39,13 @@ urlpatterns = [
         'ver_producto/<int:pk>',
         views.VerProducto.as_view(),
         name='ver_producto'),
+=======
+    path('nuevo_producto/', views.NuevoProducto.as_view(), name='nuevo_producto'),
+    path('editar_producto/<int:pk>', views.EditarProducto.as_view(), name='editar_producto'),
+    path('eliminar_producto/<int:pk>', views.EliminarProducto.as_view(), name='eliminar_producto'),
+    path('ver_producto/<int:pk>', views.VerProducto.as_view(), name='ver_producto'),
+    path('nuevo_producto_vendedor/', views.AgregarProductoVendedor.as_view(), name='nuevo_producto_vendedor'),
+>>>>>>> parent of b3f677b (Se hizo lo que se pudo)
 
 
     # CRUD Servicios
