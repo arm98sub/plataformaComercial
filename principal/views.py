@@ -73,11 +73,10 @@ class EditarProducto(PermissionRequiredMixin, UpdateView):
     }
 
 
-class EliminarProducto(PermissionRequiredMixin, DeleteView):
-    permission_required = 'usuarios.permiso_administradores'
-    model = Producto
-    success_url = reverse_lazy('principal:lista_admin')
-
+class EliminarProducto(DeleteView):
+	# permission_required = 'usuarios.permiso_administradores'
+	model = Producto
+	success_url = reverse_lazy('principal:lista_admin')
 
 class VerProducto(DetailView):
     model = Producto
@@ -99,19 +98,29 @@ class NuevoServicio(PermissionRequiredMixin, CreateView):
     }
 
 
-class EditarServicio(PermissionRequiredMixin, UpdateView):
-    permission_required = 'usuarios.permiso_administradores'
-    model = Servicio
-    form_class = ServicioForm
-    success_url = reverse_lazy('principal:lista_admin')
+class EditarServicio(UpdateView):
+	# permission_required = 'usuarios.permiso_administradores'
+	model = Servicio
+	form_class = ServicioForm
+	success_url = reverse_lazy('principal:lista_admin')
 
     extra_context = {
         'etiqueta': "Actualizar",
         'boton': "Guardar",
     }
 
-
 class EliminarServicio(PermissionRequiredMixin, DeleteView):
-    permission_required = 'usuarios.permiso_administradores'
-    model = Servicio
-    success_url = reverse_lazy('principal:lista_admin')
+	permission_required = 'usuarios.permiso_administradores'
+	model = Servicio
+	success_url = reverse_lazy('principal:lista_admin')
+ 
+
+class AgregarProductoVendedor(PermissionRequiredMixin,CreateView):
+	# usuario_actual = request.user
+	permission_required = 'usuarios.permiso_vendedores'
+	model = Producto
+	form_class = ProductoForm
+	template_name = "principal/nuevo_producto_vendedor.html"
+	success_url = reverse_lazy('principal:lista_prod_vendedor')
+
+  

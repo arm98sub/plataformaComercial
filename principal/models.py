@@ -24,6 +24,7 @@ class Producto(models.Model):
         return self.nombre
 
 
+
 class Servicio(models.Model):
     vendedor = models.ForeignKey(
         'usuarios.Usuario',

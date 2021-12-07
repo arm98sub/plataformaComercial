@@ -237,12 +237,12 @@
                           <li class="nav-item">
                             <a class="nav-link" href="{% url 'principal:lista'%}" style="color: black; font-size: large;">Tienda</a>
                           </li>
-                            {% if perms.usuarios.permiso_administradores%}
-                                <li><a class="nav-link" href="{% url 'principal:lista_admin'%}" style="color: black; font-size: large;">Administrar Productos</a></li>
-                                <li><a class="nav-link" href="{% url 'usuarios:lista'%}" style="color: black; font-size: large;">Administrar Usuarios</a></li>
-                            {% elif request.user|has_group:"vendedores" %}
-                                <li><a class="nav-link" href="{% url 'principal:nuevo_producto'%}" style="color: black; font-size: large;">Agregar Producto</a></li>
-                            {%endif %}
+                            {% if perms.usuarios.permiso_administradores %}
+                                <li><a href="{% url 'principal:lista_admin'%}">Administrar Productos</a></li>
+                                <li><a href="{% url 'usuarios:lista'%}">Administrar Usuarios</a></li>
+                            {% elif perms.usuarios.permiso_vendedores %}
+                                <li><a href="{% url 'principal:lista_prod_vendedor'%}">Administrar Productos</a></li>
+                            {% endif %}
                         </ul>
                       <div class="navbar-search search-style-5">
                         <div class="search-input">
