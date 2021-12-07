@@ -5,7 +5,7 @@ class Producto(models.Model):
     vendedor = models.ForeignKey(
         'usuarios.Usuario_Vendedor',
         verbose_name='Vendedor',
-        on_delete=models.CASCADE)
+        on_delete=models.CASCADE, blank=False, null=False)
     nombre = models.CharField(max_length=30, blank=False, null=False)
     imagen = models.ImageField(
         "Imagen",

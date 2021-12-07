@@ -29,6 +29,13 @@ def lista(request):
 
     return render(request, 'principal/lista.html',
                   {'productos': productos, 'servicios': servicios})
+    
+def lista_productos(request):
+    productos = Producto.objects.filter(vendedor = request.user)
+    # servicios = Servicio.objects.all()
+
+    return render(request, 'principal/lista_vendedor.html',
+                  {'productos': productos})
 
 # Listado de productos/servicios para administradores
 
@@ -73,6 +80,12 @@ class NuevoProductoVendedor(CreateView):
         'boton': "Agregar",
     }
 
+	
+class EditarProducto(PermissionRequiredMixin, UpdateView):
+	# permission_required = 'usuarios.permiso_administradores'
+	model = Producto
+	form_class = ProductoForm
+	success_url = reverse_lazy('principal:lista_admin')
 
 class EditarProducto(PermissionRequiredMixin, UpdateView):
     permission_required = 'usuarios.permiso_administradores'
@@ -106,10 +119,11 @@ class NuevoServicio(PermissionRequiredMixin, CreateView):
     form_class = ServicioForm
     success_url = reverse_lazy('principal:lista_admin')
 
-    extra_context = {
-        'etiqueta': "Nuevo",
-        'boton': "Agregar",
-    }
+class EditarServicio(PermissionRequiredMixin, UpdateView):
+	permission_required = 'usuarios.permiso_administradores'
+	model = Servicio
+	form_class = ServicioForm
+	success_url = reverse_lazy('principal:lista_admin')
 
 
 class EliminarServicio(PermissionRequiredMixin, DeleteView):
@@ -124,6 +138,13 @@ class AgregarProductoVendedor(PermissionRequiredMixin,CreateView):
 	model = Producto
 	form_class = ProductoForm
 	template_name = "principal/nuevo_producto_vendedor.html"
-	success_url = reverse_lazy('principal:lista_prod_vendedor')
+
+	def form_valid(self, form):
+		obj = form.save(commit=False)
+		# obj.vendedor = self.request.user
+		obj.save()
+		# success_url = reverse_lazy('principal:lista_prod_vendedor')
+		productos = Producto.objects.filter(vendedor = self.request.user)
+		return render(self.request, 'principal/lista_vendedor.html',{'productos':productos})
 
   

@@ -6,14 +6,13 @@
 {% endblock title %}
 
 {% block body %}
-{% load crispy_forms_tags%}
 
 <br>
 <div class="card-body">
     <h1>Lista de Productos/Servicios</h1>
     <br>
     <div class="card-content justify-content-end"> 
-        <a class="btn btn-primary boton-ingresar" href="{% url 'principal:nuevo_producto_vendedor' user.id %}"><i class="fa fa-plus"> </i> Nuevo Producto</a>
+        <a class="btn btn-primary boton-ingresar" href="{% url 'principal:nuevo_producto_vendedor' %}"><i class="fa fa-plus"> </i> Nuevo Producto</a>
     </div>
     <br>
 	<table class="table" style='margin-top: 1em'>
@@ -31,7 +30,6 @@
 				<input type="hidden" name="id" value="{{p.id}}">
 				<tr>
 					<td>{{p.id}}</td>
-					{% comment %} <td>{{p.id | as_crispy_field}} </td> {% endcomment %}
 					<td>{{p.nombre}}</td>
 					<td>{{p.vendedor}}</td>
 					<td>${{p.precio}}</td>

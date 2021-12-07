@@ -15,7 +15,7 @@ Nuevo Producto
 			<div class="card-body">
                 <form method="post">
                     {% csrf_token %}
-                    {% comment %} {{form.vendedor = user.id}} {% endcomment %}
+                    {% comment %} {{form.vendedor | as_crispy_field}} {% endcomment %}
                     {{form.vendedor | as_crispy_field}}
                     {{ form.nombre | as_crispy_field }}
                     {{ form.imagen | as_crispy_field }}
