@@ -1,10 +1,11 @@
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .forms import ProductoForm, ProductoFormVendedor, ServicioForm
 from .models import Producto, Servicio
+from django.contrib.auth.decorators import login_required
 
 # Home del sitio
 
@@ -29,7 +30,8 @@ def lista(request):
 
     return render(request, 'principal/lista.html',
                   {'productos': productos, 'servicios': servicios})
-    
+
+@login_required
 def lista_productos(request):
     productos = Producto.objects.filter(vendedor = request.user)
     # servicios = Servicio.objects.all()
@@ -51,7 +53,7 @@ def lista_admin(request):
 
 
 class NuevoProducto(PermissionRequiredMixin, CreateView):
-    permission_required = 'usuarios.permiso'
+    # permission_required = 'usuarios.permiso'
     model = Producto
     form_class = ProductoForm
     template_name = 'principal/nuevo_producto.html'
