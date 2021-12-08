@@ -8,8 +8,6 @@ class TestForms(TestCase):
     def setUp(self, nombre='Talabarteria Avalos', username="Avalos33", password = "test123", password_rev = "test123",
                     email = "37180266@uaz.edu.mx", foto_perfil = False, direccion = "Callejon allende",
                     telefono = "4945148745", descripcion = "Taller de artesanias" ):
-            fields = ('first_name', 'username', 'password', 'password_rev',
-            'email', 'foto_perfil', 'direccion','telefono', 'descripcion')
 
             self.empresa = Usuario_Vendedor(
                 first_name = nombre,
