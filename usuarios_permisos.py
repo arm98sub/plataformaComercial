@@ -4,13 +4,15 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'comerciov2.settings')
 django.setup()
 
-from usuarios.models import Usuario
+from usuarios.models import Usuario, Usuario_Vendedor
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission, Group
 
 content_type = ContentType.objects.get_for_model(Usuario)
+content_type2 = ContentType.objects.get_for_model(Usuario_Vendedor)
 
-def crear_grupos():
+
+def crear_grupos():    
     grupo_vendedores = Group.objects.get_or_create(name='vendedores')
     grupo_usuarios = Group.objects.get_or_create(name='usuarios')
     grupo_administradores = Group.objects.get_or_create(name='administradores')
@@ -32,7 +34,7 @@ def crear_permisos():
     permiso_vendedores = Permission.objects.create(
         codename='permiso_vendedores',
         name='Permiso requerido para el grupo vendedores',
-        content_type=content_type
+        content_type=content_type2
     )
 
     grupo_usuarios = Group.objects.get(name='usuarios')
@@ -55,5 +57,5 @@ def eliminar_permisos():
     per_vend.delete()
 
 
-crear_grupos()
-crear_permisos()
+#crear_grupos()
+#crear_permisos()
