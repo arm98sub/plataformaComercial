@@ -54,6 +54,6 @@ def eliminar_permisos():
     per_vend.delete()
     
     
-crear_grupos()
-crear_permisos()
+# crear_grupos()
+# crear_permisos()
 # eliminar_permisos()
