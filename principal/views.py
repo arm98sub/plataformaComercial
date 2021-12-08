@@ -53,7 +53,7 @@ def lista_admin(request):
 
 
 class NuevoProducto(PermissionRequiredMixin, CreateView):
-    # permission_required = 'usuarios.permiso'
+    permission_required = 'usuarios.permiso'
     model = Producto
     form_class = ProductoForm
     template_name = 'principal/nuevo_producto.html'

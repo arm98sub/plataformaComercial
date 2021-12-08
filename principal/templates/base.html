@@ -238,8 +238,8 @@
                             <a class="nav-link" href="{% url 'principal:lista'%}" style="color: black; font-size: large;">Tienda</a>
                           </li>
                             {% if perms.usuarios.permiso_administradores %}
-                                <li><a href="{% url 'principal:lista_admin'%}">Administrar Productos</a></li>
-                                <li><a href="{% url 'usuarios:lista'%}">Administrar Usuarios</a></li>
+                                <li><a class="nav-link" href="{% url 'principal:lista_admin'%}" style="color: black; font-size: large;">Administrar Productos</a></li>
+                                <li><a class="nav-link" href="{% url 'usuarios:lista'%}" style="color: black; font-size: large;" >Administrar Usuarios</a></li>
                             {% elif perms.usuarios.permiso_vendedores %}
                                 <li><a class="nav-link" href="{% url 'principal:lista_prod_vendedor'%}" style="color: black; font-size: large;">Administrar Productos</a></li>
                             {% endif %}
