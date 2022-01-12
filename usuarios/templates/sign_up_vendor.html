@@ -15,6 +15,16 @@ Registro Vendedor
 				<form method="post" enctype="multipart/form-data">
 					{% csrf_token %}
 					{{form | crispy }}
+					{% for field in form.visible_fields %}  
+						{% for fieldName, label in fieldLabels %}
+							{% if fieldName == field.field.widget.password  %}
+								<div>
+									<label>{{ label }}</label>
+									{{ field }}
+								</div>
+							{% endif %}
+						{% endfor %}
+					{% endfor %}
 					<br>
 					<div class="d-flex justify-content-end">
 						<button type="submit" class="btn boton-ingresar">Crear cuenta</button>

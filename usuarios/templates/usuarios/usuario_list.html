@@ -33,7 +33,7 @@ Lista de Usuario
     <tbody>
         {% for usuarios in object_list  %}
         <tr>
-            <td><img class="profile-pict" src="/media/{{MEDIA_URL}}{{usuarios.foto}}" alt="{{usuarios.username}}"></td>
+            <td><img class="profile-pict img-lista-usuarios" src="/media/{{MEDIA_URL}}{{usuarios.foto}}" alt="{{usuarios.username}}"></td>
             <td>{{usuarios.first_name}}</td>
             <td><a href="{% url 'usuarios:ver' usuarios.id %}">{{usuarios.username}}</a></td>
             <td>{{usuarios.estado}}</td>
@@ -76,7 +76,7 @@ Lista de Usuario
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                <h5 class="modal-title" id="exampleModalLabel">ConfirmaciÃ³n</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><i
                         class="fa fa-times"></i>
                 </button>
@@ -97,4 +97,3 @@ Lista de Usuario
 {block js}
 <script src="{% static 'js/funciones.js'%}"></script>
 {endblock js}
-

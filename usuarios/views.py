@@ -22,7 +22,7 @@ from .forms import UsuarioForm, Usuario_Vendedor_Form
 # CRUD Usuarios
 
 
-class UsuariosList(PermissionRequiredMixin,ListView):
+class UsuariosList(PermissionRequiredMixin, ListView):
     permission_required = 'users.permiso_administradores'
     model = Usuario
     template_name = 'usuario_list.html'
@@ -46,31 +46,38 @@ class NuevoUsuario(PermissionRequiredMixin, CreateView):
     success_url = reverse_lazy('usuarios:lista')
 
     extra_context = {
-        'etiqueta': 'Nuevo', 
+        'etiqueta': 'Nuevo',
         'boton': 'Agregar',
         'us_nuevo': True
     }
 
-class UsuariosActualizar(PermissionRequiredMixin,SuccessMessageMixin, UpdateView):
+
+class PruebaUsuarios(CreateView):
+    model = Usuario
+    form_class = UsuarioForm
+    template_name = 'prueba.html'
+    success_url = reverse_lazy('usuarios:login')
+
+
+class UsuariosActualizar(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
     permission_required = 'users.permiso_administradores'
     model = Usuario
     form_class = UsuarioForm
     extra_context = {'etiqueta': 'Actualizar', 'boton': 'Guardar'}
     success_url = reverse_lazy('usuarios:lista')
-    success_message = "El usuario %(first_name)s se actualizo con exito" 
+    success_message = "El usuario %(first_name)s se actualizo con exito"
 
-class UsuariosEliminar(PermissionRequiredMixin,DeleteView):
+
+class UsuariosEliminar(PermissionRequiredMixin, DeleteView):
     permission_required = 'users.permiso_administradores'
     model = Usuario
     success_url = reverse_lazy('usuarios:lista')
 
-    
 
 # Sesiones de Usuarios
 
 class LoginUsuario(LoginView):
     template_name = 'login.html'
-    # form_class = AuthenticationForm
 
     def get_success_url(self):
         self.request.session['articulos'] = {}
@@ -79,49 +86,51 @@ class LoginUsuario(LoginView):
 
         return super().get_success_url()
 
+
 class SignUpUsuario(CreateView):
-	model = Usuario
-	template_name = 'sign_up.html'
-	form_class = UsuarioForm
-	success_url = reverse_lazy('usuarios:login')
-	
-	extra_context = {
-		'etiqueta': "Nuevo",
-		'boton': "Agregar",
-	}
+    model = Usuario
+    template_name = 'sign_up.html'
+    form_class = UsuarioForm
+    success_url = reverse_lazy('usuarios:login')
 
-	def form_valid(self, form):
-		user = form.save(commit=False)
-		user.is_active = False
-		user.save()
+    extra_context = {
+        'etiqueta': "Nuevo",
+        'boton': "Agregar",
+    }
 
-		dominio = get_current_site(self.request)
-		uid = urlsafe_base64_encode(force_bytes(user.id))
-		token = token_activacion.make_token(user)
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.is_active = False
+        user.save()
 
-		message = render_to_string('confirmar_cuenta.html', 
-			{
-				'usuario': user,
-				'dominio': dominio,
-				'uid':  uid,
-				'token': token,
-			}
-		)
+        dominio = get_current_site(self.request)
+        uid = urlsafe_base64_encode(force_bytes(user.id))
+        token = token_activacion.make_token(user)
 
-		subject = 'Activación de Cuenta | Plataforma digital comercial'
-		to = user.email
+        message = render_to_string('confirmar_cuenta.html',
+                                   {
+                                       'usuario': user,
+                                       'dominio': dominio,
+                                       'uid':  uid,
+                                       'token': token,
+                                   }
+                                   )
 
-		email = EmailMessage(
-			subject,
-			message,
-			to=[to],
-		)
+        subject = 'Activación de Cuenta | Plataforma digital comercial'
+        to = user.email
 
-		email.content_subtype = 'html'
+        email = EmailMessage(
+            subject,
+            message,
+            to=[to],
+        )
 
-		email.send()
+        email.content_subtype = 'html'
 
-		return super().form_valid(form)
+        email.send()
+
+        return super().form_valid(form)
+
 
 class Sign_up_usuario_vendedor(CreateView):
     model = Usuario_Vendedor
@@ -129,10 +138,8 @@ class Sign_up_usuario_vendedor(CreateView):
     form_class = Usuario_Vendedor_Form
 
     success_url = reverse_lazy('usuarios:login')
-	
 
 
- 
 class ActivarCuenta(TemplateView):
     def get(self, request, *args, **kwargs):
         try:
@@ -147,24 +154,29 @@ class ActivarCuenta(TemplateView):
             user.save()
             messages.success(self.request, 'Cuenta activada con éxito')
         else:
-            messages.error(self.request, 'Token inválido, contacta al administrador')
+            messages.error(
+                self.request, 'Token inválido, contacta al administrador')
 
         return redirect('usuarios:login')
 
-def cambia_grupo(request,id_gpo, id_usuario):
-    grupo = Group.objects.get(id= id_gpo)
-    usuario = Usuario.objects.get(id= id_usuario)
-    # permission_required = 'usuarios.edit_usuario'
+
+def cambia_grupo(request, id_gpo, id_usuario):
+    grupo = Group.objects.get(id=id_gpo)
+    usuario = Usuario.objects.get(id=id_usuario)
     if grupo in usuario.groups.all():
-        if usuario.groups.count() <= 1: #
-            messages.error(request, 'El usuario debe pertenecer a un grupo como minimo')
+        if usuario.groups.count() <= 1:
+            messages.error(
+                request, 'El usuario debe pertenecer a un grupo como minimo')
         else:
             usuario.groups.remove(grupo)
-            messages.success(request, f'El usuario {usuario} ya no  pertenece al grupo {grupo}')
+            messages.success(
+                request, f'El usuario {usuario} ya no  pertenece al grupo {grupo}')
     else:
         usuario.groups.add(grupo)
-        messages.success(request, f'El usuario {usuario} se agrego al grupo {grupo}')
+        messages.success(
+            request, f'El usuario {usuario} se agrego al grupo {grupo}')
     return redirect('usuarios:lista')
+
 
 def modificar_usuario_grupo(request, id):
     grupos = [grupo.id for grupo in Group.objects.all()]
@@ -182,16 +194,16 @@ def modificar_usuario_grupo(request, id):
 
 # Metodo para municipios
 
+
 def obtiene_municipios(request):
-    # estado = get_object_or_404(Estado, id=id_estado)
     if request.method == 'GET':
-        return JsonResponse({'error':'Petición incorrecta'}, safe=False,  status=403)
+        return JsonResponse({'error': 'Petición incorrecta'}, safe=False,  status=403)
     id_estado = request.POST.get('id')
-    municipios = Municipio.objects.filter(estado_id = id_estado)
+    municipios = Municipio.objects.filter(estado_id=id_estado)
     json = []
     if not municipios:
-        json.append({'error':'No se encontraron municipios para ese estado'})
-        
+        json.append({'error': 'No se encontraron municipios para ese estado'})
+
     for municipio in municipios:
-        json.append({'id':municipio.id, 'nombre':municipio.nombre})
+        json.append({'id': municipio.id, 'nombre': municipio.nombre})
     return JsonResponse(json, safe=False)

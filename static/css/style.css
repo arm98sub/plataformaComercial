@@ -27,6 +27,14 @@
   background-size: auto 100%;
 }
 
+img.logo{
+  position: right;
+  max-width: 50%;
+
+}
+.navbar-letras {
+  color: #000000;
+}
 
 .imagen-zac{
   height: 20px;
@@ -82,8 +90,16 @@
 }
 
 .img-lista-usuarios{
-  width: 75;
-  height: 75;
+  width: 150px;
+  height: 125px;
+}
+/* pagina principal */
+
+.bg{
+  background-size: 1500px 700px;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-attachment: local;
 }
 
 /*==================================================================
@@ -102,8 +118,6 @@ body {
 
 
 * {
-  margin: 0;
-  padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
@@ -478,11 +492,12 @@ p {
 }
 
 .page-banner-content .page-title {
-  font-weight: 500;
+  font-weight: 1000;
   font-size: 60px;
   line-height: 60px;
   color: #fff;
   margin-top: 10px;
+  
 }
 
 @media (max-width: 767px) {
@@ -513,7 +528,7 @@ p {
 }
 
 .bg-white-variant {
-  background-color: #FAFAFA;
+  background-color: #cfcfcf9a;
 }
 
 .bg-white-light {
@@ -1246,11 +1261,7 @@ p {
   border-bottom-left-radius: 0;
 }
 
-/*===== Button Shadow Style =====*/
-.btn-shadow {
-  -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.32);
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.32);
-}
+/*===== Button Shadow Style ====bg-primary-color
 
 /*===== Primary Button Style =====*/
 .primary-icon,
@@ -2656,7 +2667,7 @@ p {
 
 .product-style-1 .product-image .product-active .product-item img {
   width: 350px;
-  max-height: 150px;
+  max-height: 200px;
 }
 
 .product-style-1 .product-image .product-active .slick-arrow {
@@ -4503,8 +4514,8 @@ p {
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .navbar-style-7 .navbar-container {
     position: fixed;
-    top: 0;
-    left: -290px;
+    top: 220;
+    left: -100px;
     width: 280px;
     height: 100%;
     background-color: #fff;

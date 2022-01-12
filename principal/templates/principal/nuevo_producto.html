@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Nuevo Producto
+{% endblock title%}
+{% block body %}
+{% load crispy_forms_tags%}
+
+<br>
+<div class="row">
+	<div class="col-12 col-md-6 offset-md-3">
+		<div class="card">
+			<div class="card-body">
+				<h1>Nuevo Producto</h1>
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					{{form | crispy }}
+					{% comment %} {{ form.vendedor | as_crispy_field }} {% endcomment %}
+				
+				<br>
+				<button type="submit" class="btn btn-primary">Agregar</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock body %}
+
+{% block js %}
+<script src="{% static 'js/funciones.js'%}"></script>
+{% endblock js %}

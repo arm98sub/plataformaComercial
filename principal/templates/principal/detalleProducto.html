@@ -17,7 +17,12 @@ Ver producto
                             <div class="product-item active">
                                 <img src="{% if producto.imagen %}/media/{{MEDIA_URL}}{{producto.imagen}}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
                                     alt="{{producto.nombre}}">
-                            </div>
+                                    <h4 class="text-dark text-center">{{producto.descripcion}}</h4> 
+            
+                                    <div>     
+                                     </div>
+                                </div>
+                            
                         </div>
                     </div>
                     <div class="product-content text-center">
@@ -31,7 +36,9 @@ Ver producto
                                 ${{producto.precio}}
                             </button>
                         </form>
+                        
                     </div>
+                    
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">

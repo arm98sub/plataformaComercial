@@ -45,6 +45,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+
 ROOT_URLCONF = 'comerciov2.urls'
 
 TEMPLATES = [
@@ -127,7 +129,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SESSION_COOKIE_AGE = 60 * 15
+SESSION_COOKIE_AGE = 25 * 60
 
 LOGIN_URL = reverse_lazy('usuarios:login')
 LOGIN_REDIRECT_URL = reverse_lazy('principal:principal')

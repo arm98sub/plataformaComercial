@@ -23,6 +23,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='servicio',
             name='descripcion',
-            field=models.TextField(blank=True, max_length=250, null=True, verbose_name='Descripción'),
+            field=models.TextField(
+                blank=True, max_length=250, null=True, verbose_name='Descripción'),
         ),
     ]

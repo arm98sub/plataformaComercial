@@ -17,6 +17,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='detalleorden',
             name='producto',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='principal.producto', verbose_name='Producto'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                    to='principal.producto', verbose_name='Producto'),
         ),
     ]
