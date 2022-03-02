@@ -1,13 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Categoria(models.Model):
-    nombre = models.CharField(max_length = 50)
+    nombre = models.CharField(max_length=50)
     slug = models.SlugField(max_length=255)
 
     def __str__(self):
         return self.nombre
-    
+
 
 class Producto(models.Model):
     vendedor = models.ForeignKey(
@@ -22,7 +23,8 @@ class Producto(models.Model):
         null=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField(default=0)
-    categoria = models.ForeignKey('principal.Categoria', verbose_name = 'Categoria',  on_delete= models.CASCADE)
+    categoria = models.ForeignKey(
+        'principal.Categoria', verbose_name='Categoria',  on_delete=models.CASCADE)
     descripcion = models.CharField(
         "Descripción",
         max_length=250,
