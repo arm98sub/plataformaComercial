@@ -25,10 +25,10 @@
 							</div>
 							<div class="product-content text-center">
 								<h4 class="title"><a href="{% url 'principal:ver_producto' p.id %}">{{p.nombre}}</a></h4>
-								<form action="{% url 'ordenes:agregar'%}" method="post">
+								<form action="{% url 'ordenes:agregar' p.slug%}" method="post">
 									{% csrf_token %}
 									<input type="hidden" name="id" value="{{p.id}}">
-									<button type="submit" class="main-btn secondary-1-btn">
+									<button data-product="{{productos.id}}" data-action="add" type="submit" class="main-btn secondary-1-btn update-cart">
 										<img src="{% static 'images/icon-svg/cart-7.svg' %}" alt="">
 										${{p.precio}}
 									</button>

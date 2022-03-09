@@ -158,7 +158,8 @@
   <!-- end card-group -->
 
   <!-- productos recientes -->
-  {% comment %} <div class="page-title">
+  {% comment %}
+  <div class="page-title">
     <h1
       class="fw-bold text-center text-uppercase text-dark mb-0"
       data-aos="fade-in"
@@ -196,17 +197,16 @@
         {% endfor %}
       </div>
     </div>
-  </section> {% endcomment %}
+  </section>
+  {% endcomment %} {% comment %} productos v2 {% endcomment %}
 
-  {% comment %} productos v2 {% endcomment %}
-  
   <section class="product-wrapper pt-30 pb-30 bg-primary-color">
     <h1
-    class="fw-bold text-center text-uppercase text-dark mb-0"
-    data-aos="fade-in"
-  >
-    Productos recientes
-  </h1>
+      class="fw-bold text-center text-uppercase text-dark mb-0"
+      data-aos="fade-in"
+    >
+      Productos recientes
+    </h1>
     <div class="container mt-100">
       <div class="row">
         {% for p in productos %}
@@ -218,10 +218,11 @@
                   <img
                     src="{% if p.imagen %}/media/{{MEDIA_URL}}{{p.imagen}}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
                     alt="Category"
-                    style = "height: 18rem"
+                    style="height: 18rem"
                   />
                 </div>
-                {% comment %} sirve para agregarle otras dos imagenes mas pequeñas
+                {% comment %} sirve para agregarle otras dos imagenes mas
+                pequeñas
                 <div class="thumblist">
                   <img
                     src="https://i.imgur.com/ILEU18M.jpg"
@@ -233,12 +234,13 @@
             </a>
             <div class="card-body text-center">
               <h4 class="card-title">
-                <a >
-                  {{p.nombre}}
-                </a>
+                <a> {{p.nombre}} </a>
               </h4>
               <p class="text-muted">${{p.precio}}</p>
-              <a class="btn btn-outline-primary btn-sm" href="{% url 'principal:ver_producto' p.id %}" data-abc="true"
+              <a
+                class="btn btn-outline-primary btn-sm"
+                href="{% url 'principal:ver_producto' p.id %}"
+                data-abc="true"
                 >Ver mas</a
               >
             </div>

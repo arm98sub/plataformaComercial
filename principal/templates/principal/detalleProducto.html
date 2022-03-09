@@ -19,7 +19,7 @@ Ver producto
           <div class="card-body">
             <h5 class="card-title">{{producto.nombre}}</h5>
             <p class="card-text">{{producto.descripcion}}.</p>
-            <form action="{% url 'ordenes:agregar'%}" method="post">
+            <form action="{% url 'ordenes:agregar' producto.slug%}" method="post">
               {% csrf_token %}
               <input type="hidden" name="id" value="{{producto.id}}" />
               <button type="submit" class="main-btn secondary-1-btn">

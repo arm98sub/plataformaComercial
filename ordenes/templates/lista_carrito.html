@@ -28,21 +28,32 @@
                         <th class="mob-hide">Precio Unitario</th>
                         <th class="mob-hide">Cantidad</th>
                         <th>Subtotal</th>
-                        <th></th>
+                        <th>Eliminar</th>
                     </thead>
                     <tbody>
                         <tr>
-                        {% for dato in datos %}
+                        {% for dato in object.productos.all %}
                             <tr>
                             <td>
                                 <div class="imagen-carrito">
-                                    <img src="{% if dato.imagen %}/media/{{MEDIA_URL}}{{dato.imagen}}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}" alt="{{dato.nombre}}"> 
+                                    <img src="{% if dato.producto.imagen %}/media/{{MEDIA_URL}}{{dato.producto.imagen}}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}" alt="{{dato.producto.nombre}}"> 
                                 </div>
                             </td>
-                            <td>{{dato.nombre}}</td>
-                            <td>${{dato.precio}}</td>
-                            <td>{{dato.cantidad}}</td>
-                            <td>${{dato.subtotal }}</td>
+                            <td>{{dato.producto.nombre}}</td>
+                            <td>${{dato.producto.precio}}</td>
+                            <td>
+                                <a class="icono-minus" href="{% url 'ordenes:eliminar-articulo-carrito' dato.producto.slug%}"><i class="bi bi-dash-square""></i></a>
+                                {{dato.cantidad}}
+                                <a class="icono-plus" href="{% url 'ordenes:agregar' dato.producto.slug%}"><i class="bi bi-plus-square"></i></a>
+                            </td>
+                            <td>
+                                ${{dato.get_subtotal }}
+                            </td>
+                            <td>
+                                <a style="color: red;" href="{% url 'ordenes:eliminar-de-carrito'  dato.producto.slug%}">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </td>
                             </tr>
                         {% endfor %}
                         </tr>
@@ -61,7 +72,7 @@
                                 <strong>Total</strong>
                             </td>
                             <td colspan="1" class="text-right">
-                                <strong>${{total}}</strong>
+                                <strong>${{object.get_total}}</strong>
                             </td>
                         </tr>
                     </tbody>
