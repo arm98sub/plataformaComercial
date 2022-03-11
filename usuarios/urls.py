@@ -1,5 +1,7 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
 
 from . import views
 
@@ -32,4 +34,4 @@ urlpatterns = [
 
     # Municipios
     path('municipios/', views.obtiene_municipios, name='municipios'),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
