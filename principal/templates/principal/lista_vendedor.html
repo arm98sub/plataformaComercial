@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+	Lista de Productos
+{% endblock title %}
+
+{% block body %}
+
+<br>
+<div class="card-body">
+    <h1>Lista de Productos/Servicios</h1>
+    <br>
+    <div class="card-content justify-content-end"> 
+        <a class="btn btn-primary boton-ingresar" href="{% url 'principal:nuevo_producto_vendedor' %}"><i class="fa fa-plus"> </i> Nuevo Producto</a>
+    </div>
+    <br>
+	<table class="table" style='margin-top: 1em'>
+		<thead>
+			<th>ID</th>
+			<th>Nombre</th>
+			<th>Vendedor</th>
+			<th>Precio</th>
+			<th>Stock</th>
+			<th>Descripción</th>
+			<th><i class="fa fa-cog"></i> Opciones</th>
+		</thead>
+		<tbody>
+			{% for p in productos %}
+				<input type="hidden" name="id" value="{{p.id}}">
+				<tr>
+					<td>{{p.id}}</td>
+					<td>{{p.nombre}}</td>
+					<td>{{p.vendedor}}</td>
+					<td>${{p.precio}}</td>
+					<td>{{p.stock}}</td>
+					<td>{{p.descripcion}}</td>
+					<td>
+						<a href="{% url 'principal:editar_producto' p.id %}"><i class="fa fa-edit"></i> Editar</a> |
+						<a href="{% url 'principal:eliminar_producto' p.id %}"><i class="fa fa-trash"></i> Eliminar</a>
+					</td>
+				</tr>
+			{% endfor %}
+        </tbody>
+	</table>
+</div>
+
+{% endblock body %}
+
