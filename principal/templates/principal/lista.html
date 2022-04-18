@@ -24,7 +24,8 @@
 								</div>
 							</div>
 							<div class="product-content text-center">
-								<h4 class="title"><a href="{% url 'principal:ver_producto' p.id %}">{{p.nombre}}</a></h4>
+								<h4 class="title"><a href="{% url 'principal:ver_producto' p.slug %}">{{p.nombre}}</a></h4>
+								
 								<form action="{% url 'ordenes:agregar' p.slug%}" method="post">
 									{% csrf_token %}
 									<input type="hidden" name="id" value="{{p.id}}">
