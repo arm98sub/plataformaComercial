@@ -1,8 +1,12 @@
+
+# Created by https://www.toptal.com/developers/gitignore/api/windows,python,django,virtualenv
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,python,django,virtualenv
+
 ### Django ###
 *.log
 *.pot
 *.pyc
-__pycache__/
+*/__pycache__/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
@@ -274,3 +278,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# End of https://www.toptal.com/developers/gitignore/api/windows,python,django,virtualenv
