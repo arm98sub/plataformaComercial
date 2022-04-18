@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Lista de Usuario
+{% endblock title %}
+
+{% block body %}
+{% if messages %}
+{% for message in messages %}
+<div class="message">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}
+
+<h1>Lista de Usuarios</h1>
+<br>
+
+<a class="btn btn-primary" href="{% url 'usuarios:nuevo' %}">Nuevo Usuario</a>
+<br>
+
+<table class="table" style='margin-top: 1em'>
+    <thead>
+        <th><i class="fa fa-image"></i> Foto</th>
+        <th>Nombre</th>
+        <th>Usuario</th>
+        <th>Estado</th>
+        <th>Municipio</th>
+        <th><i class="fa fa-usuarios"></i> Grupos</th>
+        <th><i class="fa fa-cog"></i> Opciones</th>
+    </thead>
+    <tbody>
+        {% for usuarios in object_list  %}
+        <tr>
+            <td><img class="profile-pict img-lista-usuarios" src="/media/{{MEDIA_URL}}{{usuarios.foto}}" alt="{{usuarios.username}}"></td>
+            <td>{{usuarios.first_name}}</td>
+            <td><a href="{% url 'usuarios:ver' usuarios.id %}">{{usuarios.username}}</a></td>
+            <td>{{usuarios.estado}}</td>
+            <td>{{usuarios.municipio}}</td>
+            <td>
+                {% for grupo in lista_grupos %}
+                {% if grupo in usuarios.groups.all%}
+                <div class="form-check form-switch"
+                    onclick="location.href='{% url 'usuarios:cambia-grupo' grupo.id usuarios.id %}';">
+                    <input type="checkbox" checked>
+                    <label>
+                        {{grupo}}
+                    </label>
+                </div>
+                {% else %}
+                <div class="form-check form-switch"
+                    onclick="location.href='{% url 'usuarios:cambia-grupo' grupo.id usuarios.id %}';">
+                    <input type="checkbox">
+                    <label>
+                        {{grupo}}
+                    </label>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                <a href="{% url 'usuarios:editar' usuarios.id %}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i>
+                    Editar</a>
+                <button onclick="modalUsuario('{% url 'usuarios:eliminar' usuarios.id %}','{{usuarios.first_name}}')"
+                    type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa fa-trash-alt"></i> Eliminar
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="modal hide" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ConfirmaciÃ³n</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><i
+                        class="fa fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalCuerpo"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <form id="form_eliminar" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
+{block js}
+<script src="{% static 'js/funciones.js'%}"></script>
+{endblock js}
