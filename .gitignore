@@ -1,7 +1,3 @@
-
-# Created by https://www.toptal.com/developers/gitignore/api/windows,python,django,virtualenv
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,python,django,virtualenv
-
 ### Django ###
 *.log
 *.pot
@@ -278,4 +274,3 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,python,django,virtualenv
