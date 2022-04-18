@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Registrar
+{% endblock title%}
+{% block body %}
+{% load crispy_forms_tags%}
+
+<br>
+<div class="row">
+	<div class="col-12 col-md-6 offset-md-3">
+		<div class="card">
+			<div class="card-body">
+				<h1>Crear cuenta</h1>
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					{{form | crispy }}
+					<br>
+					<br>
+					<div class="d-flex justify-content-end">
+						<button type="submit" class="btn boton-ingresar">Crear cuenta</button>
+					</div>
+				</form>
+			</div>
+			<p>¿Eres vendedor?<a href="{% url 'usuarios:signup_vendor'%}" class = "link-info crear-cuenta">Crear Cuenta Empresarial</a></p>
+		</div>
+	</div>
+</div>
+
+
+{% endblock body %}
+
+{% block js %}
+<script src="{% static 'js/funciones.js'%}"></script>
+{% endblock js %}
