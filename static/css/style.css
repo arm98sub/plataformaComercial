@@ -19,6 +19,32 @@
 /*==================================================================
                             0 Custom CSS
 ==================================================================*/
+
+.carousel-indicators [data-bs-target] {
+  position: relative;
+  width: 60px;
+  height: 6px;
+  border: none;
+  border-radius: 24px;
+}
+
+.imagen-carousel{
+  height: 100%;
+  width: 100%;
+  align-self: center;
+}
+
+.carousel-indicators [data-bs-target] span {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #da4c42;
+  border-radius: inherit;
+}
+
 .bg-image-vertical {
   position: relative;
   overflow: hidden;

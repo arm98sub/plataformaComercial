@@ -6315,7 +6315,7 @@ button.close {
 }
 
 .carousel {
-    position: relative
+    position: relative;
 }
 
 .carousel.pointer-event {
@@ -6324,8 +6324,11 @@ button.close {
 
 .carousel-inner {
     position: relative;
-    width: 100%;
-    overflow: hidden
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    overflow: hidden;
+    /* height: 500px; */
 }
 
 .carousel-inner::after {
@@ -6335,14 +6338,15 @@ button.close {
 }
 
 .carousel-item {
-    position: relative;
+    position: absolute;
     display: none;
     float: left;
     width: 100%;
     margin-right: -100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    transition: transform .6s ease-in-out
+    transition: transform .6s ease-in-out;
+    height: 50ex;
 }
 
 @media (prefers-reduced-motion:reduce) {
