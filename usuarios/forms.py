@@ -3,18 +3,16 @@ from .models import Usuario, Usuario_Vendedor
 from django.contrib.auth.models import Group
 
 # Clase que implementa un tipo de usuario personalizado.
-
-
 class UsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuario
 
-        fields = ('first_name','username','password', 'password2','email','foto')
+        fields = ('first_name','last_name','username','password', 'password2','email','foto')
 
         widgets = {
             'password': forms.PasswordInput(),
             'password2': forms.PasswordInput(),
-            'estado': forms.Select()
+            # 'estado': forms.Select()
         }
 
     # Método por el cual se guardan los usuarios.
@@ -25,15 +23,14 @@ class UsuarioForm(forms.ModelForm):
             user.save()
         return user
 
-    # Verifica que las contraseñas ingresadas coinsidan
+    # Verifica que las contraseñas ingresadas coincidan
     def clean_password(self, *args, **kwargs):
         if self.data['password'] != self.data['password2']:
             raise forms.ValidationError("Las contraseñas no coinciden")
         return self.data['password']
 
+
 # Clase de usuario vendedor
-
-
 class Usuario_Vendedor_Form(forms.ModelForm):
     class Meta:
         model = Usuario_Vendedor

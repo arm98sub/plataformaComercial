@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% load static %}
+{% comment %} {% load static %} {% endcomment %}
+{% load crispy_forms_tags %}
 
 {% block body %}
 <div class="container justify-content-center">
@@ -10,8 +11,7 @@
                     <h4 class="card-title mb-4 mt-1">Editar Usuario</h4>
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {{form}}
-                        <br>
+                        {{ form }}
                         <br>
                         
                         <div class="d-flex justify-content-end">
