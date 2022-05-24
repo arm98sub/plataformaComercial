@@ -7,10 +7,7 @@
   <!-- image -->
 
   <!-- Carrusel de productos -->
-  <br />
-  <section class="bg-white-variant">
-    <div class="container">
-      <div class="row">
+    <div class="container-fluid">
         <div
           id="carouselExampleControls"
           class="carousel slide"
@@ -76,20 +73,14 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-      </div>
     </div>
-  </section>
-  <br />
-  <br />
 
   <!-- end carrousel -->
 
   <!-- card-group atractivos turisticos -->
   <section class="footer-style-3 pt-100 pb-100">
     <div class="page-title">
-      <h2 class="fw-bold text-center text-uppercase text-dark mb-0">
-        Principales atractivos Turisticos de Zacatecas
-      </h2>
+      <h3 class="text-center padding-index"><b>Atractivos Turisticos de Zacatecas</b> </h3>
     </div>
     <br />
 
@@ -160,12 +151,7 @@
   <!-- productos recientes -->
   {% comment %}
   <div class="page-title">
-    <h1
-      class="fw-bold text-center text-uppercase text-dark mb-0"
-      data-aos="fade-in"
-    >
-      Productos recientes
-    </h1>
+    <h3 class="letras-blancas text-center">Productos Recientes</h3>
   </div>
   <section class="product-wrapper pt-30 pb-30 bg-primary-color">
     <div class="container">
@@ -201,12 +187,7 @@
   {% endcomment %} {% comment %} productos v2 {% endcomment %}
 
   <section class="product-wrapper pt-30 pb-30 bg-primary-color">
-    <h1
-      class="fw-bold text-center text-uppercase text-dark mb-0"
-      data-aos="fade-in"
-    >
-      Productos recientes
-    </h1>
+    <h3 class="letras-blancas text-center">Productos Recientes</h3>
     <div class="container mt-100">
       <div class="row">
         {% for p in productos reversed %}
