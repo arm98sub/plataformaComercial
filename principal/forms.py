@@ -24,7 +24,7 @@ class ProductoFormVendedor(forms.ModelForm):
         model = Producto
         # fields = '__all__'
         fields = ('nombre', 'imagen', 'precio',
-                  'stock', 'categoria', 'descripcion', 'slug')
+                  'stock', 'categoria', 'descripcion')
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'descripcion': Textarea(attrs={'cols': 20, 'rows': 5}),

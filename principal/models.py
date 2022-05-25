@@ -30,7 +30,7 @@ class Producto(models.Model):
         max_length=250,
         null=True,
         blank=True)
-    slug = models.SlugField()
+    #slug = models.SlugField()
 
     def __str__(self):
         return self.nombre
