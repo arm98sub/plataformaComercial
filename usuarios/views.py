@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.sites. shortcuts import get_current_site
 from django.core.mail import EmailMessage
@@ -125,6 +126,7 @@ class SignUpUsuario(CreateView):
             to=[to],
         )
 
+        messages.success(self.request, f'Verifica tu correo({user.email}) para activar tu cuenta')
         email.content_subtype = 'html'
 
         email.send()
@@ -141,6 +143,7 @@ class Sign_up_usuario_vendedor(CreateView):
 
 
 class ActivarCuenta(TemplateView):
+    
     def get(self, request, *args, **kwargs):
         try:
             uid = urlsafe_base64_decode(kwargs['uid64'])

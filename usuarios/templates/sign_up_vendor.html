@@ -7,9 +7,9 @@ Registro Vendedor
 {% load crispy_forms_tags%}
 
 <br>
-
 </section>
-<div class="container-fluid" style="background-image: url(/static/images/imagenes-tuneadas/ZacatecasVendor.jpg);background-repeat: no-repeat;background-size: cover;">
+<div class="container-fluid"
+	style="background-image: url(/static/images/imagenes-tuneadas/ZacatecasVendor.jpg);background-repeat: no-repeat;background-size: cover;">
 	<br>
 	<br>
 	<div class="row letras-negras">
@@ -20,15 +20,15 @@ Registro Vendedor
 					<form method="post" enctype="multipart/form-data">
 						{% csrf_token %}
 						{{form | crispy }}
-						{% for field in form.visible_fields %}  
-							{% for fieldName, label in fieldLabels %}
-								{% if fieldName == field.field.widget.password  %}
-									<div>
-										<label>{{ label }}</label>
-										{{ field }}
-									</div>
-								{% endif %}
-							{% endfor %}
+						{% for field in form.visible_fields %}
+						{% for fieldName, label in fieldLabels %}
+						{% if fieldName == field.field.widget.password %}
+						<div>
+							<label>{{ label }}</label>
+							{{ field }}
+						</div>
+						{% endif %}
+						{% endfor %}
 						{% endfor %}
 						<br>
 						<div class="d-flex justify-content-end">
@@ -42,7 +42,7 @@ Registro Vendedor
 	<br>
 	<br>
 </div>
-	
+
 
 
 {% endblock body %}

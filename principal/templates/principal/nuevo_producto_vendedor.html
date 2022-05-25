@@ -9,9 +9,11 @@ Nuevo Producto
 {% load crispy_forms_tags%}
 
 <br>
-<div class="row">
+
+<div class="row letras-negras">    
 	<div class="col-12 col-md-6 offset-md-3">
 		<div class="card">
+            <h2 class="text-center">Nuevo Producto</h2>
 			<div class="card-body">
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -21,7 +23,6 @@ Nuevo Producto
                     {{ form.stock | as_crispy_field }}
                     {{ form.categoria | as_crispy_field }}
                     {{ form.descripcion | as_crispy_field }}
-                    {{ form.slug | as_crispy_field }}
                     <br>
                     <br>
                     <div class = "d-flex justify-content-end">

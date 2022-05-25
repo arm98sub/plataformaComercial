@@ -6,12 +6,11 @@
 {% endblock title %}
 
 {% block body %}
-	<h1>Lista de Productos/Servicios</h1>
+	<h2>Lista de Productos/Servicios</h2>
 	<br>
+	<a  class="btn boton-ingresar" href="{% url 'principal:nuevo_producto' %}"><i class="fa fa-plus"> </i> Nuevo Producto</a> | 
+	<a  class="btn boton-ingresar" href="{% url 'principal:nuevo_servicio' %}"><i class="fa fa-plus"> </i> Nuevo Servicio</a>
 	
-	<a  class="btn btn-primary" href="{% url 'principal:nuevo_producto' %}"><i class="fa fa-plus"> </i> Nuevo Producto</a> | 
-	<a  class="btn btn-primary" href="{% url 'principal:nuevo_servicio' %}"><i class="fa fa-plus"> </i> Nuevo Servicio</a>
-
 	<br>
 	<table class="table" style='margin-top: 1em'>
 		<thead>
