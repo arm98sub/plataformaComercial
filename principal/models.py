@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=255)
+    # slug = models.SlugField(max_length=255)
 
     def __str__(self):
         return self.nombre
