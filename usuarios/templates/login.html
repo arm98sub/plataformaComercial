@@ -10,9 +10,9 @@ Inicio Sesión
 {% endblock title%}
 
 {% block body %}
-	{% if form.errors %}
+	{% if form.errors.as_data %}
 	<div class="alert alert-warning">
-		<p>Usuario no encontrado</p>
+		<p>Usuario no encontrado o datos incorrectos</p>
 	</div>
 	{% endif %}
 

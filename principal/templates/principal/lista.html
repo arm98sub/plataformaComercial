@@ -19,13 +19,13 @@
 								<span class="icon-text text-style-1">Nuevo</span>
 								<div class="product-active">
 									<div class="product-item active">
-										<img src="{% if p.imagen %}/media/{{MEDIA_URL}}{{p.imagen}}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}" class="rounded mx-auto" alt="{{p.nombre}}">
+										<img src="{% if p.imagen %}{{MEDIA_URL}}{{p.imagen}}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}" class="rounded mx-auto" alt="{{p.nombre}}">
 									</div>
 								</div>
 							</div>
 							<div class="product-content text-center">
 								<h4 class="title"><a href="{% url 'principal:ver_producto' p.id %}">{{p.nombre}}</a></h4>
-								<form action="{% url 'ordenes:agregar' p.slug%}" method="post">
+								<form action="{% url 'ordenes:agregar' p.id%}" method="post">
 									{% csrf_token %}
 									<input type="hidden" name="id" value="{{p.id}}">
 									<button data-product="{{productos.id}}" data-action="add" type="submit" class="main-btn secondary-1-btn update-cart">

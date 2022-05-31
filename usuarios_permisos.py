@@ -7,6 +7,7 @@ django.setup()
 from usuarios.models import Usuario
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission, Group
+from principal.models import Categoria
 
 content_type = ContentType.objects.get_for_model(Usuario)
 
@@ -18,19 +19,19 @@ def crear_grupos():
 
 
 def crear_permisos():
-    permiso_usuarios = Permission.objects.create(
+    permiso_usuarios = Permission.objects.get_or_create(
         codename='permiso_usuario',
         name='Permiso requerido para el grupo usuarios',
         content_type=content_type
     )
 
-    permiso_administradoes = Permission.objects.create(
+    permiso_administradoes = Permission.objects.get_or_create(
         codename='permiso_administradores',
         name='Permiso requerido para el grupo administradores',
         content_type=content_type
     )
 
-    permiso_vendedores = Permission.objects.create(
+    permiso_vendedores = Permission.objects.get_or_create(
         codename='permiso_vendedores',
         name='Permiso requerido para el grupo vendedores',
         content_type=content_type
@@ -55,6 +56,22 @@ def eliminar_permisos():
     per_admin.delete()
     per_vend.delete()
 
+def crear_categorias():
+    Categoria.objects.get_or_create(nombre='Talleres de Arte')
+    Categoria.objects.get_or_create(nombre='Festivales')
+    Categoria.objects.get_or_create(nombre='Exposiciones')
+    Categoria.objects.get_or_create(nombre='Servicios')
+    Categoria.objects.get_or_create(nombre='Hoteles')
+    Categoria.objects.get_or_create(nombre='Comida')
+    Categoria.objects.get_or_create(nombre='Artes Plasticas')
+    Categoria.objects.get_or_create(nombre='Plata')
+    Categoria.objects.get_or_create(nombre='Talabarteria')
+    Categoria.objects.get_or_create(nombre='Ceramica')
+    Categoria.objects.get_or_create(nombre='Joyeria')
+    Categoria.objects.get_or_create(nombre='Recorridos')
+    Categoria.objects.get_or_create(nombre='Renta de autos')
+
 
 crear_grupos()
 crear_permisos()
+crear_categorias()

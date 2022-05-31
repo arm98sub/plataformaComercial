@@ -12,8 +12,8 @@ from principal.models import Producto
 from django.contrib.auth.decorators import login_required, permission_required
 
 @login_required
-def agregar_carrito(request, slug):
-    producto = get_object_or_404(Producto, slug=slug)
+def agregar_carrito(request, pk):
+    producto = get_object_or_404(Producto, pk=pk)
     producto_ordenado, created = ProductoOrdenado.objects.get_or_create(
         producto=producto,
         usuario=request.user,
@@ -40,6 +40,7 @@ def agregar_carrito(request, slug):
         messages.info(request, "Este producto fue agregado a tu carrito")
         return redirect('ordenes:lista_carrito')
 
+@login_required
 def eliminar_de_carrito(request, slug):
     producto = get_object_or_404(Producto, slug=slug)
     orden_qs = Orden.objects.filter(
@@ -98,7 +99,7 @@ def eliminar_un_producto_del_carrito(request, slug):
 
 # @login_required
 # @permission_required('usuarios.permiso_usuario', raise_exception=True)
-
+@login_required
 def add_to_cart(request):
     if request.method == "POST":
         pk = request.POST.get('id')
@@ -122,7 +123,7 @@ def add_to_cart(request):
 
     return redirect('ordenes:lista_carrito')
 
-
+# @login_required
 class lista_carrito(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:

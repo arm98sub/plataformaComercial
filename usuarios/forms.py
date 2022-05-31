@@ -1,6 +1,6 @@
 from django import forms
 from .models import Usuario, Usuario_Vendedor
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group,Permission
 
 # Clase que implementa un tipo de usuario personalizado.
 class UsuarioForm(forms.ModelForm):
@@ -20,6 +20,10 @@ class UsuarioForm(forms.ModelForm):
         user = super(UsuarioForm, self).save(commit=False)
         user.set_password(self.cleaned_data['password'])
         if commit:
+            grupo = Group.objects.get(name='usuarios')
+            permisos = Permission.objects.get(codename='permiso_usuario')
+            user.user_permissions.add(permisos)
+            user.groups.add(grupo)
             user.save()
         return user
 
@@ -50,9 +54,13 @@ class Usuario_Vendedor_Form(forms.ModelForm):
         user = super(Usuario_Vendedor_Form, self).save(commit=False)
         user.set_password(self.cleaned_data['password'])
         if commit:
-            my_group = Group.objects.get(name='vendedores')
+            grupo = Group.objects.get(name='vendedores')
+            permisos = Permission.objects.get(codename='permiso_administradores')
+            user.user_permissions.add(permisos)
+            user.groups.add(grupo)
+            # my_group = Group.objects.get(name='vendedores')
             user.save()
-            my_group.user_set.add(user)
+            # my_group.user_set.add(user)
         return user
 
     # Verifica que la contraseña ingresada y la confirmacion sean iguales, de lo contrario, la limpia.

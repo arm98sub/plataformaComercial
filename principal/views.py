@@ -5,6 +5,7 @@ from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .forms import ProductoForm, ProductoFormVendedor, ServicioForm
 from .models import Producto, Servicio
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Home del sitio
 
@@ -16,7 +17,6 @@ def index(request):
     return render(
         request, 'index.html', {
             'productos': productos, 'servicios': servicios})
-
 
 def admin(request):
     return render(request, 'admin.html', {})
@@ -30,7 +30,7 @@ def lista(request):
     return render(request, 'principal/lista.html',
                   {'productos': productos, 'servicios': servicios})
 
-
+@permission_required('usuarios.permiso_vendedores')
 def lista_productos(request):
     productos = Producto.objects.filter(vendedor=request.user)
     # servicios = Servicio.objects.all()
@@ -39,8 +39,7 @@ def lista_productos(request):
                   {'productos': productos})
 
 # Listado de productos/servicios para administradores
-
-
+@permission_required('permiso_administradores')
 def lista_admin(request):
     productos = Producto.objects.all()
     servicios = Servicio.objects.all()
@@ -67,11 +66,11 @@ class NuevoProducto(PermissionRequiredMixin, CreateView):
 
 
 
-class EditarProducto(PermissionRequiredMixin, UpdateView):
-    # permission_required = 'usuarios.permiso_administradores'
-    model = Producto
-    form_class = ProductoForm
-    success_url = reverse_lazy('principal:lista_admin')
+# class EditarProducto(PermissionRequiredMixin, UpdateView):
+#     # permission_required = 'usuarios.permiso_administradores'
+#     model = Producto
+#     form_class = ProductoForm
+#     success_url = reverse_lazy('principal:lista_admin')
 
 
 class EditarProducto(PermissionRequiredMixin, UpdateView):

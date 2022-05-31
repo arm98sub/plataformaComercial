@@ -85,46 +85,58 @@
     <br />
 
     <div class="card-group d-flex">
-      <div class="card" style="width: 18rem">
-        <img
-          class="card-img-top rounded mx-auto"
-          src="{% static 'images/imagenes-tuneadas/centro.jpeg' %}"
-          alt="Card image cap"
-        />
-        <div class="card-body">
-          <h5 class="card-title">Centro Historico</h5>
-          <p class="card-text">
-            Comienza por un magnífico recorrido por su centro histórico, ahí
-            encontrarás la Catedral de Zacatecas, una muestra impresionante de
-            la arquitectura barroca. Tiene tres pasillos o naves decoradas en
-            este estilo y data de mediados del Siglo XVIII.
-          </p>
+
+        <div class="card mr-4 ml-4 mb-0 p-2" style="width: 18rem;">
+          <img class="card-img-top rounded" src="{% static 'images/imagenes-tuneadas/centro.jpeg' %}" alt="Imagen 1">
           <div class="card-body">
-            <a href="#" class="card-link">Conocer m&aacute;s</a>
+            <h5 class="card-title">Centro Historico</h5>
+            <p class="card-text">
+              Comienza por un magnífico recorrido por su centro histórico, ahí
+              encontrarás la Catedral de Zacatecas, una muestra impresionante de
+              la arquitectura barroca. Tiene tres pasillos o naves decoradas en
+              este estilo y data de mediados del Siglo XVIII.
+            </p>
+            <div class="card-body">
+              <a href="#" class="card-link text-success">Conocer m&aacute;s</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="card" style="width: 18rem">
-        <img
-          class="card-img-top rounded mx-auto"
-          src="{% static 'images/imagenes-tuneadas/MINAEDEN.jpeg' %}"
-          alt="Card image cap"
-        />
-        <div class="card-body">
-          <h5 class="card-title">Mina del Ed&eacute;n</h5>
-          <p class="card-text">
-            La Mina El Ed&eacute;n, abierta al p&uacute;blico desde 1975, es un
-            lugar infaltable en tu lista. Aqu&iacute; podr&aacute;s conocer a
-            fondo la mina a trav&eacute;s de un recorrido de 600 metros a bordo
-            de un pequeño tren que cruza varias puentes colgantes y
-            t&uacute;neles.
-          </p>
+
+        <div class="card mr-4 ml-4 mb-0 p-2" style="width: 18rem;">
+          <img class="card-img-top rounded" src="{% static 'images/imagenes-tuneadas/MINAEDEN.jpeg' %}" alt="Imagen 1">
           <div class="card-body">
-            <a href="#" class="card-link">Conocer m&aacute;s</a>
+            <h5 class="card-title">Mina del Ed&eacute;n</h5>
+            <p class="card-text">
+              La Mina El Ed&eacute;n, abierta al p&uacute;blico desde 1975, es un
+              lugar infaltable en tu lista. Aqu&iacute; podr&aacute;s conocer a
+              fondo la mina a trav&eacute;s de un recorrido de 600 metros a bordo
+              de un pequeño tren que cruza varias puentes colgantes y
+              t&uacute;neles.
+            </p>
+            <div class="card-body">
+              <a href="#" class="card-link text-success">Conocer m&aacute;s</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="card" style="width: 18rem">
+
+        <div class="card mr-4 ml-4 mb-0 p-2" style="width:18rem">
+          <img src="{% static 'images/imagenes-tuneadas/Teleferico.jpg' %}" alt="Imagen Teleferico" class="card-img-top rounded">
+          <div class="card-body">
+            <h5 class="card-title">Telef&eacute;rico</h5>
+            <p class="card-text">
+              Uno de los lugares para visitar en Zacatecas con niños es el
+              Telef&eacute;rico, ya que es un espect&aacute;culo para la vista
+              hacer este recorrido entre los cerros del Grillo y de la Bufa. Desde
+              el Telef&eacute;rico puedes ver los innumerables callejones que
+              conforman la ciudad.
+            </p>
+            <div class="card-body">
+              <a href="#" class="card-link text-success">Conocer m&aacute;s</a>
+            </div>
+          </div>
+        </div>
+
+      <!-- <div class="card" style="width: 18rem">
         <img
           class="card-img-top rounded mx-auto"
           src="{% static 'images/imagenes-tuneadas/Teleferico.jpg' %}"
@@ -143,91 +155,34 @@
             <a href="#" class="card-link">Conocer m&aacute;s</a>
           </div>
         </div>
-      </div>
+      </div> -->
+
     </div>
   </section>
   <!-- end card-group -->
 
   <!-- productos recientes -->
-  {% comment %}
-  <div class="page-title">
-    <h3 class="letras-blancas text-center">Productos Recientes</h3>
-  </div>
   <section class="product-wrapper pt-30 pb-30 bg-primary-color">
+    <h3 class="letras-blancas text-center">Productos Recientes</h3>
     <div class="container">
       <div class="row">
-        {% for p in productos %}
-        <div class="col-lg-4 col-sm-6">
-          <div class="product-style-1 mt-100">
-            <div class="product-image">
-              <span class="icon-text text-style-1">Nuevo</span>
-              <div class="product-active">
-                <div class="product-item active">
-                  <img
-                    src="{% if p.imagen %}/media/{{MEDIA_URL}}{{p.imagen}}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
-                    class="rounded mx-auto"
-                    alt="{{p.nombre}}"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="product-content text-center">
-              <h4 class="title">
-                <a href="{% url 'principal:ver_producto' p.id %}"
-                  >{{p.nombre}}</a
-                >
-              </h4>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-  {% endcomment %} {% comment %} productos v2 {% endcomment %}
-
-  <section class="product-wrapper pt-30 pb-30 bg-primary-color">
-    <h3 class="letras-blancas text-center">Productos Recientes</h3>
-    <div class="container mt-100">
-      <div class="row">
         {% for p in productos reversed %}
-        <div class="col-md-4 col-sm-6">
-          <div class="card mb-30">
-            <a class="card-img-tiles" href="#" data-abc="true">
-              <div class="inner">
-                <div class="main-img">
-                  <img
-                    src="{% if p.imagen %}/media/{{MEDIA_URL}}{{p.imagen}}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
-                    alt="Category"
-                    style="height: 18rem"
-                  />
-                </div>
-                 <!-- sirve para agregarle otras dos imagenes mas
-                pequeñas
-                <div class="thumblist">
-                  <img
-                    src="https://i.imgur.com/ILEU18M.jpg"
-                    alt="Category"
-                  /><img src="https://i.imgur.com/2kePJmX.jpg" alt="Category" />
-                </div>  -->
-              
+          <div class="col text-center mt-3">
+            <div class="card pt-2" style="width: 18rem;">
+              <div class="card-header">
+                <img src="{{ MEDIA_URL }}{{ p.imagen }}" alt="" class="card-img-top">
               </div>
-            </a>
-            <div class="card-body text-center">
-              <h4 class="card-title">
-                <a> {{p.nombre}} </a>
-              </h4>
-              <p class="text-muted">${{p.precio}}</p>
-              <a
-                class="btn btn-outline-primary btn-sm"
-                href="{% url 'principal:ver_producto' p.id %}"
-                data-abc="true"
-                >Ver mas</a
-              >
+              <div class="card-body">
+                <div class="card-tittle">
+                  <a href="{% url 'principal:ver_producto' p.id %}">
+                    <h4>{{ p.nombre }}</h4>
+                  </a>
+                </div>
+                <p class="card-text m-3">{{ p.descripcion }}</p>
+                <a href="{% url 'principal:ver_producto' p.id %}" class="btn btn-success m-3">Ver mas</a>
+              </div>
             </div>
           </div>
-        </div>
-
         {% endfor %}
       </div>
     </div>
