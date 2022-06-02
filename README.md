@@ -36,12 +36,17 @@ En caso de no contar con estos:
     ```
 
 ## Tareas
+### Usuario
 - [x] Creacion de modelos para usuario y vendedor.
 - [x] Creacion de modelos para categorias y productos.
 - [x] Cambios a la interfaz
 - [x] CRUD de usuarios.
 - [x] CRUD productos.
 - [ ] Despliegue en servidor.
+
+### Administrador
+- [x] Ver la lista de Usuarios
+- [x] Ver la lista de productos
 
 ## Autores
 
