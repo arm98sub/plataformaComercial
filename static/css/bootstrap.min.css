@@ -2032,7 +2032,7 @@ progress {
 }
 
 .table-bordered>:not(caption)>* {
-    border-width: 1px 0
+    border-width: 1px 
 }
 
 .table-bordered>:not(caption)>*>* {
@@ -5016,7 +5016,7 @@ fieldset:disabled .btn {
     font-size: .75em;
     font-weight: 700;
     line-height: 1;
-    color: #fff;
+    color: #bd2130;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;

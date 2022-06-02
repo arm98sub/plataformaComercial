@@ -132,7 +132,7 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SESSION_COOKIE_AGE = 600
+SESSION_COOKIE_AGE = 1800
 
 LOGIN_URL = reverse_lazy('usuarios:login')
 LOGIN_REDIRECT_URL = reverse_lazy('principal:principal')

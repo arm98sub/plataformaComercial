@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 from django.contrib.auth.views import LoginView
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -20,26 +20,41 @@ from .token import token_activacion
 from .models import Usuario, Municipio, Usuario_Vendedor
 from .forms import UsuarioForm, Usuario_Vendedor_Form
 
+'''
+Vistas para el apartado de usuarios.
+Plataforma Ditial el Comercial
+autores:
+    Alan Aguayo Ramirez
+    Daniel Avalos Bueno
+    Salatiel Reyes Gaytan
+    Erick Alexandro Gonzalez Pinales
+version: 2.0
+'''
 # CRUD Usuarios
 
 
 class UsuariosList(PermissionRequiredMixin, ListView):
     permission_required = 'users.permiso_administradores'
+    paginate_by: 1
     model = Usuario
     template_name = 'usuario_list.html'
     lista_grupos = Group.objects.all()
-    paginate_by = 5
+    lista_usuarios = Usuario_Vendedor.objects.all()
 
     extra_context = {
-        'us_lista': True,
+        'vendedores': lista_usuarios,
         'lista_grupos': lista_grupos
     }
 
-
+# Permite vizualizar la informacion de un usuario.
 class UsuariosDetalle(DetailView):
     model = Usuario
 
+# Permite vizualizar la informacion de un Vendedor.
+class VendedorDetalle(DetailView):
+    model = Usuario_Vendedor
 
+# Clase que permite la creacion de nuevos usuarios.
 class NuevoUsuario(PermissionRequiredMixin, CreateView):
     permission_required = 'users.permiso_administradores'
     model = Usuario
@@ -52,31 +67,59 @@ class NuevoUsuario(PermissionRequiredMixin, CreateView):
         'us_nuevo': True
     }
 
+class NuevoVendedor(PermissionRequiredMixin, CreateView):
+    permission_required = 'users.permiso_administradores'
+    model = Usuario_Vendedor
+    form_class = Usuario_Vendedor_Form
+    success_url = reverse_lazy('usuarios:lista')
 
+    extra_context = {
+        'etiqueta': 'Nuevo',
+        'boton': 'Agregar',
+        'vn_nuevo': True
+    }
+
+
+
+# Una prueba solo para aprender a usar Django xD
 class PruebaUsuarios(CreateView):
     model = Usuario
     form_class = UsuarioForm
     template_name = 'prueba.html'
     success_url = reverse_lazy('usuarios:login')
 
-
+# Permite actualizar la informacion de usuario.
 class UsuariosActualizar(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
     permission_required = 'users.permiso_administradores'
-    model = Usuario
+    model = User
     form_class = UsuarioForm
     extra_context = {'etiqueta': 'Actualizar', 'boton': 'Guardar'}
     success_url = reverse_lazy('usuarios:lista')
     success_message = "El usuario %(first_name)s se actualizo con exito"
 
 
+class VendedorActualizar(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
+    permission_required = 'users.permiso_administradores'
+    model = Usuario_Vendedor
+    form_class = Usuario_Vendedor_Form
+    extra_context = {'etiqueta': 'Actualizar', 'boton': 'Guardar'}
+    success_url = reverse_lazy('usuarios:lista')
+    success_message = "El usuario %(first_name)s se actualizo con exito"
+
+# Permite eliminar un usuario de la lista.
 class UsuariosEliminar(PermissionRequiredMixin, DeleteView):
     permission_required = 'users.permiso_administradores'
     model = Usuario
     success_url = reverse_lazy('usuarios:lista')
 
 
-# Sesiones de Usuarios
+class VendedorEliminar(PermissionRequiredMixin, DeleteView):
+    permission_required = 'users.permiso_administradores'
+    model = Usuario_Vendedor
+    success_url = reverse_lazy('usuarios:lista')
 
+
+# Sesiones de Usuarios
 class LoginUsuario(LoginView):
     template_name = 'login.html'
 
@@ -87,7 +130,7 @@ class LoginUsuario(LoginView):
 
         return super().get_success_url()
 
-
+# Permite realizar el registro de usuarios, utilizando una activacion por correo.
 class SignUpUsuario(CreateView):
     model = Usuario
     template_name = 'sign_up.html'
@@ -133,7 +176,7 @@ class SignUpUsuario(CreateView):
 
         return super().form_valid(form)
 
-
+# Permite crear cuentas de usuario de tipo vendedor, usando una activacion de cuenta por correo.
 class Sign_up_usuario_vendedor(CreateView):
     model = Usuario_Vendedor
     template_name = 'sign_up_vendor.html'
@@ -176,7 +219,7 @@ class Sign_up_usuario_vendedor(CreateView):
         return super().form_valid(form)
 
 
-
+# Activa las cuentas, en base a la URL creada al momento de realizar el registro.
 class ActivarCuenta(TemplateView):
     
     def get(self, request, *args, **kwargs):
@@ -197,10 +240,15 @@ class ActivarCuenta(TemplateView):
 
         return redirect('usuarios:login')
 
-
+# Cambia el grupo del usuario seleccionado, ya sea para quitar privilegios o aumentarlos.
 def cambia_grupo(request, id_gpo, id_usuario):
     grupo = Group.objects.get(id=id_gpo)
-    usuario = Usuario.objects.get(id=id_usuario)
+
+    try:
+        usuario = Usuario.objects.get(id=id_usuario)
+    except:
+        usuario = Usuario_Vendedor.get(id = id_usuario)
+
     if grupo in usuario.groups.all():
         if usuario.groups.count() <= 1:
             messages.error(
@@ -215,7 +263,7 @@ def cambia_grupo(request, id_gpo, id_usuario):
             request, f'El usuario {usuario} se agrego al grupo {grupo}')
     return redirect('usuarios:lista')
 
-
+# Permite eliminar o modificar un usuario de un grupo(No recuerdo para que la creamos)
 def modificar_usuario_grupo(request, id):
     grupos = [grupo.id for grupo in Group.objects.all()]
     usuario = Usuario.objects.get(id=id)

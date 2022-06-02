@@ -13,9 +13,13 @@ urlpatterns = [
     path('', views.UsuariosList.as_view(), name='lista'),
     path('pruebona/', views.PruebaUsuarios.as_view(), name='pruebona'),
     path('nuevo/', views.NuevoUsuario.as_view(), name='nuevo'),
+    path('nuevo/vendedor/', views.NuevoVendedor.as_view(), name='nuevo-vendedor'),
     path('ver/<int:pk>', views.UsuariosDetalle.as_view(), name='ver'),
+    path('ver/vendedor/<int:pk>', views.VendedorDetalle.as_view(), name='ver-vendedor'),
     path('editar/<int:pk>', views.UsuariosActualizar.as_view(), name='editar'),
+    path('editar/vendedor/<int:pk>', views.VendedorActualizar.as_view(), name='editar-vendedor'),
     path('eliminar/<int:pk>', views.UsuariosEliminar.as_view(), name='eliminar'),
+    path('eliminar/vendedor/<int:pk>', views.VendedorEliminar.as_view(), name='eliminar-vendedor'),
 
     # Sesiones
     path('login/', views.LoginUsuario.as_view(), name='login'),

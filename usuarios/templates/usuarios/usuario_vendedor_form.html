@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    Editar Usuario Vendedor
+{% endblock title %}
+    
+
+{% block body %}
+    <div class="mt-5 mr-auto ml-auto" style="width: 60%;">
+        <div class="col">
+            <div class="card">
+                <h3 class="text-center mt-2">Editar Usuario</h3>
+                <div class="mt-2 mr-auto-ml-auto text-center">
+                    <img src="{{ MEDIA_URL }}{{ object.foto }}" alt="Imagen de Perfil" class="rounded-circle" style="width: 50%;">
+                </div>
+                <div class="card-body mt-2">
+                    <form action="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                    </form>
+                </div>
+                <div class="m-3 text-right">
+                    <a href="{% url 'usuarios:lista' %}" class="btn btn-danger">Regresar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+>
+{% endblock body %}
+    

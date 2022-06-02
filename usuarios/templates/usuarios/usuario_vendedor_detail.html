@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    Detalles Vendedor
+{% endblock title %}
+
+
+{% block body %}
+
+    <div class="row mt-5 mr-3 ml-3">
+        <div class="col"></div>
+        <div class="col">
+            <div class="card border-success" style="width: 20rem;">
+                <img src="{{ MEDIA_URL }}{{ object.foto }}" alt="Foto de Perfil" class="mr-3 ml-3 mt-3 rounded">
+                <div class="card-body">
+                    <h3 class="card-title">{{ object.first_name}}</h3>
+                    <div class="card-text">
+                        <p class="mb-4"><b>Nombre de Usuario:</b> {{ object.username }}</p>
+                        <p class="mb-4"><b>Telefono:</b> {{ object.telefono }}</p>
+                        <p class="mb-4"><b>Direccion: </b>{{ object.direccion }}</p>
+                        <p class="mb-4"><b>Descripcion: </b>{{ object.descripcion }}</p>
+                    </div>
+                    <div class="text-center">
+                        <a href="{% url 'usuarios:lista' %}" class="btn btn-success">Regresar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+    
+{% endblock body %}
+    
+    
