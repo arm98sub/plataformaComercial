@@ -25,9 +25,9 @@ class TestModels(TestCase):
     # Prueba que no se realice la creacion del producto si no se le da un vendedor.
     def test_producto_sin_vendedor(self):
         nuevo_producto = Producto("", "Cinto piteado", None, 25, 5, "Cintos", "Cinto piteado color negro")
-        self.assertEqual(nuevo_producto, ValidationError)
+        # self.assertEqual(nuevo_producto, ValidationError)
 
-        # with self.assertRaises(ValidationError):
-        #     print("No funciono")
-        #     nuevo_producto.full_clean()
+        with self.assertRaises(ValidationError):
+            print("No funciono")
+            nuevo_producto.full_clean()
         

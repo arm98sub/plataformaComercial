@@ -1,3 +1,5 @@
+[![Django CI](https://github.com/arm98sub/plataformaComercial/actions/workflows/django.yml/badge.svg?branch=main)](https://github.com/arm98sub/plataformaComercial/actions/workflows/django.yml)
+
 # Plataforma Digital Comercial
 
 Este reposotirio corresponde al desarrollo de una aplicacion web, que tiene como motivo realzar o mejorar las ventas del estado de Zacatecas, por medio de ventas por internet.
