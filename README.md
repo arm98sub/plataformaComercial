@@ -3,7 +3,7 @@
 # Plataforma Digital Comercial
 
 Este reposotirio corresponde al desarrollo de una aplicacion web, que tiene como motivo realzar o mejorar las ventas del estado de Zacatecas, por medio de ventas por internet.
-Dicha plataforma contara con un sistema de registro, tanto para vendedores como para usuarios que solamente quieran realizar una compra.
+Dicha plataforma contara con un sistema de registro, tanto para vendedores como para usuarios que solamente quieran realizar una compra. :)
 
 ## Instalacion 
 Para usar este programa, solo deberas contar con Python 3.9 y de la misma manera con su instalador de paquetes(PIP) y con git.
