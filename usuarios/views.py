@@ -95,16 +95,16 @@ class UsuariosActualizar(PermissionRequiredMixin, SuccessMessageMixin, UpdateVie
     form_class = UsuarioForm
     extra_context = {'etiqueta': 'Actualizar', 'boton': 'Guardar'}
     success_url = reverse_lazy('usuarios:lista')
-    success_message = "El usuario %(first_name)s se actualizo con exito"
+    # success_message = "El usuario %(first_name)s se actualizo con exito"
 
 
-class VendedorActualizar(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
+class VendedorActualizar(PermissionRequiredMixin, UpdateView):
     permission_required = 'users.permiso_administradores'
     model = Usuario_Vendedor
     form_class = Usuario_Vendedor_Form
-    extra_context = {'etiqueta': 'Actualizar', 'boton': 'Guardar'}
+    # template_name = 'usuarios/usuario_vendedor_update_form.html'
+    extra_context = {'modificar': True}
     success_url = reverse_lazy('usuarios:lista')
-    success_message = "El usuario %(first_name)s se actualizo con exito"
 
 # Permite eliminar un usuario de la lista.
 class UsuariosEliminar(PermissionRequiredMixin, DeleteView):

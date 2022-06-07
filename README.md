@@ -1,5 +1,6 @@
 [![Django CI](https://github.com/arm98sub/plataformaComercial/actions/workflows/django.yml/badge.svg?branch=main)](https://github.com/arm98sub/plataformaComercial/actions/workflows/django.yml)
 
+
 # Plataforma Digital Comercial
 
 Este reposotirio corresponde al desarrollo de una aplicacion web, que tiene como motivo realzar o mejorar las ventas del estado de Zacatecas, por medio de ventas por internet.
@@ -50,10 +51,8 @@ En caso de no contar con estos:
 - [x] Ver la lista de Usuarios
 - [x] Ver la lista de productos
 
+
 ## Autores
 
 - César Emmanuel Salatiel Reyes Gaytan
-- Alan Aguayo Ramirez 
-- Daniel Avalos Bueno
 - Erick Alexandro Pinales Gonzalez
-

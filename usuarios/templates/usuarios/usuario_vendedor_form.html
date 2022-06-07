@@ -3,26 +3,47 @@
 
 
 {% block title %}
-    Editar Usuario Vendedor
+    
+    {% if modificar %}
+        Editar Usuario Vendedor
+    {% else %}
+        Crear Usuario Vendedor
+    {% endif %}
+        
 {% endblock title %}
     
 
 {% block body %}
     <div class="mt-5 mr-auto ml-auto" style="width: 60%;">
         <div class="col">
-            <div class="card">
-                <h3 class="text-center mt-2">Editar Usuario</h3>
-                <div class="mt-2 mr-auto-ml-auto text-center">
-                    <img src="{{ MEDIA_URL }}{{ object.foto }}" alt="Imagen de Perfil" class="rounded-circle" style="width: 50%;">
-                </div>
+            <div class="card letras-negras">
+                
+                {% if modificar %}
+                    <h3 class="text-center mt-2">Editar Usuario</h3>
+                    <div class="mt-2 mr-auto-ml-auto text-center">
+                        <img src="{{ MEDIA_URL }}{{ object.foto }}" alt="Imagen de Perfil" class="rounded-circle" style="width: 50%;">
+                    </div>
+                {% else %}
+                    <h3 class="text-center mt-2">Crear Usuario</h3>
+                {% endif %}
+                    
                 <div class="card-body mt-2">
                     <form action="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form | crispy }}
+                        <div class="m-3 text-right">
+                            <a href="{% url 'usuarios:lista' %}" class="btn btn-danger mr-3">Cancelar</a>
+                            <button type="submit" class="btn boton-ingresar">
+                                
+                                {% if modificar %}
+                                    Guardar Cambios
+                                {% else %}
+                                    Guardar
+                                {% endif %}
+                                    
+                            </button>
+                        </div>
                     </form>
-                </div>
-                <div class="m-3 text-right">
-                    <a href="{% url 'usuarios:lista' %}" class="btn btn-danger">Regresar</a>
                 </div>
             </div>
         </div>
