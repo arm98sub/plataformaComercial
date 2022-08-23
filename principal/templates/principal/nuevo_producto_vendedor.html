@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Nuevo Producto
+{% endblock title%}
+
+{% block body %}
+{% load crispy_forms_tags%}
+
+<br>
+<div class="row">
+	<div class="col-12 col-md-6 offset-md-3">
+		<div class="card">
+			<div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.nombre | as_crispy_field }}
+                    {{ form.imagen | as_crispy_field }}
+                    {{ form.precio | as_crispy_field }}
+                    {{ form.stock | as_crispy_field }}
+                    {{ form.categoria | as_crispy_field }}
+                    {{ form.descripcion | as_crispy_field }}
+                    {{ form.slug | as_crispy_field }}
+                    <br>
+                    <br>
+                    <div class = "d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary boton-ingresar justify-content-end">Agregar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock body%}

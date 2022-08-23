@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+	Eliminar Servicio
+{% endblock title %}
+
+{% block body %}
+	<form method="post">
+		{% csrf_token %}
+		<p>Quieres eliminar el servicio "{{ object }}"?</p>
+		<input type="submit" value="Si, si quiero">
+		<a href="{% url 'principal:lista' %}"><i class="fa fa-times"> </i>Mejor no</a>
+	</form>
+{% endblock body %}

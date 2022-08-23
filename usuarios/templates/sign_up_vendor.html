@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Registro Vendedor
+{% endblock title%}
+{% block body %}
+{% load crispy_forms_tags%}
+
+<br>
+
+</section>
+<div class="container-fluid" style="background-image: url(/static/images/imagenes-tuneadas/ZacatecasVendor.jpg);background-repeat: no-repeat;background-size: cover;">
+	<br>
+	<br>
+	<div class="row letras-negras">
+		<div class="col-12 col-md-6 offset-md-3">
+			<div class="card">
+				<div class="card-body">
+					<h1>Crear cuenta</h1>
+					<form method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						{{form | crispy }}
+						{% for field in form.visible_fields %}  
+							{% for fieldName, label in fieldLabels %}
+								{% if fieldName == field.field.widget.password  %}
+									<div>
+										<label>{{ label }}</label>
+										{{ field }}
+									</div>
+								{% endif %}
+							{% endfor %}
+						{% endfor %}
+						<br>
+						<div class="d-flex justify-content-end">
+							<button type="submit" class="btn boton-ingresar">Crear cuenta</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+</div>
+	
+
+
+{% endblock body %}
+
+{% block js %}
+<script src="{% static 'js/funciones.js'%}"></script>
+{% endblock js %}

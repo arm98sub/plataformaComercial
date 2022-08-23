@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Detalles Usuario
+{% endblock title %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 col-md-10 offset-md-1">
+            <div class="card text-dark border-primary mb-3">
+                <div class="card-body">
+                    <h4 class="card-title mb-4 mt-1">Informaci&oacute;n del Usuario</h4>
+
+                    <h2>Nombre completo: </h2><h3>{{object.first_name}} {{object.last_name}}</h3>
+                    <h2>Nombre de usuario: </h2><h3>{{object.username}}</h3>
+                    <h2>Estado: </h2><h3>{{object.estado}}</h3>
+                    <h2>Municipio: </h2><h3>{{object.municipio}}</h3>
+
+                    <div class="d-flex justify-content-end">
+                        <a href="{% url 'usuarios:lista' %}" class="btn btn-primary">Regresar</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock body %}
+    {% block js %}
+    {% endblock js %}
