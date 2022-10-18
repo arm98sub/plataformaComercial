@@ -92,6 +92,8 @@ class SignUpUsuario(CreateView):
     template_name = 'sign_up.html'
     form_class = UsuarioForm
     success_url = reverse_lazy('usuarios:login')
+    success_message = "Entre a su cuenta de correo '%(email)s' para verificar su cuenta"
+
 
     extra_context = {
         'etiqueta': "Nuevo",
