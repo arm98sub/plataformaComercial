@@ -44,7 +44,7 @@ class NuevoUsuario(PermissionRequiredMixin, CreateView):
     model = Usuario
     form_class = UsuarioForm
     success_url = reverse_lazy('usuarios:lista')
-
+   	
     extra_context = {
         'etiqueta': 'Nuevo',
         'boton': 'Agregar',
@@ -87,13 +87,13 @@ class LoginUsuario(LoginView):
         return super().get_success_url()
 
 
-class SignUpUsuario(CreateView):
+class SignUpUsuario(SuccessMessageMixin, CreateView):
     model = Usuario
     template_name = 'sign_up.html'
     form_class = UsuarioForm
     success_url = reverse_lazy('usuarios:login')
-    
 
+    success_message = "Entre a su cuenta de correo para verificar su cuenta"
     extra_context = {
         'etiqueta': "Nuevo",
         'boton': "Agregar",
