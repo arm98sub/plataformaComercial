@@ -1,3 +1,4 @@
+from enum import unique
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -7,6 +8,7 @@ from django.conf import settings
 class Usuario(User):
     # estado = ForeignKey("usuarios.Estado",verbose_name="Estado",on_delete=CASCADE)
     # municipio = ForeignKey("usuarios.Municipio",verbose_name="Municipio",on_delete=CASCADE)
+    email = models.EmailField('Correo Electronico', unique= True)
     foto = models.ImageField("Foto de Perfil", upload_to= "perfil", blank = True, null=True)
     password2 = models.CharField("Verfica tu contraseña", blank=False, null=False, max_length = 62, default = "")
     puede_vender = models.BooleanField(default=False)
@@ -15,6 +17,7 @@ class Usuario(User):
 class Usuario_Vendedor(User):    
     # estado = ForeignKey("usuarios.Estado", verbose_name = "Estado", on_delete=CASCADE)
     # municipio = ForeignKey("usuarios.Municipio", verbose_name="Municipio", on_delete=CASCADE)
+    email = models.EmailField('Correo Electronico', unique= True)
     foto = models.ImageField("Foto de Perfil", upload_to= "perfil", blank=True, null=True)
     direccion = models.CharField("Direccion", max_length=255, null=False, blank=False, default="")
     telefono = models.CharField("Telefono", max_length=10, null = False, blank=False, default="")
