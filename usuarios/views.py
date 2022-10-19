@@ -92,13 +92,8 @@ class SignUpUsuario(SuccessMessageMixin, CreateView):
     template_name = 'sign_up.html'
     form_class = UsuarioForm
     success_url = reverse_lazy('usuarios:login')
-<<<<<<< HEAD
+
     success_message = "Entre a su cuenta de correo para verificar su cuenta"
-=======
-    success_message = "Entre a su cuenta de correo '%(email)s' para verificar su cuenta"
-
-
->>>>>>> f832a72a3bdf40f7046d23cc522b3ba7a8b0dd90
     extra_context = {
         'etiqueta': "Nuevo",
         'boton': "Agregar",
