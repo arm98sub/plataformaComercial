@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'principal',
     'usuarios',
     'crispy_forms',
+    'paypal.apps.PaypalConfig',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
@@ -139,5 +140,5 @@ LOGOUT_REDIRECT_URL = reverse_lazy('usuarios:login')
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'plataformadigitalc@gmail.com'
-EMAIL_HOST_PASSWORD = 'dhrmaiqqxfjgbxip'
+EMAIL_HOST_PASSWORD = 'wkhjgwcjfxztfgek'
 EMAIL_PORT = 587
