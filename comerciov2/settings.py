@@ -33,7 +33,6 @@ INSTALLED_APPS = [
     'principal',
     'usuarios',
     'crispy_forms',
-    'paypal.apps.PaypalConfig',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
