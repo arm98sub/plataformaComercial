@@ -141,3 +141,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'plataformadigitalc@gmail.com'
 EMAIL_HOST_PASSWORD = 'wkhjgwcjfxztfgek'
 EMAIL_PORT = 587
+
+SECURE_CROSS_ORIGIN_OPENER_POLICY='same-origin-allow-popups'
