@@ -7,7 +7,7 @@
   <!-- image -->
 
   <!-- Carrusel de productos -->
-    <div class="container-fluid">
+    <div class="">
         <div
           id="carouselExampleControls"
           class="carousel slide"
@@ -78,7 +78,7 @@
   <!-- end carrousel -->
 
   <!-- card-group atractivos turisticos -->
-  <section class="footer-style-3 pt-100 pb-100">
+  <section class="footer-style-3 pt-100 pb-50">
     <div class="page-title">
       <h3 class="text-center padding-index"><b>Atractivos Turisticos de Zacatecas</b> </h3>
     </div>
@@ -186,9 +186,9 @@
   </section>
   {% endcomment %} {% comment %} productos v2 {% endcomment %}
 
-  <section class="product-wrapper pt-30 pb-30 bg-primary-color">
+  <section class="product-wrapper pt-20 pb-20 bg-primary-color">
     <h3 class="letras-blancas text-center">Productos Recientes</h3>
-    <div class="container mt-100">
+    <div class="container mt-30">
       <div class="row">
         {% for p in productos reversed %}
         <div class="col-md-4 col-sm-6">
@@ -199,7 +199,7 @@
                   <img
                     src="{% if p.imagen %}/media/{{MEDIA_URL}}{{p.imagen}}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
                     alt="Category"
-                    style="height: 18rem"
+                    style="height: 15rem"
                   />
                 </div>
                  <!-- sirve para agregarle otras dos imagenes mas
@@ -219,7 +219,7 @@
               </h4>
               <p class="text-muted">${{p.precio}}</p>
               <a
-                class="btn btn-outline-primary btn-sm"
+                class="btn main-btn secondary-1-btn"
                 href="{% url 'principal:ver_producto' p.id %}"
                 data-abc="true"
                 >Ver mas</a

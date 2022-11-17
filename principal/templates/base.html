@@ -180,7 +180,6 @@
     <!--====== Preloader Part Ends ======-->
 
     <!--====== Navbar Style 7 Part Start ======-->
-    <div class="navigation">
         <header class="navbar-style-7 position-relative">
             <div class="container">
                 <!-- navbar mobile Start -->
@@ -367,7 +366,6 @@
                         <a class="icon-btn primary-icon-text icon-text-btn"
                             href="{% url 'ordenes:lista_carrito'%}">
                             <img src="{% static 'images/icon-svg/cart-fill.svg' %}" alt="Icon">
-                            <span class="icon-text text-style-1">{{request.session.cantidad}}</span>
                         </a>
                     </div>
                   </nav>   
@@ -375,7 +373,6 @@
             </div>
             <div class="overlay-7"></div>
         </header>
-    </div>
 
 
     {% block body %}

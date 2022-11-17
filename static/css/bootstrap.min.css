@@ -49,6 +49,10 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
+.bg-checkout {
+    background-color: #00A859!important
+}
+
 [tabindex="-1"]:focus:not(:focus-visible) {
     outline: 0 !important
 }
@@ -1408,7 +1412,7 @@ progress {
 
     .col-lg-4 {
         flex: 0 0 auto;
-        width: 33.333333%
+        width: 33.333333%;
     }
 
     .col-lg-5 {
@@ -4701,7 +4705,8 @@ fieldset:disabled .btn {
     background-color: #fff;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, .125);
-    border-radius: .25rem
+    border-radius: .25rem;
+    margin-top: 5px;
 }
 
 .card>hr {
