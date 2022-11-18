@@ -1,10 +1,10 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import DetailView
+from django.views.generic import DetailView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .forms import ProductoForm, ProductoFormVendedor, ServicioForm
-from .models import Producto, Servicio
+from .models import Producto, Servicio, User
 
 # Home del sitio
 
@@ -12,10 +12,11 @@ from .models import Producto, Servicio
 def index(request):
     productos = Producto.objects.all()[:3]
     servicios = Servicio.objects.all()[:3]
+    usuarios = User.objects.all()[:3]
 
     return render(
         request, 'index.html', {
-            'productos': productos, 'servicios': servicios})
+            'productos': productos, 'servicios': servicios, 'usuarios': usuarios})
 
 
 def admin(request):
@@ -64,9 +65,6 @@ class NuevoProducto(PermissionRequiredMixin, CreateView):
     }
 
 
-
-
-
 class EditarProducto(PermissionRequiredMixin, UpdateView):
     # permission_required = 'usuarios.permiso_administradores'
     model = Producto
@@ -86,7 +84,7 @@ class EditarProducto(PermissionRequiredMixin, UpdateView):
     }
 
 
-class EliminarProducto(PermissionRequiredMixin,DeleteView):
+class EliminarProducto(PermissionRequiredMixin, DeleteView):
     permission_required = 'usuarios.permiso_vendedores'
     model = Producto
     success_url = reverse_lazy('principal:lista_prod_vendedor')
@@ -127,8 +125,16 @@ class AgregarProductoVendedor(PermissionRequiredMixin, CreateView):
     template_name = "principal/nuevo_producto_vendedor.html"
     success_url = reverse_lazy('principal:lista_prod_vendedor')
 
-
     def form_valid(self, form):
         form.instance.vendedor = self.request.user
         return super(AgregarProductoVendedor, self).form_valid(form)
 
+# Personalizacion De errores(40,500...)
+
+
+class Error404View(TemplateView):
+    template_name = "errores/error_404.html"
+
+
+class Error500View(TemplateView):
+    template_name = "errores/error_500.html"

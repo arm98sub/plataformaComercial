@@ -59,8 +59,10 @@ class PruebaUsuarios(CreateView):
     success_url = reverse_lazy('usuarios:login')
 
 
-class UsuariosActualizar(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
-    permission_required = 'users.permiso_administradores'
+class UsuariosActualizar(SuccessMessageMixin, UpdateView):
+    # permission_required = 'users.permiso_usuarios'
+    # permission_required = 'users.permiso_administradores'
+
     model = Usuario
     form_class = UsuarioForm
     extra_context = {'etiqueta': 'Actualizar', 'boton': 'Guardar'}
@@ -87,13 +89,14 @@ class LoginUsuario(LoginView):
         return super().get_success_url()
 
 
+#Para usuarios CLIENTES
 class SignUpUsuario(SuccessMessageMixin, CreateView):
     model = Usuario
     template_name = 'sign_up.html'
     form_class = UsuarioForm
     success_url = reverse_lazy('usuarios:login')
 
-    success_message = "Entre a su cuenta de correo para verificar su cuenta"
+    success_message = "Entre a su cuenta de correo '%(email)s' para verificar su cuenta"
     extra_context = {
         'etiqueta': "Nuevo",
         'boton': "Agregar",

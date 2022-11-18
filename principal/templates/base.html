@@ -40,8 +40,7 @@
     <!--====== Bootstrap CSS ======-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
     <!--====== Default CSS ======-->
@@ -162,7 +161,7 @@
                         {% endif %}
                             <li>
                                 {% if user.username %}
-
+                                    <a href="{% url 'usuarios:ver' user.id %}"> Mi cuenta </a>
                                     <a href="{% url 'usuarios:logout' %}"><i class="mdi mdi-account"></i>Salir</a>
                                 {% else %}
                                     <a href="{% url 'usuarios:login' %}"><i class="mdi mdi-account"></i>Inicia
