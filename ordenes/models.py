@@ -28,6 +28,14 @@ class Orden(models.Model):
     fecha_orden = models.DateTimeField()
     ordenado = models.BooleanField(default=False)
 
+    def get_vendedor(self):
+        vendedores = list()
+        for prod in self.productos.all():
+            if not vendedores.__contains__(prod.producto.vendedor):
+                vendedores.append(prod.producto.vendedor)
+        return vendedores
+
+
     def __str__(self):
         return self.user.usuario.nombre
 

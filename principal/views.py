@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import DetailView
+from django.views.generic import DetailView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .forms import ProductoForm, ProductoFormVendedor, ServicioForm
 from .models import Producto, Servicio
@@ -132,3 +132,10 @@ class AgregarProductoVendedor(PermissionRequiredMixin, CreateView):
         form.instance.vendedor = self.request.user
         return super(AgregarProductoVendedor, self).form_valid(form)
 
+# Personalizacion De errores(40,500...)
+
+class Error404View(TemplateView):
+    template_name = "errores/error_404.html"
+
+class Error500View(TemplateView):
+    template_name = "errores/error_500.html"
