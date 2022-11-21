@@ -39,13 +39,14 @@ class Usuario_Vendedor_Form(forms.ModelForm):
         model = Usuario_Vendedor
 
         # Campos que tendra este usuario.
-        fields = ('first_name', 'username', 'password', 'password_rev', 'email', 'foto', 'direccion','telefono', 'descripcion')
+        fields = ('first_name', 'username', 'password', 'password_rev', 'email', 'foto', 'direccion','telefono', 'descripcion', 'client_id')
         
         # Se especifica el tipo de widget que sera utilizado para algunos de los campos.
         widgets = {
             'password': forms.PasswordInput(),
             'password_rev': forms.PasswordInput(),
             'descripcion': forms.Textarea()
+
         }
 
     # Guarda al usuario registrado.

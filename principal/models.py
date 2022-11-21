@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from usuarios.models import Usuario_Vendedor
+
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=50)
@@ -12,7 +14,7 @@ class Categoria(models.Model):
 
 class Producto(models.Model):
     vendedor = models.ForeignKey(
-        User,
+        Usuario_Vendedor,
         verbose_name='Vendedor',
         on_delete=models.CASCADE, blank=False, null=False)
     nombre = models.CharField(max_length=30, blank=False, null=False)
