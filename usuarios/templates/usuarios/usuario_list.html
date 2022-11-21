@@ -13,11 +13,13 @@ Lista de Usuario
 </div>
 {% endfor %}
 {% endif %}
+<div class="container-fluid text-center">
+    <h2>Lista de Usuarios</h2>
+</div>
 
-<h1>Lista de Usuarios</h1>
 <br>
 
-<a class="btn btn-primary" href="{% url 'usuarios:nuevo' %}">Nuevo Usuario</a>
+<a class="btn main-btn secondary-1-btn" href="{% url 'usuarios:nuevo' %}">Nuevo Usuario</a>
 <br>
 
 <table class="table" style='margin-top: 1em'>
@@ -33,7 +35,7 @@ Lista de Usuario
     <tbody>
         {% for usuarios in object_list  %}
         <tr>
-            <td><img class="profile-pict img-lista-usuarios" src="/media/{{MEDIA_URL}}{{usuarios.foto}}" alt="{{usuarios.username}}"></td>
+            <td><img class="img-fluid rounded-3" style="width: 65px" src="/media/{{MEDIA_URL}}{{usuarios.foto}}" alt="Shopping item" ></td>
             <td>{{usuarios.first_name}}</td>
             <td><a href="{% url 'usuarios:ver' usuarios.id %}">{{usuarios.username}}</a></td>
             <td>{{usuarios.estado}}</td>
@@ -60,10 +62,10 @@ Lista de Usuario
                 {% endfor %}
             </td>
             <td>
-                <a href="{% url 'usuarios:editar' usuarios.id %}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i>
+                <a href="{% url 'usuarios:editar' usuarios.id %}" class="btn main-btn secondary-1-btn"><i class="fa fa-edit"></i>
                     Editar</a>
                 <button onclick="modalUsuario('{% url 'usuarios:eliminar' usuarios.id %}','{{usuarios.first_name}}')"
-                    type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                    type="button" class="btn main-btn secondary-1-btn" data-toggle="modal" data-target="#exampleModal">
                     <i class="fa fa-trash-alt"></i> Eliminar
                 </button>
             </td>
@@ -77,16 +79,16 @@ Lista de Usuario
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">ConfirmaciÃ³n</h5>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><i
+                <button type="button" class="btn main-btn secondary-1-btn" data-dismiss="modal" aria-label="Close"><i
                         class="fa fa-times"></i>
                 </button>
             </div>
             <div class="modal-body" id="modalCuerpo"></div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn main-btn secondary-1-btn" data-dismiss="modal">Cancelar</button>
                 <form id="form_eliminar" method="post">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <button type="submit" class="btn main-btn secondary-1-btn">Eliminar</button>
                 </form>
             </div>
         </div>

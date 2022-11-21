@@ -9,15 +9,15 @@
 
 <br>
 <div class="card-body">
-    <h1>Lista de Productos/Servicios</h1>
+    <h1 class="text-center">Lista de Productos/Servicios</h1>
     <br>
     <div class="card-content justify-content-end"> 
         <a class="btn btn-primary boton-ingresar" href="{% url 'principal:nuevo_producto_vendedor' %}"><i class="fa fa-plus"> </i> Nuevo Producto</a>
     </div>
     <br>
-	<table class="table" style='margin-top: 1em'>
+	<table class="table table-hover table-striped" style='margin-top: 1em'>
 		<thead>
-			<th>ID</th>
+			<th>Producto</th>
 			<th>Nombre</th>
 			<th>Vendedor</th>
 			<th>Precio</th>
@@ -29,7 +29,10 @@
 			{% for p in productos %}
 				<input type="hidden" name="id" value="{{p.id}}">
 				<tr>
-					<td>{{p.id}}</td>
+					<td class="vertical-"><img
+                            src="{% if p.imagen %}/media/{{ MEDIA_URL }}{{ p.imagen }}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
+                            class="img-fluid rounded-3" alt="Shopping item"
+                            style="width: 65px;"></td>
 					<td>{{p.nombre}}</td>
 					<td>{{p.vendedor}}</td>
 					<td>${{p.precio}}</td>

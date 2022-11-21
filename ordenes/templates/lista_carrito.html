@@ -6,89 +6,97 @@
 {% endblock title %}
 
 {% block css %}
-    <link  rel="stylesheet" href="{% static 'css/mis_estilos.css'%}">
+    <link rel="stylesheet" href="{% static 'css/mis_estilos.css'%}">
 {% endblock css %}
 
 {% block body %}
 
-<section class="h-100 h-custom" style="background-color: #eee;">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col">
-          <div class="card">
-            <div class="card-body p-4">
+    <section class="h-100 h-custom" style="background-color: #eee;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body p-4">
 
-              <div class="row justify-content-center">
+                            <div class="row justify-content-center">
 
-                <div class="col-lg-10">
-                  <h5 class="mb-3"><a href="#!" class="text-body"><a class="btn main-btn secondary-1-btn" href="{% url 'principal:lista'%}">← Continuar Comprando</a>
-                  <hr>
+                                <div class="col-lg-10">
+                                    <h5 class="mb-3"><a href="#" class="text-body"><a
+                                            class="btn main-btn secondary-1-btn" href="{% url 'principal:lista' %}">←
+                                        Continuar Comprando</a>
+                                        <hr>
 
-                  <div class="d-flex justify-content-between align-items-center mb-4">
-                    <div>
-                      <p class="mb-1">Carrito de compra</p>
-                    </div>
-                  </div>
-                  {% for dato in object.productos.all %}
-                    <div class="card mb-3">
-                        <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex flex-row align-items-center">
-                            <div>
-                                <img
-                                src="{% if dato.producto.imagen %}/media/{{MEDIA_URL}}{{dato.producto.imagen}}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
-                                class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                            </div>
-                            <div class="ms-3">
-                                <h5>{{dato.producto.nombre}}</h5>
-                            </div>
-                            </div>
-                            <div class="d-flex flex-row align-items-center">
-                            <div style="width: 100px;">
-                                <a class="icono-minus" href="{% url 'ordenes:eliminar-articulo-carrito' dato.producto.slug%}"><i class="bi bi-dash-square""></i></a>
-                                {{dato.cantidad}}
-                                <a class="icono-plus" href="{% url 'ordenes:agregar' dato.producto.slug%}"><i class="bi bi-plus-square"></i></a>
+                                        <div class="d-flex justify-content-between align-items-center mb-4">
+                                            <div>
+                                                <p class="mb-1">Carrito de compra</p>
+                                            </div>
+                                        </div>
+                                        {% for dato in object.productos.all %}
+                                            <div class="card mb-3">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="d-flex flex-row align-items-center">
+                                                            <div>
+                                                                <img
+                                                                        src="{% if dato.producto.imagen %}/media/{{ MEDIA_URL }}{{ dato.producto.imagen }}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
+                                                                        class="img-fluid rounded-3" alt="Shopping item"
+                                                                        style="width: 65px;">
+                                                            </div>
+                                                            <div class="ms-3">
+                                                                <h5>{{ dato.producto.vendedor.telefono }}</h5>
+                                                            </div>
+                                                            <div class="ms-3">
+                                                                <h5>{{ dato.producto.nombre }}</h5>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex flex-row align-items-center">
+                                                            <div style="width: 100px;">
+                                                                <a class="icono-minus"
+                                                                   href="{% url 'ordenes:eliminar-articulo-carrito' dato.producto.slug %}"><i
+                                                                        class="bi bi-dash-square"></i></a>
+                                                                {{ dato.cantidad }}
+                                                                <a class="icono-plus"
+                                                                   href="{% url 'ordenes:agregar' dato.producto.slug %}"><i
+                                                                        class="bi bi-plus-square"></i></a>
 
-                            </div>
-                            <div style="width: 80px;">
-                                <h5 class="mb-0">${{dato.producto.precio}}</h5>
-                            </div>
-                            <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                                                            </div>
+                                                            <div style="width: 80px;">
+                                                                <h5 class="mb-0">${{ dato.producto.precio }}</h5>
+                                                            </div>
+                                                            <a href="#!" style="color: #cecece;"><i
+                                                                    class="fas fa-trash-alt"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% for vendedor in object.get_vendedor %}
+                                        {{ vendedor.email }}
+                                    {% endfor %}
+                                        <div class="card bg-body text-white rounded-3">
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex justify-content-between">
+                                                    <h5 class="mb-2">Total</h5>
+                                                    <h5 class="mb-2">${{ object.get_total }}</h5>
+                                                </div>
+
+                                                <div class="text-center mt-5" id="paypal-button-container"></div>
+                                            </div>
+                                        </div>
+                                </div>
                             </div>
                         </div>
-                        </div>
                     </div>
-                  {% endfor %}
-                    <div class="card bg-body text-white rounded-3">
-                      <div class="card-body">
-                        <hr class="my-4">
-
-                        <div class="d-flex justify-content-between">
-                          <h5 class="mb-2">Subtotal</h5>
-                          <h5 class="mb-2">${{object.get_total}}</h5>
-                        </div>
-
-                        <button type="button" class="btn btn-block main-btn secondary-1-btn">
-                          <div class="d-flex justify-content-between">
-                            <span>${{object.get_total}}</span>
-                            <div id="paypal-button-container"></div>
-                          </div>
-                        </button>
-
-                      </div>
-                    </div>
-              </div>
                 </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 {% endblock body %}
 
 {% block js %}
-    <script src="{% static 'js/funciones.js'%}"></script>
+    <script src="{% static 'js/funciones.js' %}"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=AadYLycUIoRTR_N5OZYxvaZza5Y3ice4uyejnHrw6LDHRuIOFWfUgvLkYhJsRfXYVtiBrVc6A0ZWg3nG&currency=MXN"></script>
     <script>
         paypal.Buttons({
@@ -97,7 +105,7 @@
                 shape: "rect",
                 layout: "vertical"
             },
-            createOrder: function(data, actions) {
+            createOrder: function (data, actions) {
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
@@ -106,16 +114,16 @@
                     }],
                 });
             },
-              onApprove: (data, actions) => {
-                  const captureOrderHandler = (details) => {
-                      const payerName = details.payer.name.given_name;
-                      console.log('Transaction completed');
-                  };
-                  return actions.order.capture().then(captureOrderHandler);
-              },
-              onError: (err) => {
-                  console.error('An error prevented the buyer from checking out with PayPal');
-              }
+            onApprove: (data, actions) => {
+                const captureOrderHandler = (details) => {
+                    const payerName = details.payer.name.given_name;
+                    console.log('Transaction completed');
+                };
+                return actions.order.capture().then(captureOrderHandler);
+            },
+            onError: (err) => {
+                console.error('An error prevented the buyer from checking out with PayPal');
+            }
         }).render('#paypal-button-container');
     </script>
 {% endblock js %}
