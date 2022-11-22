@@ -5,6 +5,10 @@
     Mi Carrito
 {% endblock title %}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/mis_estilos.css' %}">
+{% endblock css %}
+
 {% block body %}
 
     <section class="h-100 h-custom" style="background-color: #eee;">
@@ -39,9 +43,6 @@
                                                                         style="width: 65px;">
                                                             </div>
                                                             <div class="ms-3">
-                                                                <h5>{{ dato.producto.vendedor.telefono }}</h5>
-                                                            </div>
-                                                            <div class="ms-3">
                                                                 <h5>{{ dato.producto.nombre }}</h5>
                                                             </div>
                                                         </div>
@@ -66,18 +67,15 @@
                                                 </div>
                                             </div>
                                         {% endfor %}
-                                    {% for vendedor in object.get_vendedor %}
-                                        {{ vendedor.email }}
-                                    {% endfor %}
+                                        {% for grupo in object.get_pagos %}
+                                            {{ grupo }}
+                                        {% endfor %}
                                         <div class="card bg-body text-white rounded-3">
                                             <div class="card-body">
-
-
                                                 <div class="d-flex justify-content-between">
                                                     <h5 class="mb-2">Total</h5>
                                                     <h5 class="mb-2">${{ object.get_total }}</h5>
                                                 </div>
-
                                                 <div class="text-center mt-5" id="paypal-button-container"></div>
                                             </div>
                                         </div>
@@ -99,15 +97,20 @@
             style: {
                 color: "gold",
                 shape: "rect",
-                layout: "horizontal",
+                layout: "vertical"
             },
             createOrder: function (data, actions) {
                 return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: {{ object.get_total }}
+                    purchase_units: [
+                        {
+                            payee: {
+                                email_address: "sb-2447oe15187459@business.example.com",
+                            },
+                            amount: {
+                                value: {{ object.get_total }}
+                            }
                         }
-                    }],
+                    ],
                 });
             },
             onApprove: (data, actions) => {

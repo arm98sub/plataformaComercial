@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .forms import ProductoForm, ProductoFormVendedor, ServicioForm
-from .models import Producto, Servicio
+from .models import Producto, Servicio, Usuario_Vendedor
 
 # Home del sitio
 
@@ -129,7 +129,7 @@ class AgregarProductoVendedor(PermissionRequiredMixin, CreateView):
 
 
     def form_valid(self, form):
-        form.instance.vendedor = self.request.user
+        form.instance.vendedor = Usuario_Vendedor.objects.get(id = self.request.user.pk)
         return super(AgregarProductoVendedor, self).form_valid(form)
 
 # Personalizacion De errores(40,500...)

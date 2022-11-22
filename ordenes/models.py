@@ -28,14 +28,6 @@ class Orden(models.Model):
     fecha_orden = models.DateTimeField()
     ordenado = models.BooleanField(default=False)
 
-    def get_vendedor(self):
-        vendedores = list()
-        for prod in self.productos.all():
-            if not vendedores.__contains__(prod.producto.vendedor):
-                vendedores.append(prod.producto.vendedor)
-        return vendedores
-
-
     def __str__(self):
         return self.user.usuario.nombre
 
@@ -45,13 +37,21 @@ class Orden(models.Model):
             total += prod_ordenado.get_subtotal()
         return total
 
-    def get_carrito(self):
+    def get_total_vendedor(self, vendedor):
+        total = 0
+        prod_vendedor = filter(lambda p: p.producto.vendedor == vendedor, self.productos.all())
+        for p in prod_vendedor:
+            total += p.get_subtotal()
+        print(total)
+
+    def get_pagos(self):
         vendedores = list()
         for prod in self.productos.all():
             if not vendedores.__contains__(prod.producto.vendedor):
                 vendedores.append(prod.producto.vendedor)
+        for vend in vendedores:
+            self.get_total_vendedor(vend)
         return vendedores
-
 
 class DetalleOrden(models.Model):
     producto = models.ForeignKey(
