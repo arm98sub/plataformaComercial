@@ -140,6 +140,39 @@ class Sign_up_usuario_vendedor(CreateView):
 
     success_url = reverse_lazy('usuarios:login')
 
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.is_active = False
+        user.save()
+
+        dominio = get_current_site(self.request)
+        uid = urlsafe_base64_encode(force_bytes(user.id))
+        token = token_activacion.make_token(user)
+
+        message = render_to_string('confirmar_cuenta.html',
+                                   {
+                                       'usuario': user,
+                                       'dominio': dominio,
+                                       'uid':  uid,
+                                       'token': token,
+                                   }
+                                   )
+
+        subject = 'Activación de Cuenta | Plataforma digital comercial'
+        to = user.email
+
+        email = EmailMessage(
+            subject,
+            message,
+            to=[to],
+        )
+
+        email.content_subtype = 'html'
+
+        email.send()
+
+        return super().form_valid(form)
+
 
 class ActivarCuenta(TemplateView):
     def get(self, request, *args, **kwargs):

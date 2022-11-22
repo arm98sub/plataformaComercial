@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
+from django.db.models.signals import pre_save
 
 from usuarios.models import Usuario_Vendedor
 
@@ -26,13 +28,13 @@ class Producto(models.Model):
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField(default=0)
     categoria = models.ForeignKey(
-        'principal.Categoria', verbose_name='Categoria',  on_delete=models.CASCADE)
+        'principal.Categoria', verbose_name='Categoria', on_delete=models.DO_NOTHING)
     descripcion = models.CharField(
         "Descripción",
         max_length=250,
         null=True,
         blank=True)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
         return self.nombre
@@ -40,9 +42,9 @@ class Producto(models.Model):
 
 class Servicio(models.Model):
     vendedor = models.ForeignKey(
-        'usuarios.Usuario',
+        User,
         verbose_name='Vendedor',
-        on_delete=models.CASCADE)
+        on_delete=models.CASCADE, blank=False, null=False)
     nombre = models.CharField(max_length=50, blank=False, null=False)
     imagen = models.ImageField(
         "Imagen",
@@ -54,4 +56,5 @@ class Servicio(models.Model):
         max_length=250,
         null=True,
         blank=True)
-    categoria = models.CharField(max_length=50, blank=False, null=False)
+    categoria = models.ForeignKey(
+        'principal.Categoria', verbose_name='Categoria', on_delete=models.DO_NOTHING)
