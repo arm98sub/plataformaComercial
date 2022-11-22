@@ -6,16 +6,23 @@
 {% endblock title %}
 
 {% block body %}
-	<h1>Lista de Productos/Servicios</h1>
-	<br>
-	
-	<a  class="btn btn-primary" href="{% url 'principal:nuevo_producto' %}"><i class="fa fa-plus"> </i> Nuevo Producto</a> | 
-	<a  class="btn btn-primary" href="{% url 'principal:nuevo_servicio' %}"><i class="fa fa-plus"> </i> Nuevo Servicio</a>
 
-	<br>
-	<table class="table" style='margin-top: 1em'>
+    <div class="container-fluid  mt-3">
+        <div class="row-cols-6">
+            <a  class="btn main-btn secondary-1-btn" href="{% url 'principal:nuevo_producto' %}"><i class="fa fa-plus"> </i> Nuevo Producto</a> |
+	        <a  class="btn main-btn secondary-1-btn" href="{% url 'principal:nuevo_servicio' %}"><i class="fa fa-plus"> </i> Nuevo Servicio</a>
+
+        </div>
+
+    </div>
+    <div class="container-fluid text-center">
+        <h2>Lista de Productos</h2>
+    </div>
+
+
+	<table class="table table-striped" style='margin-top: 1em'>
 		<thead>
-			<th>ID</th>
+			<th>Producto</th>
 			<th>Nombre</th>
 			<th>Vendedor</th>
 			<th>Precio</th>
@@ -27,7 +34,10 @@
 			{% for p in productos %}
 				<input type="hidden" name="id" value="{{p.id}}">
 				<tr>
-					<td>{{p.id}}</td>
+					<td><img
+                            src="{% if p.imagen %}/media/{{ MEDIA_URL }}{{ p.imagen }}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
+                            class="img-fluid rounded-3" alt="Shopping item"
+                            style="width: 80px;"></td>
 					<td>{{p.nombre}}</td>
 					<td>{{p.vendedor}}</td>
 					<td>${{p.precio}}</td>
@@ -39,15 +49,32 @@
 					</td>
 				</tr>
 			{% endfor %}
-			
+		</tbody>
+	</table>
+    <div class="container-fluid text-center">
+        <h2>Lista de Servicios</h2>
+    </div>
+    <table class="table table-striped" style='margin-top: 1em'>
+		<thead>
+			<th>Vendedor</th>
+			<th>Nombre</th>
+			<th>Servicio</th>
+			<th>Descripción</th>
+            <th>Categoria</th>
+			<th><i class="fa fa-cog"></i> Opciones</th>
+		</thead>
+		<tbody>
 			{% for s in servicios %}
-				<input type="hidden" name="id" value="{{p.id}}">
 				<tr>
-					<td>{{s.id}}</td>
+                    <td><img
+                            src="{% if s.imagen %}/media/{{ MEDIA_URL }}{{ s.imagen }}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
+                            class="img-fluid rounded-3" alt="Shopping item"
+                            style="width: 80px;"></td>
+					<td>{{s.vendedor}}</td>
 					<td>{{s.nombre}}</td>
-					<td>-</td>
-					<td>-</td>
+
 					<td>{{s.descripcion}}</td>
+					<td>{{s.categoria}}</td>
 					<td>
 						<a href="{% url 'principal:editar_servicio' s.id %}"><i class="fa fa-edit"></i> Editar</a> |
 						<a href="{% url 'principal:eliminar_servicio' s.id %}"><i class="fa fa-trash"></i> Eliminar</a>
@@ -56,6 +83,7 @@
 			{% endfor %}
 		</tbody>
 	</table>
+
 {% endblock body%}
 
 {block js}

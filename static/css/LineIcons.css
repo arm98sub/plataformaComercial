@@ -46,7 +46,7 @@ Author: lineicons.com
 .lni-bg-square,
 .lni-bg-circle {
   padding: 0.35em;
-  background-color: #eee;
+  background-color: rgb(255, 255, 255);
 }
 .lni-bg-circle {
   border-radius: 50%;

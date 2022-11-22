@@ -7,13 +7,29 @@
 
 {% block css %}
 {% endblock css %}
+{% load crispy_forms_tags%}
 
 {% block body %}
-	<h1>{{etiqueta}} Servicio</h1>
-	<form method="post" enctype="multipart/form-data">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<button type="submit">{{boton}}</button>
-		<a href="javascript:history.back()">Regresar</a>
-	</form>
+
+
+    <div class="row">
+	<div class="col-12 col-md-6 offset-md-3">
+		<div class="card">
+			<div class="card-body letras-negras">
+				<h1>Nuevo Servicio</h1>
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					{{form | crispy }}
+					{% comment %} {{ form.vendedor | as_crispy_field }} {% endcomment %}
+
+				<br>
+                     <div class="container-fluid text-center mt-5">
+                         <button type="submit" class="btn main-btn secondary-1-btn">Agregar</button>
+                        <a href="javascript:history.back()">Regresar</a>
+                    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock body %}

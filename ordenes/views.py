@@ -173,6 +173,7 @@ def comprar(request):
 
     for articulo in articulos:
         prod = Producto.objects.get(id=int(articulo))
+
         precio = articulos[articulo]['precio']
         cantidad = articulos[articulo]['cuantos']
         detail = DetalleOrden(
