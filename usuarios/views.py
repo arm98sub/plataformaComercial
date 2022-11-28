@@ -136,12 +136,14 @@ class SignUpUsuario(SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
-class Sign_up_usuario_vendedor(CreateView):
+class Sign_up_usuario_vendedor(SuccessMessageMixin,CreateView):
     model = Usuario_Vendedor
     template_name = 'sign_up_vendor.html'
     form_class = Usuario_Vendedor_Form
 
     success_url = reverse_lazy('usuarios:login')
+    success_message = "Entre a su cuenta de correo '%(email)s' para verificar su cuenta"
+
 
     def form_valid(self, form):
         user = form.save(commit=False)
