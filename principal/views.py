@@ -142,15 +142,7 @@ class AgregarProductoVendedor(PermissionRequiredMixin, CreateView):
         form.instance.vendedor = Usuario_Vendedor.objects.get(id = self.request.user.pk)
         return super(AgregarProductoVendedor, self).form_valid(form)
 
-# Personalizacion De errores(40,500...)
 
-
-class Error404View(TemplateView):
-    template_name = "errores/error_404.html"
-
-
-class Error500View(TemplateView):
-    template_name = "errores/error_500.html"
 
 # Personalizacion De errores(40,500...)
 
@@ -161,11 +153,6 @@ class Error404View(TemplateView):
 class Error500View(TemplateView):
     template_name = "errores/error_500.html"
 
-# Personalizacion De errores(40,500...)
-
-class Error404View(TemplateView):
-    template_name = "errores/error_404.html"
 
 
-class Error500View(TemplateView):
-    template_name = "errores/error_500.html"
+
