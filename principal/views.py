@@ -146,12 +146,12 @@ class AgregarProductoVendedor(PermissionRequiredMixin, CreateView):
 
 # Personalizacion De errores(40,500...)
 
-class Error404View(TemplateView):
-    template_name = "errores/error_404.html"
+# class Error404View(TemplateView):
+#     template_name = "errores/error_404.html"
 
 
-class Error500View(TemplateView):
-    template_name = "errores/error_500.html"
+# class Error500View(TemplateView):
+#     template_name = "errores/error_500.html"
 
 
 
