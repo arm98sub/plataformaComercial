@@ -27,7 +27,7 @@ class UsuariosList(PermissionRequiredMixin, ListView):
     model = Usuario
     template_name = 'usuario_list.html'
     lista_grupos = Group.objects.all()
-    paginate_by = 5
+    paginate_by = 8
 
     extra_context = {
         'us_lista': True,
