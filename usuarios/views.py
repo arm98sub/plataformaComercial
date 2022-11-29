@@ -67,7 +67,7 @@ class UsuariosActualizar(SuccessMessageMixin, UpdateView):
     form_class = UsuarioForm
     extra_context = {'etiqueta': 'Actualizar', 'boton': 'Guardar'}
     success_url = reverse_lazy('usuarios:lista')
-    success_message = "El usuario %(first_name)s se actualizo con exito"
+    success_message = "El usuario %(first_name)s se actualizó con éxito"
 
 
 class UsuariosEliminar(PermissionRequiredMixin, DeleteView):
@@ -96,7 +96,7 @@ class SignUpUsuario(SuccessMessageMixin, CreateView):
     form_class = UsuarioForm
     success_url = reverse_lazy('usuarios:login')
 
-    success_message = "Entre a su cuenta de correo '%(email)s' para verificar su cuenta"
+    success_message = "Se envió un enlace al correo '%(email)s' para verificar su cuenta"
     extra_context = {
         'etiqueta': "Nuevo",
         'boton': "Agregar",
@@ -142,7 +142,7 @@ class Sign_up_usuario_vendedor(SuccessMessageMixin,CreateView):
     form_class = Usuario_Vendedor_Form
 
     success_url = reverse_lazy('usuarios:login')
-    success_message = "El administrador verificar&aacute su cuenta y se le notificará cuando se active"
+    success_message = "El administrador verificará su cuenta y se le notificará cuando se active"
 
 
 

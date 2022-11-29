@@ -17,17 +17,17 @@ Inicio Sesión
 {% endif %}
 
 {% if messages %}
-{% for message in messages %}
-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-<div class="alert alert-danger">
-	{{message}}
-</div>
-{% else %}
-<div class="alert alert-success">
-	{{message}}
-</div>
-{% endif %}
-{% endfor %}
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="alert alert-danger">
+                {{message}}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                {{message}}
+            </div>
+        {% endif %}
+    {% endfor %}
 {% endif %}
 
 <!-- Container del login-->
@@ -39,7 +39,7 @@ Inicio Sesión
 					<div class="d-flex align-items-center h-custom-2 ">
 						<div class="card">
 							<div class="card-body">
-								<form method="POST"">
+								<form method="POST">
 								{% csrf_token %}
 								<h1 class=" fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Iniciar sesión</h1>
 									<div class="form-outline mb-4 form-group">
