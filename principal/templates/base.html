@@ -52,6 +52,7 @@
 </head>
 
 <body>
+
 <!--====== Preloader Part Start ======-->
 <div class="preloader">
     <div class="loader">
@@ -75,8 +76,8 @@
 <header class="navbar-style-7 position-relative">
     <div class="container">
         <!-- navbar mobile Start -->
-        <div class="navbar-mobile d-lg-none">
-            <div class="row align-items-center">
+        <div class="navbar-mobile d-none">
+            <div class="row justify-content-between">
                 <div class="col-3">
                     <!-- navbar cart start -->
                     <div class="navbar-toggle icon-text-btn">
@@ -86,25 +87,8 @@
                     </div>
                     <!-- navbar cart Ends -->
                 </div>
-                <div class="col-6">
-                    <!-- desktop logo Start -->
-                    <div>
-                        <a href="{% url 'principal:principal' %}">
-                            <img class="responsive" src="{% static 'images/imagenes-tuneadas/ZacatecasLogo.png' %}"></a>
-                    </div>
-                    <!-- desktop logo Ends -->
-                </div>
             </div>
-            <!-- navbar search start -->
-            <div class="col-6">
-                <div class="navbar-search mt-15 search-style-5">
-                    <div class="search-btn">
-                        <input type="text" placeholder="Search">
-                        <button><i class="lni lni-search-alt"></i></button>
-                    </div>
-                </div>
-            </div>
-
+             <!-- navbar was here -->
             <!-- navbar search Ends -->
         </div>
         <!-- navbar mobile Start -->
@@ -122,7 +106,7 @@
             <div>
                 <div class="navbar-top d-lg-flex justify-content-between">
                     <!-- navbar top left Start -->
-                    <div class="navbar-top-left">
+                    <div class="navbar-top-left ">
                         <ul class="navbar-top-link">
                             <li><a>Acerca de</a></li>
                             <li>
@@ -150,44 +134,48 @@
                     <!-- navbar top right Start -->
                     <div class="navbar-top-right">
                         <ul class="navbar-top-link">
-                        {% if perms.usuarios.permiso_administradores %}
-                             <li>
-                                <p class="letras-blancas text-uppercase">Bienvenido {{ user.username }}</p>
-                             </li>
-                        {% elif perms.usuarios.permiso_vendedores %}
-                            <li>
-                                <p class="letras-blancas text-uppercase">Bienvenido {{ user.username }}</p>
-                            </li>
-                        {% endif %}
+                            {% if perms.usuarios.permiso_administradores %}
+                                 <li>
+                                    <p class="letras-blancas text-uppercase">Bienvenido {{ user.username }}</p>
+                                 </li>
+                            {% elif perms.usuarios.permiso_vendedores %}
+                                <li>
+                                    <p class="letras-blancas text-uppercase">Bienvenido {{ user.username }}</p>
+                                </li>
+                            {% endif %}
                             <li>
                                 {% if user.username %}
                                     <a href="{% url 'usuarios:ver' user.id %}"> Mi cuenta </a>
                                     <a href="{% url 'usuarios:logout' %}"><i class="mdi mdi-account"></i>Salir</a>
                                 {% else %}
-                                    <a href="{% url 'usuarios:login' %}"><i class="mdi mdi-account"></i>Inicia
+                                    <a href="{% url 'usuarios:login' %}"><i class="mdi mdi-account"></i>Iniciar
                                         Sesi&oacute;n</a>
                                     <a href="{% url 'usuarios:signup' %}"><i class="mdi mdi-account"></i>Registrar</a>
                                 {% endif %}
-
                             </li>
                         </ul>
                     </div>
-
                     <!-- navbar top right Ends -->
+
+
+
                 </div>
             </div>
         </div>
         <!-- navbar top Ends -->
-        <nav class="navbar navbar-expand-lg navbar-custom" style="padding-right: 10px;">
-            <a class="navbar-brand" href="{% url 'principal:principal' %}">
-                <img src="{% static 'images/imagenes-tuneadas/ZacatecasLogo.png' %}" alt="Logo" width="200px">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- main navbar Ends -->
+    </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <a class="navbar-brand" href="{% url 'principal:principal' %}">
+                  <img src="{% static 'images/imagenes-tuneadas/ZacatecasLogo.png' %}" alt="Logo" width="200px">
+              </a>
+          <button class="navbar-toggler ml-5" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse ml-5 " id="navbarSupportedContent">
+
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'principal:principal' %}"
@@ -272,6 +260,21 @@
                         <a class="nav-link" href="{% url 'principal:lista' %}" style="color: black; font-size: large;">Tienda</a>
                     </li>
 
+                    {% if user.username %}
+                        <a href="{% url 'usuarios:ver' user.id %}"> Mi cuenta </a>
+                        <li class="nav-item .d-none .d-sm-block .d-md-none">
+                            <a class="nav-link" href="{% url 'usuarios:logout' %}" style="color: black; font-size: large;">Salir</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item d-lg-none d-xl-none">
+                            <a class="nav-link" href="{% url 'usuarios:login' %}" style="color: black; font-size: large;">Iniciar</a>
+                        </li>
+                        <li class="nav-item d-lg-none d-xl-none">
+                            <a class="nav-link" href="{% url 'usuarios:signup' %}" style="color: black; font-size: large;">Registrar</a>
+                        </li>
+                    {% endif %}
+
+
 
 
                     {% if perms.usuarios.permiso_administradores %}
@@ -293,22 +296,19 @@
                     {% endif %}
 
                 </ul>
-                <div class="navbar-search search-style-5">
-                    <div class="search-input">
-                        <input type="text" placeholder="Buscar...">
-                    </div>
-                    <div class="search-btn">
-                        <button><i class="lni lni-search-alt"></i></button>
+                <div class="navbar-search search-style-5 my-2 my-lg-0 ">
+                    <div class="search-input search-btn">
+                            <input type="text" placeholder="Buscar...">
+                        <button><i class=" search-btn lni lni-search-alt search-btn"></i></button>
                     </div>
                 </div>
+
                 <a class="icon-btn primary-icon-text icon-text-btn"
                    href="{% url 'ordenes:lista_carrito' %}">
                     <img src="{% static 'images/icon-svg/cart-fill.svg' %}" alt="Icon">
                 </a>
             </div>
         </nav>
-        <!-- main navbar Ends -->
-    </div>
     <div class="overlay-7"></div>
 </header>
 

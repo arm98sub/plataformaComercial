@@ -4123,7 +4123,7 @@ p {
 }
 
 .search-style-5 .search-input input {
-  width: 100%;
+  width: auto;
   height: 40px;
   border: 1px solid #D1D1D1;
   background-color: #fff;
@@ -4140,6 +4140,8 @@ p {
 
 .search-style-5 .search-btn button {
   background-color: #00A859;
+  position: relative;
+  top: 2px;
   color: #fff;
   width: 40px;
   height: 40px;
@@ -4532,8 +4534,8 @@ p {
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .navbar-style-7 .navbar-container {
     position: fixed;
-    top: 220;
-    left: -100px;
+    top: 0px;
+    left: -300px;
     width: 280px;
     height: 100%;
     background-color: #fff;
