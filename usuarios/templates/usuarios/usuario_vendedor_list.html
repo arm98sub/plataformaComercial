@@ -35,7 +35,7 @@ Lista de Usuario
         <tbody>
             {% for usuarios in object_list  %}
             <tr>
-                <td><img class="img-fluid rounded-3" style="width: 65px" src="/media/{{MEDIA_URL}}{{usuarios.foto}}" alt="Shopping item" ></td>
+                <td><img class="img-fluid rounded-3 " style="width: 65px" src="/media/{{MEDIA_URL}}{{usuarios.foto}}" alt="Shopping item" ></td>
                 <td>{{usuarios.first_name}}</td>
                 <td><a href="{% url 'usuarios:ver' usuarios.id %}">{{usuarios.username}}</a></td>
                 <td>{{usuarios.estado}}</td>
@@ -75,7 +75,7 @@ Lista de Usuario
     </table>
 </div>
 
-<div class="modal hide" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal hide justi" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

@@ -25,6 +25,8 @@ from django.contrib.auth.models import User
 
 
 class UsuariosList(PermissionRequiredMixin, ListView):
+    """ Permite listar los usuarios existentes
+    """
     permission_required = 'users.permiso_administradores'
     model = Usuario
     template_name = 'usuario_list.html'
