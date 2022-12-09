@@ -68,6 +68,19 @@ class NuevoUsuario(PermissionRequiredMixin, CreateView):
     }
 
 
+class NuevoVendedor(PermissionRequiredMixin, CreateView):
+    permission_required = 'users.permiso_administradores'
+    model = Usuario_Vendedor
+    form_class = Usuario_Vendedor_Form
+    success_url = reverse_lazy('usuarios:lista_vendedores')
+
+    extra_context = {
+        'etiqueta': 'Nuevo',
+        'boton': 'Agregar',
+        'us_nuevo': True
+    }
+
+
 class PruebaUsuarios(CreateView):
     model = Usuario
     form_class = UsuarioForm
@@ -84,6 +97,20 @@ class UsuariosActualizar(SuccessMessageMixin, UpdateView):
     extra_context = {'etiqueta': 'Actualizar', 'boton': 'Guardar'}
     success_url = reverse_lazy('usuarios:lista')
     success_message = "El usuario %(first_name)s se actualizó con éxito"
+
+
+class VendedoresEliminar(PermissionRequiredMixin, DeleteView):
+    permission_required = 'users.permiso_administradores'
+    model = Usuario_Vendedor
+    success_url = reverse_lazy('usuarios:lista_vendedores')
+
+
+class VendedoresActualizar(SuccessMessageMixin, UpdateView):
+    model = Usuario_Vendedor
+    form_class = Usuario_Vendedor_Form
+    extra_context = {'etiqueta': 'Actualizar', 'boton': 'Guardar'}
+    success_url = reverse_lazy('usuarios:lista_vendedores')
+    success_message = "El vendedor %(first_name)s se actualizó con éxito"
 
 
 class UsuariosEliminar(PermissionRequiredMixin, DeleteView):
@@ -183,7 +210,7 @@ class ActivarCuenta(TemplateView):
 
 def cambia_grupo(request, id_gpo, id_usuario, pre_url):
     grupo = Group.objects.get(id=id_gpo)
-    usuario =User.objects.get(id = id_usuario)
+    usuario = User.objects.get(id=id_usuario)
 
     if grupo in usuario.groups.all():
         if usuario.groups.count() <= 1:
@@ -199,7 +226,6 @@ def cambia_grupo(request, id_gpo, id_usuario, pre_url):
             request, f'El usuario {usuario} se agrego al grupo {grupo}')
 
     return redirect(f'usuarios:{pre_url}')
-
 
 
 def modificar_usuario_grupo(request, id):

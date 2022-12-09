@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Lista de Usuario
+Lista de Vendedor
 {% endblock title %}
 
 {% block body %}
@@ -19,7 +19,7 @@ Lista de Usuario
 
 <br>
 
-<a class="btn main-btn secondary-1-btn" href="{% url 'usuarios:nuevo' %}">Nuevo Vendedor</a>
+<a class="btn main-btn secondary-1-btn" href="{% url 'usuarios:nuevo_vendedor' %}">Nuevo Vendedor</a>
 <br>
 <div class="table-responsive">
     <table class="table" style='margin-top: 1em'>
@@ -62,9 +62,9 @@ Lista de Usuario
                     {% endfor %}
                 </td>
                 <td>
-                    <a href="{% url 'usuarios:editar' usuarios.id %}" class="btn main-btn secondary-1-btn"><i class="fa fa-edit"></i>
+                    <a href="{% url 'usuarios:editar_vendedor' usuarios.id %}" class="btn main-btn secondary-1-btn"><i class="fa fa-edit"></i>
                         Editar</a>
-                    <button onclick="modalUsuario('{% url 'usuarios:eliminar' usuarios.id %}','{{usuarios.first_name}}')"
+                    <button onclick="modalUsuario('{% url 'usuarios:eliminar_vendedor' usuarios.id %}','{{usuarios.first_name}}')"
                         type="button" class="btn main-btn secondary-1-btn" data-toggle="modal" data-target="#exampleModal">
                         <i class="fa fa-trash-alt"></i> Eliminar
                     </button>
@@ -79,12 +79,14 @@ Lista de Usuario
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">ConfirmaciÃ³n</h5>
-                <button type="button" class="btn main-btn secondary-1-btn" data-dismiss="modal" aria-label="Close"><i
-                        class="fa fa-times"></i>
+                <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" id="modalCuerpo"></div>
+            <div class="modal-body">
+                <p>Estás seguro que deseas eliminar al vendedor {{ usuarios.fi}}?</p>
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn main-btn secondary-1-btn" data-dismiss="modal">Cancelar</button>
                 <form id="form_eliminar" method="post">
