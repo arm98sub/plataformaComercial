@@ -53,10 +53,11 @@ class Usuario_Vendedor_Form(forms.ModelForm):
     def save(self, commit=True):
         user = super(Usuario_Vendedor_Form, self).save(commit=False)
         user.set_password(self.cleaned_data['password'])
-        if commit:
-            my_group = Group.objects.get(name='vendedores')
-            user.save()
-            my_group.user_set.add(user)
+        # if commit:
+        #     my_group = Group.objects.get(name='vendedores')
+        #     user.save()
+        #     my_group.user_set.add(user)
+        user.save()
         return user
 
     # Verifica que la contraseña ingresada y la confirmacion sean iguales, de lo contrario, la limpia.

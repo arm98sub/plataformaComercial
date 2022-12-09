@@ -27,7 +27,7 @@ urlpatterns = [
          views.ActivarCuenta.as_view(), name='activar'),
 
     # Grupos
-    path('cambia-grupo/<int:id_gpo>/<int:id_usuario>',
+    path('cambia-grupo/<int:id_gpo>/<int:id_usuario>/<str:pre_url>',
          views.cambia_grupo, name='cambia-grupo'),
     path('modificar-grupos/<int:id>', views.modificar_usuario_grupo,
          name='modificar_usuario_grupo'),

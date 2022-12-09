@@ -261,13 +261,15 @@
                     </li>
 
                     {% if user.username %}
-                        <a href="{% url 'usuarios:ver' user.id %}"> Mi cuenta </a>
-                        <li class="nav-item .d-none .d-sm-block .d-md-none">
+                        <li class="nav-item d-lg-none d-xl-none">
+                           <a class="nav-link" href=# style="color: black; font-size: large;">Mi cuenta</a>
+                        </li>
+                        <li class="nav-item d-lg-none d-xl-none">
                             <a class="nav-link" href="{% url 'usuarios:logout' %}" style="color: black; font-size: large;">Salir</a>
                         </li>
                     {% else %}
                         <li class="nav-item d-lg-none d-xl-none">
-                            <a class="nav-link" href="{% url 'usuarios:login' %}" style="color: black; font-size: large;">Iniciar</a>
+                            <a class="nav-link" href="{% url 'usuarios:login' %}" style="color: black; font-size: large;">Iniciar sesión</a>
                         </li>
                         <li class="nav-item d-lg-none d-xl-none">
                             <a class="nav-link" href="{% url 'usuarios:signup' %}" style="color: black; font-size: large;">Registrar</a>
@@ -286,6 +288,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{% url 'usuarios:lista' %}">Usuarios</a>
+                                <a class="dropdown-item" href="{% url 'usuarios:lista_vendedores' %}">Vendedores</a>
                                 <a class="dropdown-item" href="{% url 'principal:lista_admin' %}">Productos</a>
                             </div>
                         </li>
