@@ -13,31 +13,41 @@ from principal.models import Producto
 @login_required
 def agregar_carrito(request, pk):
     producto = get_object_or_404(Producto, id=pk)
-    producto_ordenado, created = ProductoOrdenado.objects.get_or_create(
-        producto=producto,
-        usuario=request.user,
-        ordenado=False
-    )
-    order_qs = Orden.objects.filter(usuario=request.user, ordenado=False)
-    if order_qs.exists():
-        orden = order_qs[0]
+    if producto.stock > 0:
+        producto_ordenado, created = ProductoOrdenado.objects.get_or_create(
+            producto=producto,
+            usuario=request.user,
+            ordenado=False
+        )
 
-        if orden.productos.filter(producto__id=producto.id).exists():
-            producto_ordenado.cantidad += 1
-            producto_ordenado.save()
-            messages.info(request, "La cantidad a sido actualizada.")
-            return redirect('ordenes:lista_carrito')
+        order_qs = Orden.objects.filter(usuario=request.user, ordenado=False)
+        if order_qs.exists():
+            orden = order_qs[0]
+
+            if orden.productos.filter(producto__id=producto.id).exists():
+                producto_ordenado.cantidad += 1
+
+                if producto_ordenado.cantidad > producto.stock:
+                    messages.error(request, "No hay suficiente stock para este producto")
+                    return redirect('ordenes:lista_carrito', {'plus': 'false'})
+
+                producto_ordenado.save()
+                messages.info(request, "La cantidad a sido actualizada.")
+                return redirect('ordenes:lista_carrito', {'plus': 'true'})
+            else:
+                orden.productos.add(producto_ordenado)
+                messages.info(request, "Este producto se agrego a tu carrito")
+                return redirect('ordenes:lista_carrito', {'plus':'true'})
         else:
+            fecha_orden = timezone.now()
+            orden = Orden.objects.create(usuario=request.user, fecha_orden=fecha_orden)
             orden.productos.add(producto_ordenado)
-            messages.info(request, "Este productp se agrego a tu carrito")
-            return redirect('ordenes:lista_carrito')
+            messages.info(request, "Este producto fue agregado a tu carrito")
+            return redirect('ordenes:lista_carrito', {'plus': 'true'})
     else:
-        fecha_orden = timezone.now()
-        orden = Orden.objects.create(
-            usuario=request.user, fecha_orden=fecha_orden)
-        orden.productos.add(producto_ordenado)
-        messages.info(request, "Este producto fue agregado a tu carrito")
-        return redirect('ordenes:lista_carrito')
+        messages.error(request, "Este producto no esta disponible")
+        order = Orden.objects.filter(usuario=request.user, ordenado=False).delete()
+        return redirect('principal:lista')
 
 
 def eliminar_de_carrito(request, pk):
