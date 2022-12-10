@@ -2,100 +2,102 @@
 {% load static %}
 
 {% block title %}
-Lista de Usuario
+    Lista de Usuario
 {% endblock title %}
 
 {% block body %}
-{% if messages %}
-    {% for message in messages %}
-        <div class="message">
-            {{message}}
-        </div>
-    {% endfor %}
-{% endif %}
-<div class="container-fluid text-center mt-3">
-    <h2>Lista de Usuarios</h2>
-</div>
-
-<br>
-
-<a class="btn main-btn secondary-1-btn" href="{% url 'usuarios:nuevo' %}">Nuevo Usuario</a>
-<br>
-
-<table class="table" style='margin-top: 1em'>
-    <thead>
-        <th><i class="fa fa-image"></i> Foto</th>
-        <th>Nombre</th>
-        <th>Usuario</th>
-        <th>Estado</th>
-        <th>Municipio</th>
-        <th><i class="fa fa-usuarios"></i> Grupos</th>
-        <th><i class="fa fa-cog"></i> Opciones</th>
-    </thead>
-    <tbody>
-        {% for usuarios in object_list  %}
-        <tr>
-            <td><img class="img-fluid rounded-3" style="width: 65px" src="/media/{{MEDIA_URL}}{{usuarios.foto}}" alt="Shopping item" ></td>
-            <td>{{usuarios.first_name}}</td>
-            <td><a href="{% url 'usuarios:ver' usuarios.id %}">{{usuarios.username}}</a></td>
-            <td>{{usuarios.estado}}</td>
-            <td>{{usuarios.municipio}}</td>
-            <td>
-                {% for grupo in lista_grupos %}
-                    {% if grupo in usuarios.groups.all%}
-                        <div class="form-check form-switch"
-                            onclick="location.href='{% url 'usuarios:cambia-grupo' grupo.id usuarios.id 'lista' %}';">
-                            <input type="checkbox" checked>
-                            <label>
-                                {{grupo}}
-                            </label>
-                        </div>
-                    {% else %}
-                        <div class="form-check form-switch"
-                            onclick="location.href='{% url 'usuarios:cambia-grupo' grupo.id usuarios.id 'lista' %}';">
-                            <input type="checkbox">
-                            <label>
-                                {{grupo}}
-                            </label>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </td>
-            <td>
-                <a href="{% url 'usuarios:editar' usuarios.id %}" class="btn main-btn secondary-1-btn"><i class="fa fa-edit"></i>
-                    Editar</a>
-                <button onclick="modalUsuario('{% url 'usuarios:eliminar' usuarios.id %}','{{usuarios.first_name}}')"
-                    type="button" class="btn main-btn secondary-1-btn" data-toggle="modal" data-target="#exampleModal">
-                    <i class="fa fa-trash-alt"></i> Eliminar
-                </button>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-<div class="modal hide" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">ConfirmaciÃ³n</h5>
-                <button type="button" class="btn main-btn secondary-1-btn" data-dismiss="modal" aria-label="Close"><i
-                        class="fa fa-times"></i>
-                </button>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">
+                {{ message }}
             </div>
-            <div class="modal-body" id="modalCuerpo"></div>
-            <div class="modal-footer">
-                <button type="button" class="btn main-btn secondary-1-btn" data-dismiss="modal">Cancelar</button>
-                <form id="form_eliminar" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="btn main-btn secondary-1-btn">Eliminar</button>
-                </form>
+        {% endfor %}
+    {% endif %}
+    <div class="container-fluid text-center mt-3">
+        <h2>Lista de Usuarios</h2>
+    </div>
+
+    <br>
+
+    <a class="btn main-btn secondary-1-btn" href="{% url 'usuarios:nuevo' %}">Nuevo Usuario</a>
+    <br>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <th><i class="fa fa-image"></i> Foto</th>
+            <th>Nombre</th>
+            <th>Usuario</th>
+            <th>Estado</th>
+            <th>Municipio</th>
+            <th><i class="fa fa-usuarios"></i> Grupos</th>
+            <th><i class="fa fa-cog"></i> Opciones</th>
+            </thead>
+            <tbody>
+            {% for usuarios in object_list %}
+                <tr>
+                    <td><img class="img-fluid rounded-3" style="width: 65px"
+                             src="/media/{{ MEDIA_URL }}{{ usuarios.foto }}" alt="Shopping item"></td>
+                    <td>{{ usuarios.first_name }}</td>
+                    <td><a href="{% url 'usuarios:ver' usuarios.id %}">{{ usuarios.username }}</a></td>
+                    <td>{{ usuarios.estado }}</td>
+                    <td>{{ usuarios.municipio }}</td>
+                    <td class="w-50">
+                        {% for grupo in lista_grupos %}
+                            {% if grupo in usuarios.groups.all %}
+                                <div class="form-check  text-left"
+                                     onclick="location.href='{% url 'usuarios:cambia-grupo' grupo.id usuarios.id 'lista' %}';">
+                                    <input type="checkbox" checked>
+                                    <label>
+                                        {{ grupo }}
+                                    </label>
+                                </div>
+                            {% else %}
+                                <div class="form-check text-left"
+                                     onclick="location.href='{% url 'usuarios:cambia-grupo' grupo.id usuarios.id 'lista' %}';">
+                                    <input type="checkbox">
+                                    <label>
+                                        {{ grupo }}
+                                    </label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{% url 'usuarios:editar' usuarios.id %}" class="btn main-btn secondary-1-btn mt-1">Editar</a>
+                        <button onclick="modalUsuario('{% url 'usuarios:eliminar' usuarios.id %}','{{ usuarios.first_name }}')"
+                                type="button" class="btn main-btn secondary-1-btn mt-1" data-toggle="modal"
+                                data-target="#exampleModal">Eliminar</button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="modal hide" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ConfirmaciÃ³n</h5>
+                    <button type="button" class="btn main-btn secondary-1-btn" data-dismiss="modal" aria-label="Close">
+                        <i
+                                class="fa fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalCuerpo"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn main-btn secondary-1-btn" data-dismiss="modal">Cancelar</button>
+                    <form id="form_eliminar" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn main-btn secondary-1-btn">Eliminar</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 {% endblock body %}
 {block js}
-<script src="{% static 'js/funciones.js'%}"></script>
+<script src="{% static 'js/funciones.js' %}"></script>
 {endblock js}

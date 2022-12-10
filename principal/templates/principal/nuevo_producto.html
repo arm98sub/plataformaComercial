@@ -6,23 +6,18 @@ Nuevo Producto
 {% block body %}
 {% load crispy_forms_tags%}
 
-<br>
-<div class="row ">
+<div class="row">
 	<div class="col-12 col-md-6 offset-md-3">
-		<div class="card">
+		<div class="card my-3">
 			<div class="card-body letras-negras">
 				<h1>Nuevo Producto</h1>
 				<form method="post" enctype="multipart/form-data">
 					{% csrf_token %}
 					{{form | crispy }}
-					{% comment %} {{ form.vendedor | as_crispy_field }} {% endcomment %}
-				
-				<br>
                     <div class="container-fluid text-center mt-5">
                         <button type="submit" class="btn main-btn secondary-1-btn">Agregar</button>
                         <a href="javascript:history.back()">Regresar</a>
                     </div>
-
 				</form>
 			</div>
 		</div>
