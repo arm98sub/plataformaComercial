@@ -11,11 +11,15 @@ urlpatterns = [
 
     # CRUD Usuarios
     path('', views.UsuariosList.as_view(), name='lista'),
+    path('lista_vendedores', views.VendedoresList.as_view(), name='lista_vendedores'),
     path('pruebona/', views.PruebaUsuarios.as_view(), name='pruebona'),
     path('nuevo/', views.NuevoUsuario.as_view(), name='nuevo'),
+    path('nuevo_vendedor/', views.NuevoVendedor.as_view(), name='nuevo_vendedor'),
     path('ver/<int:pk>', views.UsuariosDetalle.as_view(), name='ver'),
     path('editar/<int:pk>', views.UsuariosActualizar.as_view(), name='editar'),
     path('eliminar/<int:pk>', views.UsuariosEliminar.as_view(), name='eliminar'),
+    path('editar_vendedor/<int:pk>', views.VendedoresActualizar.as_view(), name='editar_vendedor'),
+    path('eliminar_vendedor/<int:pk>', views.VendedoresEliminar.as_view(), name='eliminar_vendedor'),
 
     # Sesiones
     path('login/', views.LoginUsuario.as_view(), name='login'),
