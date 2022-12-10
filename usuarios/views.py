@@ -5,7 +5,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
 from django.contrib.auth.mixins import PermissionRequiredMixin
-
+from django.shortcuts import render
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
@@ -19,6 +19,7 @@ from .token import token_activacion
 from .models import Usuario, Municipio, Usuario_Vendedor
 from .forms import UsuarioForm, Usuario_Vendedor_Form
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 
 
 # CRUD Usuarios
@@ -187,6 +188,40 @@ class Sign_up_usuario_vendedor(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('usuarios:login')
     success_message = "El administrador verificará su cuenta y se le notificará cuando se active"
 
+    # Para solicitar activacion de cuenta empresarial#
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.is_active = False
+        user.save()
+
+        dominio = get_current_site(self.request)
+        uid = urlsafe_base64_encode(force_bytes(user.id))
+        # token = token_activacion.make_token(user)
+
+        message = render_to_string('activar_cuenta_vendedores.html',
+                                   {
+                                       'usuario': user,
+                                       'dominio': dominio,
+                                       'uid': uid,
+                                       #    'token': token,
+                                   }
+                                   )
+
+        subject = "Un nuevo vendedor ha solicitado la activacion de su cuenta"
+        to = 'bboyshady1904@gmail.com'
+
+        email = EmailMessage(
+            subject,
+            message,
+            to=[to],
+        )
+
+        email.content_subtype = 'html'
+
+        email.send()
+
+        return super().form_valid(form)
+
 
 class ActivarCuenta(TemplateView):
     def get(self, request, *args, **kwargs):
@@ -221,11 +256,28 @@ def cambia_grupo(request, id_gpo, id_usuario, pre_url):
             messages.success(
                 request, f'El usuario {usuario} ya no  pertenece al grupo {grupo}')
     else:
-        usuario.groups.add(grupo)
-        messages.success(
+        # Activacion de Vendedores
+        if usuario.is_active == False:
+            usuario.is_active = True
+            usuario.groups.add(grupo)
+            usuario.save()
+            messages.success(
+            request, f'El usuario {usuario.username} se agrego al grupo {grupo}')
+            # Enviar correo al vendedor, para notificar que su cuenta fue activada o no
+            
+            send_mail('Tu cuenta para la Plataforma Digital Comercial ha sido activada exitosamente',
+            'Hola,  "{usuario.username}", el administrador revisó tus datos y ahora puedes comenzar a vender tus productos',
+            'plataformadigitalc@gmail.com',
+            [usuario.email],
+            fail_silently=False)
+            return render(request, 'usuarios/usuario_vendedor_list.html')
+        else:
+            usuario.groups.add(grupo)
+            messages.success(
             request, f'El usuario {usuario} se agrego al grupo {grupo}')
 
     return redirect(f'usuarios:{pre_url}')
+    
 
 
 def modificar_usuario_grupo(request, id):
