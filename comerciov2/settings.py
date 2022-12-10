@@ -116,8 +116,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_files/')
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static/'),
+   os.path.join(BASE_DIR, 'static/'),
 )
 
 MEDIA_URL = '/media/'
@@ -138,5 +139,7 @@ LOGOUT_REDIRECT_URL = reverse_lazy('usuarios:login')
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'plataformadigitalc@gmail.com'
-EMAIL_HOST_PASSWORD = 'comercial_21'
+EMAIL_HOST_PASSWORD = 'wkhjgwcjfxztfgek'
 EMAIL_PORT = 587
+
+SECURE_CROSS_ORIGIN_OPENER_POLICY='same-origin-allow-popups'

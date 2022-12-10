@@ -1,8 +1,8 @@
+from enum import unique
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.deletion import CASCADE
-from django.db.models.fields.related import ForeignKey
 from django.conf import settings
+
 
 
 
@@ -11,6 +11,10 @@ class Usuario(User):
     # municipio = ForeignKey("usuarios.Municipio",verbose_name="Municipio",on_delete=CASCADE)
     foto = models.ImageField("Foto de Perfil", upload_to= "perfil", blank = True, null=True)
     password2 = models.CharField("Verfica tu contraseña", blank=False, null=False, max_length = 62, default = "")
+    direccion = models.CharField("Direccion", max_length=255, null=False, blank=True, default="")
+    codigo_postal = models.CharField(("Codigo Postal"), max_length=5, null = True, blank =True, default="")
+    telefono = models.CharField("Telefono", max_length=10, null = False, blank=False, default="")
+
     puede_vender = models.BooleanField(default=False)
     
     
@@ -22,6 +26,7 @@ class Usuario_Vendedor(User):
     telefono = models.CharField("Telefono", max_length=10, null = False, blank=False, default="")
     password_rev = models.CharField("Verifica tu contraseña", blank=False, null=False, max_length= 62, default="")
     descripcion = models.CharField("Descripcion", max_length=255, null = True, blank = True)
+    client_id = models.CharField("Client Paypal Id", max_length=60, null=True, blank=True, default="")
     
         
 class consulta(models.Model):

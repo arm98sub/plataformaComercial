@@ -19,11 +19,14 @@ Detalles Usuario
                     <h2>Estado: </h2><h3>{{object.estado}}</h3>
                     <h2>Municipio: </h2><h3>{{object.municipio}}</h3>
 
+                    
                     <div class="d-flex justify-content-end">
-                        <a href="{% url 'usuarios:lista' %}" class="btn btn-primary">Regresar</a>
+                        <a href="{% url 'usuarios:editar' user.id %}" class="btn btn-secondary">Editar</a>
                     </div>
-
                 </div>
+            </div>
+            <div class="d-flex justify-content">
+                <a href="{% url 'usuarios:lista' %}" class="btn btn-primary">Regresar</a>
             </div>
         </div>
     </div>

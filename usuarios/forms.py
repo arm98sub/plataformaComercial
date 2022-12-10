@@ -9,7 +9,7 @@ class UsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuario
 
-        fields = ('first_name','username','password', 'password2','email','foto')
+        fields = ('first_name','username','password', 'password2','email', 'telefono', 'direccion', 'codigo_postal', 'foto')
 
         widgets = {
             'password': forms.PasswordInput(),
@@ -39,23 +39,25 @@ class Usuario_Vendedor_Form(forms.ModelForm):
         model = Usuario_Vendedor
 
         # Campos que tendra este usuario.
-        fields = ('first_name', 'username', 'password', 'password_rev', 'email', 'foto', 'direccion','telefono', 'descripcion')
+        fields = ('first_name', 'username', 'password', 'password_rev', 'email', 'foto', 'direccion','telefono', 'descripcion', 'client_id')
         
         # Se especifica el tipo de widget que sera utilizado para algunos de los campos.
         widgets = {
             'password': forms.PasswordInput(),
             'password_rev': forms.PasswordInput(),
             'descripcion': forms.Textarea()
+
         }
 
     # Guarda al usuario registrado.
     def save(self, commit=True):
         user = super(Usuario_Vendedor_Form, self).save(commit=False)
         user.set_password(self.cleaned_data['password'])
-        if commit:
-            my_group = Group.objects.get(name='vendedores')
-            user.save()
-            my_group.user_set.add(user)
+        # if commit:
+        #     my_group = Group.objects.get(name='vendedores')
+        #     user.save()
+        #     my_group.user_set.add(user)
+        user.save()
         return user
 
     # Verifica que la contraseña ingresada y la confirmacion sean iguales, de lo contrario, la limpia.

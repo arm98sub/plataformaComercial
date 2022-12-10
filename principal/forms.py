@@ -4,7 +4,6 @@ from .models import Producto, Servicio
 
 
 class ProductoForm(forms.ModelForm):
-
     class Meta:
         model = Producto
 
@@ -37,6 +36,17 @@ class ServicioForm(forms.ModelForm):
         model = Servicio
 
         fields = '__all__'
+
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'})
+        }
+
+
+class ServicioFormVendedor(forms.ModelForm):
+    class Meta:
+        model = Servicio
+
+        fields = ('nombre', 'imagen', 'descripcion', 'categoria')
 
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control'})

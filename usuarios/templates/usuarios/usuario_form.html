@@ -2,20 +2,21 @@
 {% load static %}
 
 {% block body %}
+    {% load crispy_forms_tags%}
 <div class="container justify-content-center">
     <div class="row">
         <div class="col-6 col-md-10 offset-md-1">
             <div class="card text-dark border-primary mb-3" >
                 <div class="card-body">
-                    <h4 class="card-title mb-4 mt-1">Editar Usuario</h4>
+                    <h4 class="card-title mb-4 mt-1">Nuevo Usuario</h4>
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {{form}}
+                        {{form | crispy }}
                         <br>
                         <br>
                         
                         <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-success">{{boton}}</button>
+                            <button type="submit" class="btn main-btn secondary-1-btn">{{boton}}</button>
                         </div>
                     </form>
                 </div>

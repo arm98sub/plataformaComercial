@@ -26,12 +26,8 @@ urlpatterns = [
 
 
     # CRUD Servicios
-    path(
-        'nuevo_servicio/',
-        views.NuevoServicio.as_view(),
-        name='nuevo_servicio'),
-    path(
-        'eliminar_servicio/<int:pk>',
-        views.EliminarServicio.as_view(),
-        name='eliminar_servicio')
+    path('nuevo_servicio/', views.NuevoServicio.as_view(), name='nuevo_servicio'),
+    path('nuevo_servicio_vendedor/', views.NuevoServicioVendedor.as_view(), name='nuevo_servicio_vendedor'),
+    path('eliminar_servicio/<int:pk>', views.EliminarServicio.as_view(), name='eliminar_servicio'),
+    path('editar_servicio/<int:pk>', views.EditarServicio.as_view(), name='editar_servicio')
 ]
