@@ -302,21 +302,23 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#" style="color: black; font-size: large;">Pedidos</a>
                     </li>
+                {% elif perms.usuarios.permiso_usuario %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: black; font-size: large;">Mis Pedidos</a>
+                    </li>
                 {% endif %}
 
             </ul>
-            <div class="navbar-search search-style-5 my-2 my-lg-0 ">
-                <div class="search-input search-btn">
-                    <input type="text" placeholder="Buscar...">
-                    <button><i class=" search-btn lni lni-search-alt search-btn"></i></button>
+            <div class="navbar-search my-lg-0 ">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Buscar...">
+                    <button class="btn btn-success" style="background: #00A859; border-radius: 4px;"><i
+                            class="bi bi-search"></i></button>
+                    <a class="icon-btn primary-icon-text icon-text-btn" href="{% url 'ordenes:lista_carrito' %}">
+                        <img src="{% static 'images/icon-svg/cart-fill.svg' %}" alt="Icon">
+                    </a>
                 </div>
-                <a class="icon-btn primary-icon-text icon-text-btn"
-               href="{% url 'ordenes:lista_carrito' %}">
-                <img src="{% static 'images/icon-svg/cart-fill.svg' %}" alt="Icon">
-                </a>
             </div>
-
-
         </div>
     </nav>
     <div class="overlay-7"></div>
@@ -353,6 +355,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
 
 </section>

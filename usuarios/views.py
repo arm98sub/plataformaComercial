@@ -32,7 +32,6 @@ class UsuariosList(PermissionRequiredMixin, ListView):
     model = Usuario
     template_name = 'usuario_list.html'
     lista_grupos = Group.objects.all()
-    paginate_by = 8
     extra_context = {
         'us_lista': True,
         'lista_grupos': lista_grupos
@@ -44,7 +43,6 @@ class VendedoresList(PermissionRequiredMixin, ListView):
     model = Usuario_Vendedor
     template_name = 'usuario_vendedor_list.html'
     lista_grupos = Group.objects.all()
-    paginate_by = 8
 
     extra_context = {
         'us_lista': True,
