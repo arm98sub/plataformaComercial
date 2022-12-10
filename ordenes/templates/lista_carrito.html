@@ -9,6 +9,19 @@
 {% endblock css %}
 
 {% block body %}
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% else %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
     <section class="h-100 h-custom" style="background-color: #eee;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -74,9 +87,12 @@
                                                     <h5 class="mb-2">Total</h5>
                                                     <h5 class="mb-2">${{ object.get_total }}</h5>
                                                 </div>
-                                                <div class="text-center mt-5" id="paypal-button-container"></div>
+                                                <div class="container text-center">
+                                                    <button class="btn main-btn secondary-1-btn">Apartar</button>
+                                                </div>
                                             </div>
                                         </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
