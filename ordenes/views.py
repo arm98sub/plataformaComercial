@@ -1,29 +1,28 @@
-from ordenes.models import DetalleOrden, Orden, ProductoOrdenado
-from django.shortcuts import render
-from django.utils import timezone
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, View
-from django.core.exceptions import ObjectDoesNotExist
-
-
-from django.shortcuts import redirect, render, get_object_or_404
-from principal.models import Producto
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import redirect, render, get_object_or_404
+from django.utils import timezone
+from django.views.generic import View
+
+from ordenes.models import DetalleOrden, Orden, ProductoOrdenado
+from principal.models import Producto
+
 
 @login_required
-def agregar_carrito(request, slug):
-    producto = get_object_or_404(Producto, slug=slug)
+def agregar_carrito(request, pk):
+    producto = get_object_or_404(Producto, id=pk)
     producto_ordenado, created = ProductoOrdenado.objects.get_or_create(
         producto=producto,
         usuario=request.user,
         ordenado=False
     )
     order_qs = Orden.objects.filter(usuario=request.user, ordenado=False)
-    if order_qs. exists():
+    if order_qs.exists():
         orden = order_qs[0]
 
-        if orden.productos.filter(producto__slug=producto.slug).exists():
+        if orden.productos.filter(producto__id=producto.id).exists():
             producto_ordenado.cantidad += 1
             producto_ordenado.save()
             messages.info(request, "La cantidad a sido actualizada.")
@@ -40,15 +39,22 @@ def agregar_carrito(request, slug):
         messages.info(request, "Este producto fue agregado a tu carrito")
         return redirect('ordenes:lista_carrito')
 
-def eliminar_de_carrito(request, slug):
-    producto = get_object_or_404(Producto, slug=slug)
+
+def eliminar_de_carrito(request, pk):
+    """
+    Elimina un producto del carrito
+    @param request: Request proviniente de la vista
+    @param pk:
+    @return:
+    """
+    producto = get_object_or_404(Producto, id=pk)
     orden_qs = Orden.objects.filter(
-        usuario= request.user,
-        ordenado = False
+        usuario=request.user,
+        ordenado=False
     )
     if orden_qs.exists():
         orden = orden_qs[0]
-        if orden.productos.filter(producto__slug=producto.slug).exists():
+        if orden.productos.filter(producto__id=producto.id).exists():
             producto_ordenado = ProductoOrdenado.objects.filter(
                 producto=producto,
                 usuario=request.user,
@@ -60,14 +66,15 @@ def eliminar_de_carrito(request, slug):
             return redirect("ordenes:lista_carrito")
         else:
             # messages.info(request, "This item was not in your cart")
-            return redirect("principal:ver_producto", slug=slug)
+            return redirect("principal:ver_producto", slug=pk)
     else:
         # messages.info(request, "You do not have an active order")
-        return redirect("principal:ver_producto", slug=slug)
+        return redirect("principal:ver_producto", slug=pk)
+
 
 @login_required
-def eliminar_un_producto_del_carrito(request, slug):
-    producto = get_object_or_404(Producto, slug=slug)
+def eliminar_un_producto_del_carrito(request, pk):
+    producto = get_object_or_404(Producto, id=pk)
     orden_qs = Orden.objects.filter(
         usuario=request.user,
         ordenado=False
@@ -75,7 +82,7 @@ def eliminar_un_producto_del_carrito(request, slug):
     if orden_qs.exists():
         orden = orden_qs[0]
         # checar si el producto esta ordenado
-        if orden.productos.filter(producto__slug=producto.slug).exists():
+        if orden.productos.filter(producto__id=producto.id).exists():
             producto_ordenado = ProductoOrdenado.objects.filter(
                 producto=producto,
                 usuario=request.user,
@@ -90,10 +97,10 @@ def eliminar_un_producto_del_carrito(request, slug):
             return redirect('ordenes:lista_carrito')
         else:
             # messages.info(request, "El producto no se encontro en tu carrito")
-            return redirect("principal:ver_producto", slug=slug)
+            return redirect("principal:ver_producto", slug=pk)
     else:
         # messages.info(request, "No tienes una orden activa")
-        return redirect("principal:ver_producto", slug=slug)
+        return redirect("principal:ver_producto", slug=pk)
 
 
 # @login_required
@@ -111,7 +118,7 @@ def add_to_cart(request):
             total = float(producto.precio) * float(cantidad)
             request.session['total'] = request.session['total'] + total
             request.session['cantidad'] = request.session['cantidad'] + \
-                int(cantidad)
+                                          int(cantidad)
 
             if id in request.session['articulos']:
                 request.session['articulos'][id]['cuantos'] = request.session['articulos'][id]['cuantos']
@@ -140,6 +147,11 @@ class lista_carrito(LoginRequiredMixin, View):
 @login_required
 @permission_required('usuarios.permiso_usuario', raise_exception=True)
 def lista_carrito2(request):
+    """
+    Muestra el carrito de compras
+    @param request: Request proviniente de la vista
+    @return: Regresa la renderizacion del template.
+    """
     articulos = request.session['articulos']
     total = request.session['total']
     cantidad = request.session['cantidad']

@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import Textarea
+
 from .models import Producto, Servicio
 
 
@@ -14,7 +15,6 @@ class ProductoForm(forms.ModelForm):
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'descripcion': Textarea(attrs={'cols': 20, 'rows': 5}),
-
         }
 
 
@@ -22,12 +22,11 @@ class ProductoFormVendedor(forms.ModelForm):
     class Meta:
         model = Producto
         # fields = '__all__'
-        fields = ('nombre', 'imagen', 'precio',
-                  'stock', 'categoria', 'descripcion', 'slug')
+        fields = ('nombre', 'imagen', 'precio', 'stock', 'categoria', 'descripcion')
         widgets = {
+            # 'categoria': forms.Select(attrs={'class': 'form-control'}),
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'descripcion': Textarea(attrs={'cols': 20, 'rows': 5}),
-
         }
 
 

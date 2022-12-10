@@ -1,0 +1,24 @@
+languaje: python 
+
+python: 
+	- "3.9"
+
+install: 
+	- pip install -r requirements.txt
+
+
+# before_script: 
+# 	- sudo wget https://chromedriver.storage.googleapis.com/99.0.4844.51/chromedriver_linux64.zip
+# 	- 
+
+
+script: 
+	- pycodestyle *.py
+	- python3 manage.py test
+	- behave purebas_aceptacion\features\alta_producto.feature
+	- behave purebas_aceptacion\features\inicio_sesion_invalido.feature
+	- behave purebas_aceptacion\features\inicio_sesion.feature
+	- behave purebas_aceptacion\features\registro_empresa.feature 
+	- behave purebas_aceptacion\features\registro.feature
+	
+	

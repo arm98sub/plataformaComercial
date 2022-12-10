@@ -6,6 +6,7 @@
 {% endblock title %}
 
 {% block css %}
+        <link rel="stylesheet" href="{% static 'css/mis_estilos.css' %}">
 {% endblock css %}
 
 {% block body %}
@@ -60,11 +61,11 @@
                                                         <div class="d-flex flex-row align-items-center">
                                                             <div style="width: 100px;">
                                                                 <a class="icono-minus"
-                                                                   href="{% url 'ordenes:eliminar-articulo-carrito' dato.producto.slug %}"><i
+                                                                   href="{% url 'ordenes:eliminar-articulo-carrito' dato.producto.id %}"><i
                                                                         class="bi bi-dash-square"></i></a>
                                                                 {{ dato.cantidad }}
                                                                 <a class="icono-plus"
-                                                                   href="{% url 'ordenes:agregar' dato.producto.slug %}"><i
+                                                                   href="{% url 'ordenes:agregar' dato.producto.id %}"><i
                                                                         class="bi bi-plus-square"></i></a>
 
                                                             </div>

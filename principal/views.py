@@ -44,6 +44,7 @@ def lista_productos(request):
 
 
 def lista_admin(request):
+
     productos = Producto.objects.all()
     servicios = Servicio.objects.all()
 
