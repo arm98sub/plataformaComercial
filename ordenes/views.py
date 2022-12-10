@@ -147,6 +147,11 @@ class lista_carrito(LoginRequiredMixin, View):
 @login_required
 @permission_required('usuarios.permiso_usuario', raise_exception=True)
 def lista_carrito2(request):
+    """
+    Muestra el carrito de compras
+    @param request: Request proviniente de la vista
+    @return: Regresa la renderizacion del template.
+    """
     articulos = request.session['articulos']
     total = request.session['total']
     cantidad = request.session['cantidad']
