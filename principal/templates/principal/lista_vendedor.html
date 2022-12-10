@@ -2,86 +2,88 @@
 {% load static %}
 
 {% block title %}
-	Lista de Productos
+    Lista de Productos
 {% endblock title %}
 
 {% block body %}
 
-<br>
-<div class="card-body">
-    <h2 class="text-center">Lista de Productos</h2>
     <br>
-    <div class="card-content justify-content-end"> 
-        <a class="btn main-btn secondary-1-btn" href="{% url 'principal:nuevo_producto_vendedor' %}"><i class="fa fa-plus"> </i> Nuevo Producto</a>
-        <a  class="btn main-btn secondary-1-btn" href="{% url 'principal:nuevo_servicio_vendedor' %}"><i class="fa fa-plus"> </i> Nuevo Servicio</a>
 
-    </div>
-    <br>
-	<table class="table table-hover table-striped" style='margin-top: 1em'>
-		<thead>
-			<th>Producto</th>
-			<th>Nombre</th>
-			<th>Vendedor</th>
-			<th>Precio</th>
-			<th>Stock</th>
-			<th>Descripción</th>
-			<th><i class="fa fa-cog"></i> Opciones</th>
-		</thead>
-		<tbody>
-			{% for p in productos %}
-				<input type="hidden" name="id" value="{{p.id}}">
-				<tr>
-					<td class="vertical-"><img
-                            src="{% if p.imagen %}/media/{{ MEDIA_URL }}{{ p.imagen }}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
-                            class="img-fluid rounded-3" alt="Shopping item"
-                            style="width: 65px;"></td>
-					<td>{{p.nombre}}</td>
-					<td>{{p.vendedor}}</td>
-					<td>${{p.precio}}</td>
-					<td>{{p.stock}}</td>
-					<td>{{p.descripcion}}</td>
-					<td>
-						<a href="{% url 'principal:editar_producto' p.id %}"><i class="fa fa-edit"></i> Editar</a> |
-						<a href="{% url 'principal:eliminar_producto' p.id %}"><i class="fa fa-trash"></i> Eliminar</a>
-					</td>
-				</tr>
-			{% endfor %}
-        </tbody>
-	</table>
-</table>
-    <div class="container-fluid text-center">
-        <h2>Lista de Servicios</h2>
-    </div>
-    <table class="table table-striped" style='margin-top: 1em'>
-		<thead>
-			<th>Vendedor</th>
-			<th>Nombre</th>
-			<th>Servicio</th>
-			<th>Descripción</th>
-            <th>Categoria</th>
-			<th><i class="fa fa-cog"></i> Opciones</th>
-		</thead>
-		<tbody>
-			{% for s in servicios %}
-				<tr>
-                    <td><img
-                            src="{% if s.imagen %}/media/{{ MEDIA_URL }}{{ s.imagen }}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
-                            class="img-fluid rounded-3" alt="Shopping item"
-                            style="width: 80px;"></td>
-					<td>{{s.vendedor}}</td>
-					<td>{{s.nombre}}</td>
+        <br>
+        <div class="card-content justify-content-end">
+            <a class="btn main-btn secondary-1-btn" href="{% url 'principal:nuevo_producto_vendedor' %}">Nuevo Producto</a>
+            <a class="btn main-btn secondary-1-btn" href="{% url 'principal:nuevo_servicio_vendedor' %}">Nuevo Servicio</a>
+        </div>
+        <div class="table-responsive">
+            <h2 class="text-center">Lista de Productos</h2>
+            <table class="table table-hover table-striped" style='margin-top: 1em'>
+                <thead>
+                <th>Producto</th>
+                <th>Nombre</th>
+                <th>Vendedor</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Descripción</th>
+                <th><i class="fa fa-cog"></i> Opciones</th>
+                </thead>
+                <tbody>
+                {% for p in productos %}
+                    <input type="hidden" name="id" value="{{ p.id }}">
+                    <tr>
+                        <td class="vertical-"><img
+                                src="{% if p.imagen %}/media/{{ MEDIA_URL }}{{ p.imagen }}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
+                                class="img-fluid rounded-3" alt="Shopping item"
+                                style="width: 65px;"></td>
+                        <td>{{ p.nombre }}</td>
+                        <td>{{ p.vendedor }}</td>
+                        <td>${{ p.precio }}</td>
+                        <td>{{ p.stock }}</td>
+                        <td>{{ p.descripcion }}</td>
+                        <td>
+                            <a href="{% url 'principal:editar_producto' p.id %}"><i class="fa fa-edit"></i> Editar</a> |
+                            <a href="{% url 'principal:eliminar_producto' p.id %}"><i class="fa fa-trash"></i> Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </table>
+        </div>
+            <div class="container-fluid text-center">
+                <h2>Lista de Servicios</h2>
+            </div>
+        <div class="table-responsive">
+            <table class="table table-striped" style='margin-top: 1em'>
+                <thead>
+                <th>Vendedor</th>
+                <th>Nombre</th>
+                <th>Servicio</th>
+                <th>Descripción</th>
+                <th>Categoria</th>
+                <th><i class="fa fa-cog"></i> Opciones</th>
+                </thead>
+                <tbody>
+                {% for s in servicios %}
+                    <tr>
+                        <td><img
+                                src="{% if s.imagen %}/media/{{ MEDIA_URL }}{{ s.imagen }}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
+                                class="img-fluid rounded-3" alt="Shopping item"
+                                style="width: 80px;"></td>
+                        <td>{{ s.vendedor }}</td>
+                        <td>{{ s.nombre }}</td>
 
-					<td>{{s.descripcion}}</td>
-					<td>{{s.categoria}}</td>
-					<td>
-						<a href="{% url 'principal:editar_servicio' s.id %}"><i class="fa fa-edit"></i> Editar</a> |
-						<a href="{% url 'principal:eliminar_servicio' s.id %}"><i class="fa fa-trash"></i> Eliminar</a>
-					</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-</div>
+                        <td>{{ s.descripcion }}</td>
+                        <td>{{ s.categoria }}</td>
+                        <td>
+                            <a href="{% url 'principal:editar_servicio' s.id %}"><i class="fa fa-edit"></i> Editar</a> |
+                            <a href="{% url 'principal:eliminar_servicio' s.id %}"><i class="fa fa-trash"></i> Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 {% endblock body %}
 

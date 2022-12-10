@@ -1,26 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-Registrar
-{% endblock title%}
+    Registrar
+{% endblock title %}
 {% block body %}
-{% load crispy_forms_tags%}
-    <div class="container-fluid" style="background-image: url(/static/images/imagenes-tuneadas/ZacatecasVendor.jpg);background-repeat: no-repeat;background-size: cover;" >
-        <div class="row letras-negras pb-5 pt-5" >
+    {% load crispy_forms_tags %}
+    <div class="container-fluid"
+         style="background-image: url(/static/images/imagenes-tuneadas/ZacatecasVendor.jpg);background-repeat: no-repeat;background-size: cover;">
+        <div class="row letras-negras pb-5 pt-5">
             <div class="col-12 col-md-6 offset-md-3">
                 <div class="card">
                     <div class="card-body">
                         <h1>Crear cuenta</h1>
-                        <form  method="post" enctype="multipart/form-data">
+                        <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                            {{form | crispy }}
+                            {{ form | crispy }}
                             <br>
                             <br>
-                            <div class="d-flex justify-content-end">
+                            <div class="container-fluid text-right">
                                 <button type="submit" class="btn main-btn secondary-1-btn">Crear cuenta</button>
+                                <a href="javascript:history.back()">Regresar</a>
                             </div>
                         </form>
-                        <p>¿Eres vendedor? <a href="{% url 'usuarios:signup_vendor'%}" class = "link-info crear-cuenta "><b> Cuenta Empresarial</b> </a></p>
+                        <p>¿Eres vendedor? <a href="{% url 'usuarios:signup_vendor' %}" class="link-info crear-cuenta "><b>
+                            Cuenta Empresarial</b> </a></p>
                         <br>
                     </div>
                 </div>
@@ -32,5 +35,5 @@ Registrar
 {% endblock body %}
 
 {% block js %}
-<script src="{% static 'js/funciones.js'%}"></script>
+    <script src="{% static 'js/funciones.js' %}"></script>
 {% endblock js %}

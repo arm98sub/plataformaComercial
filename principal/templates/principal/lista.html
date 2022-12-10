@@ -9,6 +9,9 @@
 	<section class="product-wrapper pt-30 pb-10">
 		<div class="container">
 			<divd class="row">
+            {% if productos|length == 0 %}
+                <h3>No hay productos disponibles</h3>
+            {% endif %}
 				{% for p in productos %}
 					<div class="col-lg-4 col-sm-6">
 						<div class="product-style-1 mt-30">

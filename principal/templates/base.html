@@ -40,7 +40,8 @@
     <!--====== Bootstrap CSS ======-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
     <!--====== Default CSS ======-->
@@ -88,7 +89,7 @@
                     <!-- navbar cart Ends -->
                 </div>
             </div>
-             <!-- navbar was here -->
+            <!-- navbar was here -->
             <!-- navbar search Ends -->
         </div>
         <!-- navbar mobile Start -->
@@ -121,13 +122,13 @@
                     <div class="navbar-top-wrapper">
                         <ul class="navbar-top-link">
                             {% if perms.usuarios.permiso_administradores %}
-                                 <li>
+                                <li>
                                     <h4 class="letras-blancas mt-1">Administrador</h4>
-                                 </li>
+                                </li>
                             {% elif perms.usuarios.permiso_vendedores %}
                                 <li>
                                     <h4 class="letras-blancas mt-1">Vendedor</h4>
-                                 </li>
+                                </li>
                             {% endif %}
                         </ul>
                     </div>
@@ -135,9 +136,9 @@
                     <div class="navbar-top-right">
                         <ul class="navbar-top-link">
                             {% if perms.usuarios.permiso_administradores %}
-                                 <li>
+                                <li>
                                     <p class="letras-blancas text-uppercase">Bienvenido {{ user.username }}</p>
-                                 </li>
+                                </li>
                             {% elif perms.usuarios.permiso_vendedores %}
                                 <li>
                                     <p class="letras-blancas text-uppercase">Bienvenido {{ user.username }}</p>
@@ -158,7 +159,6 @@
                     <!-- navbar top right Ends -->
 
 
-
                 </div>
             </div>
         </div>
@@ -166,155 +166,159 @@
 
         <!-- main navbar Ends -->
     </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <a class="navbar-brand" href="{% url 'principal:principal' %}">
-                  <img src="{% static 'images/imagenes-tuneadas/ZacatecasLogo.png' %}" alt="Logo" width="200px">
-              </a>
-          <button class="navbar-toggler ml-5" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
+            <img src="{% static 'images/imagenes-tuneadas/ZacatecasLogo.png' %}" alt="Logo" width="200px">
+        </a>
+        <button class="navbar-toggler ml-5" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-          <div class="collapse navbar-collapse ml-5 " id="navbarSupportedContent">
+        <div class="collapse navbar-collapse ml-5 " id="navbarSupportedContent">
 
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'principal:principal' %}"
-                           style="color: black; font-size: large;">Inicio <span class="sr-only">(current)</span></a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'principal:principal' %}"
+                       style="color: black; font-size: large;">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                       style="color: black; font-size: large;">
+                        Arte/Cultura
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item hoverMenu" href="#">Exposiciones</a>
+                        <a class="dropdown-item hover" href="#">Festivales</a>
+                        <a class="dropdown-item" href="#">Talleres de Artes</a>
+                        <a class="dropdown-item" href="#">Artes Plásticas</a>
+                        <a class="dropdown-item" href="#">Galerías de Arte</a>
+                        <a class="dropdown-item" href="#">Artistas</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown letras">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                       style="color: black; font-size: large;">
+                        Artesanías
+                    </a>
+                    <div class="dropdown-menu letras" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Plata</a>
+                        <a class="dropdown-item" href="#">Talabartería</a>
+                        <a class="dropdown-item" href="#">Cerámica</a>
+                        <a class="dropdown-item" href="#">Joyería</a>
+                        <a class="dropdown-item" href="#">Indígenas</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                       style="color: black; font-size: large;">
+                        Comercial
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Agro-industria</a>
+                        <a class="dropdown-item" href="#">Conservas</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                       style="color: black; font-size: large;">
+                        Turismo
+                    </a>
+                    <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Hoteles</a>
+                        <a class="dropdown-item" href="#">Restaurantes</a>
+                        <a class="dropdown-item" href="#">Recorridos</a>
+                        <a class="dropdown-item" href="#">Museos</a>
+                        <a class="dropdown-item" href="#">Teleférico</a>
+                        <a class="dropdown-item" href="#">Mina</a>
+                        <a class="dropdown-item" href="#">Cerro La Bufa</a>
+                        <a class="dropdown-item" href="#">Callejoneadas</a>
+                        <a class="dropdown-item" href="#">Puertas Digitales</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                       style="color: black; font-size: large;">
+                        Servicios
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Renta Autos</a>
+                        <a class="dropdown-item" href="#">Médicos</a>
+                        <a class="dropdown-item" href="#">Aeropuerto</a>
+                        <a class="dropdown-item" href="#">Autobuses</a>
+                        <a class="dropdown-item" href="#">Transporte Público</a>
+                        <a class="dropdown-item" href="#">Conectividad</a>
+                        <a class="dropdown-item" href="#">Pronóstico</a>
+                        <a class="dropdown-item" href="#">Trámites</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'principal:lista' %}" style="color: black; font-size: large;">Tienda</a>
+                </li>
+
+                {% if user.username %}
+                    <li class="nav-item d-lg-none d-xl-none">
+                        <a class="nav-link" href=# style="color: black; font-size: large;">Mi cuenta</a>
                     </li>
+                    <li class="nav-item d-lg-none d-xl-none">
+                        <a class="nav-link" href="{% url 'usuarios:logout' %}" style="color: black; font-size: large;">Salir</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item d-lg-none d-xl-none">
+                        <a class="nav-link" href="{% url 'usuarios:login' %}" style="color: black; font-size: large;">Iniciar
+                            sesión</a>
+                    </li>
+                    <li class="nav-item d-lg-none d-xl-none">
+                        <a class="nav-link" href="{% url 'usuarios:signup' %}" style="color: black; font-size: large;">Registrar</a>
+                    </li>
+                {% endif %}
+
+
+
+
+                {% if perms.usuarios.permiso_administradores %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                            style="color: black; font-size: large;">
-                            Arte/Cultura
+                            Admin
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item hoverMenu" href="#">Exposiciones</a>
-                            <a class="dropdown-item hover" href="#">Festivales</a>
-                            <a class="dropdown-item" href="#">Talleres de Artes</a>
-                            <a class="dropdown-item" href="#">Artes Plásticas</a>
-                            <a class="dropdown-item" href="#">Galerías de Arte</a>
-                            <a class="dropdown-item" href="#">Artistas</a>
+                            <a class="dropdown-item" href="{% url 'usuarios:lista' %}">Usuarios</a>
+                            <a class="dropdown-item" href="{% url 'usuarios:lista_vendedores' %}">Vendedores</a>
+                            <a class="dropdown-item" href="{% url 'principal:lista_admin' %}">Productos</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown letras">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                           style="color: black; font-size: large;">
-                            Artesanías
-                        </a>
-                        <div class="dropdown-menu letras" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Plata</a>
-                            <a class="dropdown-item" href="#">Talabartería</a>
-                            <a class="dropdown-item" href="#">Cerámica</a>
-                            <a class="dropdown-item" href="#">Joyería</a>
-                            <a class="dropdown-item" href="#">Indígenas</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                           style="color: black; font-size: large;">
-                            Comercial
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Agro-industria</a>
-                            <a class="dropdown-item" href="#">Conservas</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                           style="color: black; font-size: large;">
-                            Turismo
-                        </a>
-                        <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Hoteles</a>
-                            <a class="dropdown-item" href="#">Restaurantes</a>
-                            <a class="dropdown-item" href="#">Recorridos</a>
-                            <a class="dropdown-item" href="#">Museos</a>
-                            <a class="dropdown-item" href="#">Teleférico</a>
-                            <a class="dropdown-item" href="#">Mina</a>
-                            <a class="dropdown-item" href="#">Cerro La Bufa</a>
-                            <a class="dropdown-item" href="#">Callejoneadas</a>
-                            <a class="dropdown-item" href="#">Puertas Digitales</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                           style="color: black; font-size: large;">
-                            Servicios
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Renta Autos</a>
-                            <a class="dropdown-item" href="#">Médicos</a>
-                            <a class="dropdown-item" href="#">Aeropuerto</a>
-                            <a class="dropdown-item" href="#">Autobuses</a>
-                            <a class="dropdown-item" href="#">Transporte Público</a>
-                            <a class="dropdown-item" href="#">Conectividad</a>
-                            <a class="dropdown-item" href="#">Pronóstico</a>
-                            <a class="dropdown-item" href="#">Trámites</a>
-                        </div>
+                {% elif perms.usuarios.permiso_vendedores %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'principal:lista_prod_vendedor' %}"
+                           style="color: black; font-size: large;">Mis Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'principal:lista' %}" style="color: black; font-size: large;">Tienda</a>
+                        <a class="nav-link" href="#" style="color: black; font-size: large;">Pedidos</a>
                     </li>
+                {% endif %}
 
-                    {% if user.username %}
-                        <li class="nav-item d-lg-none d-xl-none">
-                           <a class="nav-link" href=# style="color: black; font-size: large;">Mi cuenta</a>
-                        </li>
-                        <li class="nav-item d-lg-none d-xl-none">
-                            <a class="nav-link" href="{% url 'usuarios:logout' %}" style="color: black; font-size: large;">Salir</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item d-lg-none d-xl-none">
-                            <a class="nav-link" href="{% url 'usuarios:login' %}" style="color: black; font-size: large;">Iniciar sesión</a>
-                        </li>
-                        <li class="nav-item d-lg-none d-xl-none">
-                            <a class="nav-link" href="{% url 'usuarios:signup' %}" style="color: black; font-size: large;">Registrar</a>
-                        </li>
-                    {% endif %}
-
-
-
-
-                    {% if perms.usuarios.permiso_administradores %}
-                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                               style="color: black; font-size: large;">
-                                Admin
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{% url 'usuarios:lista' %}">Usuarios</a>
-                                <a class="dropdown-item" href="{% url 'usuarios:lista_vendedores' %}">Vendedores</a>
-                                <a class="dropdown-item" href="{% url 'principal:lista_admin' %}">Productos</a>
-                            </div>
-                        </li>
-                    {% elif perms.usuarios.permiso_vendedores %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'principal:lista_prod_vendedor' %}" style="color: black; font-size: large;">Mis Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" style="color: black; font-size: large;">Pedidos</a>
-                        </li>
-                    {% endif %}
-
-                </ul>
-                <div class="navbar-search search-style-5 my-2 my-lg-0 ">
-                    <div class="search-input search-btn">
-                            <input type="text" placeholder="Buscar...">
-                        <button><i class=" search-btn lni lni-search-alt search-btn"></i></button>
-                    </div>
+            </ul>
+            <div class="navbar-search search-style-5 my-2 my-lg-0 ">
+                <div class="search-input search-btn">
+                    <input type="text" placeholder="Buscar...">
+                    <button><i class=" search-btn lni lni-search-alt search-btn"></i></button>
                 </div>
-
                 <a class="icon-btn primary-icon-text icon-text-btn"
-                   href="{% url 'ordenes:lista_carrito' %}">
-                    <img src="{% static 'images/icon-svg/cart-fill.svg' %}" alt="Icon">
+               href="{% url 'ordenes:lista_carrito' %}">
+                <img src="{% static 'images/icon-svg/cart-fill.svg' %}" alt="Icon">
                 </a>
             </div>
-        </nav>
+
+
+        </div>
+    </nav>
     <div class="overlay-7"></div>
 </header>
 
