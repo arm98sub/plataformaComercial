@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-4 col-sm-4">
-                    <div class="card">
+                    <div class="card my-3">
                         <img
                                 class="card-img-top"
                                 src="{% if producto.imagen %}/media/{{ MEDIA_URL }}{{ producto.imagen }}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
@@ -19,11 +19,11 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ producto.nombre }}</h5>
                             <p class="card-text">{{ producto.descripcion }}.</p>
-                            <form action="{% url 'ordenes:agregar' producto.id %}" method="post">
+                            <form action="{% url 'ordenes:agregar' producto.slug %}" method="post">
                                 {% csrf_token %}
                                 <input type="hidden" name="id" value="{{ producto.id }}"/>
                                 <div class="row justify-content-center">
-                                    <button type="submit" class="main-btn secondary-1-btn" style="max-width: 50%;">
+                                    <button type="submit" class="main-btn secondary-1-btn mt-3" style="max-width: 50%;">
                                         <img src="{% static 'images/icon-svg/cart-7.svg' %}" alt=""/>
                                         ${{ producto.precio }}
                                     </button>
