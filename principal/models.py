@@ -21,7 +21,8 @@ class Producto(models.Model):
                                null=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField(default=0)
-    categoria = models.ForeignKey('principal.Categoria', verbose_name='Categoria', on_delete=models.DO_NOTHING)
+    categoria = models.ForeignKey('principal.Categoria', verbose_name='Categoria', on_delete=models.DO_NOTHING,
+                                  null=False, blank=False)
     descripcion = models.CharField("Descripción", max_length=250, null=True, blank=True)
 
     # slug = models.SlugField(unique=True)

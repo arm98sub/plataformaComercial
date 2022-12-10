@@ -18,13 +18,8 @@ Nuevo Producto
 			<div class="card-body text-dark">
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form.nombre | as_crispy_field }}
-                    {{ form.imagen | as_crispy_field }}
-                    {{ form.precio | as_crispy_field }}
-                    {{ form.stock | as_crispy_field }}
-                    {{ form.categoria | as_crispy_field }}
-                    {{ form.descripcion | as_crispy_field }}
-                    {{ form.slug | as_crispy_field }}
+                    {{ form | crispy }}
+{#                    {{ form.slug | as_crispy_field }}#}
                     <br>
                     <br>
                     <div class = "container-fluid text-center">
