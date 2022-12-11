@@ -232,6 +232,7 @@ class ActivarCuenta(TemplateView):
 
         if user and token_activacion.check_token(user, token):
             user.is_active = True
+            user.groups.add(Group.objects.get(name='usuarios'))
             user.save()
             messages.success(self.request, 'Cuenta activada con éxito')
         else:

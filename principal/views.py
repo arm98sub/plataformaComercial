@@ -1,10 +1,12 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, TemplateView, TemplateView
+from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+
 from .forms import ProductoForm, ProductoFormVendedor, ServicioForm, ServicioFormVendedor
 from .models import Producto, Servicio, Usuario_Vendedor, User
+
 
 # Home del sitio
 
@@ -44,7 +46,6 @@ def lista_productos(request):
 
 
 def lista_admin(request):
-
     productos = Producto.objects.all()
     servicios = Servicio.objects.all()
 
@@ -114,6 +115,7 @@ class NuevoServicioVendedor(PermissionRequiredMixin, CreateView):
     model = Servicio
     form_class = ServicioFormVendedor
     success_url = reverse_lazy('principal:lista_admin')
+
     def form_valid(self, form):
         form.instance.vendedor = self.request.user
         return super(NuevoServicioVendedor, self).form_valid(form)
@@ -140,10 +142,8 @@ class AgregarProductoVendedor(PermissionRequiredMixin, CreateView):
     success_url = reverse_lazy('principal:lista_prod_vendedor')
 
     def form_valid(self, form):
-        form.instance.vendedor = Usuario_Vendedor.objects.get(id = self.request.user.pk)
+        form.instance.vendedor = Usuario_Vendedor.objects.get(id=self.request.user.pk)
         return super(AgregarProductoVendedor, self).form_valid(form)
-
-
 
 # Personalizacion De errores(40,500...)
 
@@ -153,7 +153,3 @@ class AgregarProductoVendedor(PermissionRequiredMixin, CreateView):
 
 # class Error500View(TemplateView):
 #     template_name = "errores/error_500.html"
-
-
-
-

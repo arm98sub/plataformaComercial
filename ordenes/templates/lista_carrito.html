@@ -59,38 +59,60 @@
                                                     <div class="d-flex flex-row align-items-center">
                                                         <div class="w-100">
                                                             <a class="icono-minus"
-                                                               href="{% url 'ordenes:eliminar-articulo-carrito' dato.producto.id %}"><i
-                                                                    class="bi bi-dash-square"></i></a>
+                                                               href="{% url 'ordenes:eliminar-articulo-carrito' dato.producto.id %}">
+                                                                <i class="bi bi-dash-square"></i>
+                                                            </a>
                                                             <span class="letras-negras">{{ dato.cantidad }}</span>
-                                                            {% if plus == 'true' %}
-                                                                <a class="icono-plus"
-                                                                   href="{% url 'ordenes:agregar' dato.producto.id %}"><i
-                                                                        class="bi bi-plus-square"></i></a>
 
-                                                            </div>
-                                                            <div style="width: 80px;">
-                                                                <h5 class="mb-0">${{ dato.producto.precio }}</h5>
-                                                            </div>
-                                                            <a href="#!" style="color: #cecece;"><i
-                                                                    class="fas fa-trash-alt"></i></a>
+                                                            {% if dato.cantidad < dato.producto.stock %}
+                                                                <a class="icono-plus"
+                                                                   href="{% url 'ordenes:agregar' dato.producto.id %}">
+                                                                    <i class="bi bi-plus-square"></i>
+                                                                </a>
+                                                            {% endif %}
+                                                            {#                                                            <a class="icono-minus"#}
+                                                            {#                                                               href="{% url 'ordenes:eliminar-articulo-carrito' dato.producto.id %}"><i#}
+                                                            {#                                                                    class="bi bi-dash-square"></i>#}
+                                                            {#                                                            </a>#}
+                                                            {#                                                            <span class="letras-negras">{{ dato.cantidad }}</span>#}
+                                                            {#                                                            <a class="icono-plus"#}
+                                                            {#                                                               href="{% url 'ordenes:agregar' dato.producto.id %}"><i#}
+                                                            {#                                                                    class="bi bi-plus-square"></i>#}
+                                                            {#                                                            </a>#}
+
                                                         </div>
+                                                        <div style="width: 80px;">
+                                                            <h5 class="mb-0">${{ dato.producto.precio }}</h5>
+                                                        </div>
+                                                        <a href="#!" style="color: #cecece;"><i
+                                                                class="fas fa-trash-alt"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
-                                        {% endfor %}
-                                        {% for grupo in object.get_pagos %}
-                                            {{ grupo }}
-                                        {% endfor %}
-                                        <div class="card bg-body text-white rounded-3">
-                                            <div class="card-body">
-                                                <div class="d-flex justify-content-between">
+                                        </div>
+                                    {% endfor %}
+                                    {% for grupo in object.get_pagos %}
+                                        {{ grupo }}
+                                    {% endfor %}
+                                    <div class="card bg-body text-white rounded-3">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between">
+                                                {% if object.productos.all|length == 0 %}
+                                                    <div class="container text-center">
+                                                        <h4> Carrito vacio</h4>
+                                                    </div>
+                                                {% else %}
                                                     <h5 class="mb-2">Total</h5>
                                                     <h5 class="mb-2">${{ object.get_total }}</h5>
-                                                </div>
+
+                                                {% endif %}
+                                            </div>
+                                            {% if object.productos.all|length != 0 %}
                                                 <div class="container text-center">
                                                     <button class="btn main-btn secondary-1-btn">Apartar</button>
                                                 </div>
-                                            </div>
+                                            {% endif %}
+
                                         </div>
                                     </div>
                                 </div>
@@ -99,6 +121,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 {% endblock body %}

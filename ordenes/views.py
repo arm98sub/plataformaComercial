@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect, render, get_object_or_404
+from django.urls import reverse
 from django.utils import timezone
 from django.views.generic import View
 
@@ -29,21 +30,24 @@ def agregar_carrito(request, pk):
 
                 if producto_ordenado.cantidad > producto.stock:
                     messages.error(request, "No hay suficiente stock para este producto")
-                    return redirect('ordenes:lista_carrito', {'plus': 'false'})
+                    return redirect('ordenes:lista_carrito')
+                    # return render(request, reverse('ordenes:lista_carrito'))
 
                 producto_ordenado.save()
                 messages.info(request, "La cantidad a sido actualizada.")
-                return redirect('ordenes:lista_carrito', {'plus': 'true'})
+                return redirect('ordenes:lista_carrito')
+                # return render(request, reverse('ordenes:lista_carrito'))
             else:
                 orden.productos.add(producto_ordenado)
                 messages.info(request, "Este producto se agrego a tu carrito")
-                return redirect('ordenes:lista_carrito', {'plus':'true'})
+                return redirect('ordenes:lista_carrito')
+                # return render(request, reverse('ordenes:lista_carrito'))
         else:
             fecha_orden = timezone.now()
             orden = Orden.objects.create(usuario=request.user, fecha_orden=fecha_orden)
             orden.productos.add(producto_ordenado)
             messages.info(request, "Este producto fue agregado a tu carrito")
-            return redirect('ordenes:lista_carrito', {'plus': 'true'})
+            return redirect('ordenes:lista_carrito')
     else:
         messages.error(request, "Este producto no esta disponible")
         order = Orden.objects.filter(usuario=request.user, ordenado=False).delete()
@@ -54,14 +58,15 @@ def eliminar_de_carrito(request, pk):
     """
     Elimina un producto del carrito
     @param request: Request proviniente de la vista
-    @param pk:
-    @return:
+    @param pk: Llave primaria del objeto a eliminar
+    @return: Regresa un render con la vista solicitada.
     """
     producto = get_object_or_404(Producto, id=pk)
     orden_qs = Orden.objects.filter(
         usuario=request.user,
         ordenado=False
     )
+
     if orden_qs.exists():
         orden = orden_qs[0]
         if orden.productos.filter(producto__id=producto.id).exists():
@@ -91,6 +96,10 @@ def eliminar_un_producto_del_carrito(request, pk):
     )
     if orden_qs.exists():
         orden = orden_qs[0]
+        # if orden.productos.get(id=pk).cantidad == 1:
+        #     orden.productos.remove(orden.productos.get(id=pk))
+        #     return redirect('ordenes:lista_carrito')
+
         # checar si el producto esta ordenado
         if orden.productos.filter(producto__id=producto.id).exists():
             producto_ordenado = ProductoOrdenado.objects.filter(
@@ -143,15 +152,30 @@ def add_to_cart(request):
 class lista_carrito(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
+            productos = Producto.objects.all()
             orden = Orden.objects.get(
                 usuario=self.request.user, ordenado=False)
             context = {
-                'object': orden
+                'object': orden,
+                'productos': productos
             }
             return render(self.request, 'lista_carrito.html', context)
         except ObjectDoesNotExist:
-            messages.warning(self.request, "No tienes una orden activa")
+            messages.warning(self.request, "Tu carrito se encuentra vacio")
             return redirect("/")
+
+        # try:
+        #     orden = Orden.objects.get(usuario=self.request.user, ordenado=False)
+        # except ObjectDoesNotExist:
+        #     orden = None
+        #
+        # if orden is not None:
+        #     context = {
+        #         'object': orden
+        #     }
+        #
+        #     if orden.productos.
+
 
 
 @login_required
