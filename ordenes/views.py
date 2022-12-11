@@ -181,31 +181,6 @@ def lista_carrito2(request):
     return render(request, 'lista_carrito.html', context=context)
 
 
-# @login_required
-# @permission_required('usuarios.permiso_usuario', raise_exception=True)
-# def comprar(request):
-#     orden = Orden(usuario=1)
-#     orden.save()
-#
-#     articulos = request.session['articulos']
-#
-#     for articulo in articulos:
-#         prod = Producto.objects.get(id=int(articulo))
-#
-#         precio = articulos[articulo]['precio']
-#         cantidad = articulos[articulo]['cuantos']
-#         detail = DetalleOrden(
-#             producto=prod,
-#             orden=orden,
-#             cantidad=cantidad,
-#             precio=precio)
-#         detail.save()
-#
-#     request.session['total'] = 0.0
-#     request.session['cantidad'] = 0
-#     request.session['articulos'] = {}
-#
-#     return redirect('principal:principal')
 @login_required
 @permission_required('usuarios.permiso_usuario', raise_exception=True)
 def apartar(request):
@@ -218,6 +193,7 @@ def apartar(request):
         producto.producto.stock -= producto.cantidad
         producto.producto.save()
     orden.ordenado = True
+
     orden.save()
     new_list = list(set(vendedores))
 
@@ -251,7 +227,17 @@ def cancelar_carrito(request):
 
 @login_required
 @permission_required('usuarios.permiso_usuario', raise_exception=True)
-def detalle_orden(request):
+def pedidos_usuarios(request):
     orden = Orden.objects.filter(usuario=request.user, ordenado=True)
+    # lista_ordenes = []
+    # for orden in orden:
+    #     ord
+
     context = {'object': orden}
-    return render(request, 'detalle_orden.html', context)
+    return render(request, 'pedidos_usuario.html', context)
+
+
+def detalle_orden(request, pk):
+    productos_ordenados = Orden.objects.get(id=pk).productos.all()
+
+    return render(request, 'modal_orden.html', {'productos': productos_ordenados})
