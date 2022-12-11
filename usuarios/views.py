@@ -260,7 +260,7 @@ def cambia_grupo(request, id_gpo, id_usuario, pre_url):
         # Activacion de Vendedores
         if usuario.is_active == False:
             usuario.is_active = True
-            usuario.vende = True
+            
             usuario.groups.add(grupo)
             usuario.save()
             messages.success(
@@ -275,7 +275,7 @@ def cambia_grupo(request, id_gpo, id_usuario, pre_url):
             return render(request, 'usuarios/usuario_vendedor_list.html')
         else:
             usuario.groups.add(grupo)
-            usuario.save()
+            usuario = Usuario_Vendedor.objects.all().update(vende = True)
             messages.success(
             request, f'El usuario {usuario} se agrego al grupo {grupo}')
 
