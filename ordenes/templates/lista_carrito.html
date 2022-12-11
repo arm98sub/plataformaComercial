@@ -6,7 +6,7 @@
 {% endblock title %}
 
 {% block css %}
-        <link rel="stylesheet" href="{% static 'css/mis_estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mis_estilos.css' %}">
 {% endblock css %}
 
 {% block body %}
@@ -29,41 +29,40 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body p-4">
-
+                            <div class="d-flex justify-content-center mb-4">
+                                <div>
+                                    <h3 class="mx-2">Carrito de Compra</h3>
+                                </div>
+                            </div>
                             <div class="row justify-content-center">
 
                                 <div class="col-lg-10">
-                                    <h5 class="mb-3"><a href="#" class="text-body"><a
-                                            class="btn main-btn secondary-1-btn" href="{% url 'principal:lista' %}">←
-                                        Continuar Comprando</a>
-                                        <hr>
-
-                                        <div class="d-flex justify-content-between align-items-center mb-4">
-                                            <div>
-                                                <p class="mb-1">Carrito de compra</p>
-                                            </div>
-                                        </div>
-                                        {% for dato in object.productos.all %}
-                                            <div class="card mb-3">
-                                                <div class="card-body">
-                                                    <div class="d-flex justify-content-between">
-                                                        <div class="d-flex flex-row align-items-center">
-                                                            <div>
-                                                                <img
-                                                                        src="{% if dato.producto.imagen %}/media/{{ MEDIA_URL }}{{ dato.producto.imagen }}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
-                                                                        class="img-fluid rounded-3" alt="Shopping item"
-                                                                        style="width: 65px;">
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                <h5>{{ dato.producto.nombre }}</h5>
-                                                            </div>
+                                    <a class="btn main-btn secondary-1-btn" href="{% url 'principal:lista' %}">
+                                        <i class="lni lni-arrow-left"></i>
+                                        Continuar Comprando
+                                    </a>
+                                    <hr>
+                                    {% for dato in object.productos.all %}
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex flex-row align-items-center">
+                                                        <div>
+                                                            <img src="{% if dato.producto.imagen %}/media/{{ MEDIA_URL }}{{ dato.producto.imagen }}{% else %}{% static 'images/product_placeholder.png' %}{% endif %}"
+                                                                 class="img-fluid rounded-3" alt="Shopping item"
+                                                                 style="width: 65px;">
                                                         </div>
-                                                        <div class="d-flex flex-row align-items-center">
-                                                            <div style="width: 100px;">
-                                                                <a class="icono-minus"
-                                                                   href="{% url 'ordenes:eliminar-articulo-carrito' dato.producto.id %}"><i
-                                                                        class="bi bi-dash-square"></i></a>
-                                                                {{ dato.cantidad }}
+                                                        <div class="ms-3">
+                                                            <h5>{{ dato.producto.nombre }}</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center">
+                                                        <div class="w-100">
+                                                            <a class="icono-minus"
+                                                               href="{% url 'ordenes:eliminar-articulo-carrito' dato.producto.id %}"><i
+                                                                    class="bi bi-dash-square"></i></a>
+                                                            <span class="letras-negras">{{ dato.cantidad }}</span>
+                                                            {% if plus == 'true' %}
                                                                 <a class="icono-plus"
                                                                    href="{% url 'ordenes:agregar' dato.producto.id %}"><i
                                                                         class="bi bi-plus-square"></i></a>

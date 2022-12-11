@@ -21,8 +21,7 @@ class ProductoOrdenado(models.Model):
 
 class Orden(models.Model):
     fecha_compra = models.DateField(auto_now_add=True)
-    usuario = models.ForeignKey(settings.AUTH_USER_MODEL,
-                                on_delete=models.CASCADE)
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     productos = models.ManyToManyField(ProductoOrdenado)
     fecha_inicio = models.DateTimeField(auto_now_add=True)
     fecha_orden = models.DateTimeField()

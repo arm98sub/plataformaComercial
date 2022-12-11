@@ -6,6 +6,14 @@
 {% endblock title %}
 
 {% block body %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
 	<section class="product-wrapper pt-30 pb-10">
 		<div class="container">
 			<divd class="row">
@@ -25,7 +33,7 @@
 							</div>
 							<div class="product-content text-center">
 								<h4 class="title"><a href="{% url 'principal:ver_producto' p.id %}">{{p.nombre}}</a></h4>
-								<form action="{% url 'ordenes:agregar' p.slug%}" method="post">
+								<form action="{% url 'ordenes:agregar' p.id%}" method="post">
 									{% csrf_token %}
 									<input type="hidden" name="id" value="{{p.id}}">
 									<button data-product="{{productos.id}}" data-action="add" type="submit" class="main-btn secondary-1-btn update-cart">
