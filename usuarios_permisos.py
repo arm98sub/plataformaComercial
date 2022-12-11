@@ -15,6 +15,8 @@ def crear_grupos():
     grupo_vendedores = Group.objects.get_or_create(name='vendedores')
     grupo_usuarios = Group.objects.get_or_create(name='usuarios')
     grupo_administradores = Group.objects.get_or_create(name='administradores')
+    grupo_vendedores_previos = Group.objects.get_or_create(name='vendedores_previos')
+
 
 
 def crear_permisos():
@@ -36,6 +38,12 @@ def crear_permisos():
         content_type=content_type
     )
 
+    permiso_vendedor_previo = Permission.objects.create(
+        codename='permiso_vendedor_previo',
+        name='Permiso requerido para el grupo vendedores no verificados',
+        content_type=content_type
+    )
+
     grupo_usuarios = Group.objects.get(name='usuarios')
     grupo_usuarios.permissions.add(permiso_usuarios)
 
@@ -45,15 +53,21 @@ def crear_permisos():
     grupo_vendedores = Group.objects.get(name='vendedores')
     grupo_vendedores.permissions.add(permiso_vendedores)
 
+    grupo_vendedores_previos = Group.objects.get(name='vendedores_previos')
+    grupo_vendedores_previos.permissions.add(permiso_vendedor_previo)
+
 
 def eliminar_permisos():
     per_usuario = Permission.objects.get(codename='permiso_usuario')
     per_admin = Permission.objects.get(codename='permiso_administradores')
     per_vend = Permission.objects.get(codename='permiso_vendedores')
+    per_vend_pre = Permission.objects.get(codename='permiso_vendedor_previo')
+
 
     per_usuario.delete()
     per_admin.delete()
     per_vend.delete()
+    per_vend_pre.delete()
 
 
 crear_grupos()

@@ -98,6 +98,7 @@ class UsuariosActualizar(SuccessMessageMixin, UpdateView):
     success_message = "El usuario %(first_name)s se actualizó con éxito"
 
 
+
 class VendedoresEliminar(PermissionRequiredMixin, DeleteView):
     permission_required = 'users.permiso_administradores'
     model = Usuario_Vendedor
@@ -189,7 +190,7 @@ class Sign_up_usuario_vendedor(SuccessMessageMixin, CreateView):
     # Para solicitar activacion de cuenta empresarial#
     def form_valid(self, form):
         user = form.save(commit=False)
-        user.is_active = False
+        user.is_active = True
         user.save()
 
         dominio = get_current_site(self.request)
@@ -246,6 +247,7 @@ def cambia_grupo(request, id_gpo, id_usuario, pre_url):
     grupo = Group.objects.get(id=id_gpo)
     usuario = User.objects.get(id=id_usuario)
 
+
     if grupo in usuario.groups.all():
         if usuario.groups.count() <= 1:
             messages.error(
@@ -258,12 +260,13 @@ def cambia_grupo(request, id_gpo, id_usuario, pre_url):
         # Activacion de Vendedores
         if usuario.is_active == False:
             usuario.is_active = True
+            usuario.vende = True
             usuario.groups.add(grupo)
             usuario.save()
             messages.success(
             request, f'El usuario {usuario.username} se agrego al grupo {grupo}')
+
             # Enviar correo al vendedor, para notificar que su cuenta fue activada o no
-            
             send_mail('Tu cuenta para la Plataforma Digital Comercial ha sido activada exitosamente',
             'Hola,  "{usuario.username}", el administrador revisó tus datos y ahora puedes comenzar a vender tus productos',
             'plataformadigitalc@gmail.com',
@@ -272,6 +275,7 @@ def cambia_grupo(request, id_gpo, id_usuario, pre_url):
             return render(request, 'usuarios/usuario_vendedor_list.html')
         else:
             usuario.groups.add(grupo)
+            usuario.save()
             messages.success(
             request, f'El usuario {usuario} se agrego al grupo {grupo}')
 

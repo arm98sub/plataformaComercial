@@ -27,6 +27,7 @@ class Usuario_Vendedor(User):
     password_rev = models.CharField("Verifica tu contraseña", blank=False, null=False, max_length= 62, default="")
     descripcion = models.CharField("Descripcion", max_length=255, null = True, blank = True)
     client_id = models.CharField("Client Paypal Id", max_length=60, null=True, blank=True, default="")
+    vende = models.BooleanField(default = False)
     
         
 class consulta(models.Model):

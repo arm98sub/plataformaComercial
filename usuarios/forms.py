@@ -39,7 +39,7 @@ class Usuario_Vendedor_Form(forms.ModelForm):
         model = Usuario_Vendedor
 
         # Campos que tendra este usuario.
-        fields = ('first_name', 'username', 'password', 'password_rev', 'email', 'foto', 'direccion','telefono', 'descripcion', 'client_id')
+        fields = ('first_name', 'username', 'password', 'password_rev', 'email', 'foto', 'direccion','telefono', 'descripcion', 'client_id', 'vende')
         
         # Se especifica el tipo de widget que sera utilizado para algunos de los campos.
         widgets = {
@@ -53,10 +53,10 @@ class Usuario_Vendedor_Form(forms.ModelForm):
     def save(self, commit=True):
         user = super(Usuario_Vendedor_Form, self).save(commit=False)
         user.set_password(self.cleaned_data['password'])
-        # if commit:
-        #     my_group = Group.objects.get(name='vendedores')
-        #     user.save()
-        #     my_group.user_set.add(user)
+        if commit:
+            my_group = Group.objects.get(name='vendedores_previos')
+            user.save()
+            my_group.user_set.add(user)
         user.save()
         return user
 

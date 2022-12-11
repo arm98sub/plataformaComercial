@@ -16,11 +16,14 @@
 
 	<section class="product-wrapper pt-30 pb-10">
 		<div class="container">
-			<divd class="row">
+			<div class="row">
             {% if productos|length == 0 %}
                 <h3>No hay productos disponibles</h3>
             {% endif %}
 				{% for p in productos %}
+					{% if p.vendedor.id > 0 %}
+					<h3> {{p.vendedor.first_name}}</h3>
+					<h3> {{p.vendedor.vende}}</h3>
 					<div class="col-lg-4 col-sm-6">
 						<div class="product-style-1 mt-30">
 							<div class="product-image">
@@ -44,6 +47,7 @@
 							</div>
 						</div>
 					</div>
+					{% endif %}
 				{% endfor %}
 			</div>
 		</div>
