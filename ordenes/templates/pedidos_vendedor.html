@@ -6,18 +6,47 @@
 {% endblock title %}
 
 {% block body %}
-
-
-
-
-
-
-
-
-
+    <div class="card mx-3 my-3">
+        <div class="card-header letras-negras text-center">
+            <h4>Pedidos</h4>
+        </div>
+        <table class="card-table table">
+            <thead>
+            <tr>
+                <th scope="col">No. Pedido</th>
+                <th scope="col">Fecha Apartado</th>
+                <th scope="col">Detalles</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ordenes in object %}
+                <tr>
+                    <td>{{ ordenes.id }}</td>
+                    <td>{{ ordenes.fecha_orden }}</td>
+                    <td>
+                        <a class="btn main-btn secondary-1-btn"
+                           onclick="showValuesInModal('{% url "ordenes:productos_pedidos_vendedor" %}')">
+                            <i class="lni lni-eye mr-1"></i>
+                            Ver Detalles
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="modal fade" id="orden" role="dialog"></div>
 
 
 {% endblock body %}
-{block js}
-<script src="{% static 'js/funciones.js' %}"></script>
-{endblock js}
+
+{% block js %}
+    <script>
+        function showValuesInModal(url) {
+            $('#orden').load(url, function () {
+                $(this).modal('show');
+            });
+        }
+    </script>
+{% endblock js %}
+

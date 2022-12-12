@@ -28,7 +28,7 @@ class Orden(models.Model):
     ordenado = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.usuario.nombre
+        return self.usuario.__str__()
 
     def get_total(self):
         total = 0

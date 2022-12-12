@@ -139,7 +139,7 @@
                                 <li>
                                     <p class="letras-blancas text-uppercase">Bienvenido {{ user.username }}</p>
                                 </li>
-                            {% elif perms.usuarios.permiso_vendedores %}
+                            {% elif perms.usuarios.permiso_vendedores or perms.usuarios.permiso_vendedor_previo %}
                                 <li>
                                     <p class="letras-blancas text-uppercase">Bienvenido {{ user.username }}</p>
                                 </li>
@@ -294,13 +294,13 @@
                             <a class="dropdown-item" href="{% url 'principal:lista_admin' %}">Productos</a>
                         </div>
                     </li>
-                {% elif perms.usuarios.permiso_vendedores %}
+                {% elif perms.usuarios.permiso_vendedores or perms.usuarios.permiso_vendedor_previo %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'principal:lista_prod_vendedor' %}"
                            style="color: black; font-size: large;">Mis Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: black; font-size: large;">Pedidos</a>
+                        <a class="nav-link" href="{% url 'ordenes:pedidos-vendedor' %}" style="color: black; font-size: large;">Pedidos</a>
                     </li>
                 {% elif perms.usuarios.permiso_usuario %}
                     <li class="nav-item">
@@ -429,6 +429,7 @@
 
 <script src="{% static 'js/funciones.js' %}"></script>
 <script src="{% static 'js/carrito.js' %}"></script>
+
 
 {% block js %}
 

@@ -11,8 +11,10 @@ urlpatterns = [
     path('carrito/', views.lista_carrito.as_view(), name="lista_carrito"),
     path('apartar/', views.apartar, name="apartar"),
     path('pedidos-usuario/', views.pedidos_usuarios, name="pedidos-usuario"),
+    path('pedidos-vendedor/', views.pedidos_vendedor, name="pedidos-vendedor"),
     path('detalles_orden/<int:pk>', views.detalle_orden, name="detalles_orden"),
     path('cancelar-apartado/<int:id_apartado>', views.cancelar_apartado, name="cancelar-apartado"),
     path('detalles_vendedor/<int:pk>', views.detalle_vendedor, name="detalles_vendedor"),
+    path('productos_pedidos_vendedor/', views.productos_pedidos_vendedor, name="productos_pedidos_vendedor"),
     # path('cancelar-carrito/', views.cancelar_carrito, name='cancelar_carrito')
 ]

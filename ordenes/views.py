@@ -234,6 +234,7 @@ def pedidos_usuarios(request):
     return render(request, 'pedidos_usuario.html', context)
 
 
+# Para usuario
 def detalle_orden(request, pk):
     productos_ordenados = Orden.objects.get(id=pk).productos.all()
 
@@ -271,3 +272,32 @@ def detalle_vendedor(request, pk):
     datos_vendedor = Usuario_Vendedor.objects.get(id=pk)
     context = {'datos': datos_vendedor}
     return render(request, 'datos_vendedor.html', context)
+
+
+# Muestra los detalles del pedido del vendedor
+def detalle_orden_vendedor(request, pk):
+    productos_ordenados = Orden.objects.get(id=pk).productos.all()
+
+    return render(request, 'modal_orden.html', {'productos': productos_ordenados})
+
+
+# Muestra en pedidos_vendedor.html las ordenes del vendedor
+@login_required
+@permission_required('usuarios.permiso_vendedores', raise_exception=True)
+def pedidos_vendedor(request):
+    productos = Orden.objects.filter(ordenado=True, productos__producto__vendedor=request.user)
+
+    context = {'object': productos}
+
+    return render(request, 'pedidos_vendedor.html', context)
+
+
+# Muestra los productos del vendedor de una orden
+@login_required
+@permission_required('usuarios.permiso_vendedores', raise_exception=True)
+def productos_pedidos_vendedor(request):
+    productos = Orden.objects.filter(ordenado=True, productos__producto__vendedor=request.user).values_list('productos__producto__nombre', 'productos__producto__imagen', 'productos__producto__precio', 'productos__cantidad')
+    # productos = Orden.objects.raw('SELECT * FROM ordenes_orden o INNER JOIN ordenes_productoordenado op ON o.id = op.orden_id INNER JOIN principal_producto p ON op.producto_id = p.id WHERE o.ordenado = 1 AND p.vendedor_id = %s', [request.user.id])
+    context = {'object': productos}
+    print(productos)
+    return render(request, 'modal_orden_vendedor.html', context)

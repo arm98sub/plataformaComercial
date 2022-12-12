@@ -23,8 +23,6 @@
             <th><i class="fa fa-image"></i> Foto</th>
             <th>Nombre</th>
             <th>Usuario</th>
-            <th>Estado</th>
-            <th>Municipio</th>
             <th><i class="fa fa-usuarios"></i> Grupos</th>
             <th><i class="fa fa-cog"></i> Opciones</th>
             </thead>
@@ -35,8 +33,6 @@
                              src="/media/{{ MEDIA_URL }}{{ usuarios.foto }}" alt="Shopping item"></td>
                     <td>{{ usuarios.first_name }}</td>
                     <td><a href="{% url 'usuarios:ver' usuarios.id %}">{{ usuarios.username }}</a></td>
-                    <td>{{ usuarios.estado }}</td>
-                    <td>{{ usuarios.municipio }}</td>
                     <td>
                         {% for grupo in lista_grupos %}
                             {% if grupo in usuarios.groups.all %}
