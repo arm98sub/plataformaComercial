@@ -6,6 +6,35 @@
 {% endblock title %}
 
 {% block body %}
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                {#                <div class="alert alert-danger">#}
+                {#                    {{ message }}#}
+                {#                </div>#}
+
+                <div class="alert alert-danger alert-dismissible fade show d-flex justify-content-end mw-100" role="alert">
+                    <strong>Error</strong> {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% else %}
+                {#                <div class="alert alert-success">#}
+                {#                    {{ message }}#}
+                {#                </div>#}
+
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Exito!</strong> {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
     <div class="table table-responsive">
         <h3 class="mx-3 my-3 text-center">Mis Pedidos Apartados</h3>
         <table class="table table-striped">
@@ -14,6 +43,7 @@
                 <th scope="col">No. Pedido</th>
                 <th scope="col">Fecha Apartado</th>
                 <th scope="col">Detalles</th>
+                <th scope="col">Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -22,10 +52,15 @@
                     <td id="idApartado">{{ apartado.id }}</td>
                     <td>{{ apartado.fecha_orden }}</td>
                     <td>
-                        <a class="btn btn-success m-auto"
+                        <a class="btn btn-success w-auto m-auto"
                            onclick="showValuesInModal('{% url "ordenes:detalles_orden" apartado.id %}')">
                             <i class="lni lni-eye mr-1"></i>
                             Ver Detalles
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" href="{% url 'ordenes:cancelar-apartado' apartado.id %}">
+                            <i class="mdi mdi-delete"></i>
                         </a>
                     </td>
                 </tr>

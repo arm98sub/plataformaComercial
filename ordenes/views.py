@@ -21,6 +21,8 @@ def agregar_carrito(request, pk):
             ordenado=False
         )
 
+        print(producto_ordenado)
+
         order_qs = Orden.objects.filter(usuario=request.user, ordenado=False)
         if order_qs.exists():
             orden = order_qs[0]
@@ -192,6 +194,8 @@ def apartar(request):
         vendedores.append(vendedor)
         producto.producto.stock -= producto.cantidad
         producto.producto.save()
+        producto.ordenado = True
+
     orden.ordenado = True
 
     orden.save()
@@ -238,6 +242,39 @@ def pedidos_usuarios(request):
 
 
 def detalle_orden(request, pk):
+    """Muestra el detalle de una orden específica
+    Args:
+        pk (int): Llave primaria de la orden a mostrar.
+
+    Returns:
+        Regresa una renderizacion de una plantilla con el detalle de la orden.
+    """
     productos_ordenados = Orden.objects.get(id=pk).productos.all()
 
     return render(request, 'modal_orden.html', {'productos': productos_ordenados})
+
+
+def cancelar_apartado(request, id_apartado):
+    """
+    Se encarga de cancelar un apartado, usando el, id del apartado
+    @param request: Request proveniente de la vista
+    @param id_apartado: Llave primaria del apartado
+    @return: Regresa una redireccion a la vista de apartados.
+    """
+    orden = Orden.objects.get(id=id_apartado)
+    # orden2 = Orden.objects.filter(ordenado=True, productos__producto__vendedor=request.user).values('productos__producto__nombre')
+    # print(orden2)
+
+    try:
+        # Va a regresa el total de productos apartados al stock
+        for producto in orden.productos.all():
+            producto.producto.stock += producto.cantidad
+            producto.producto.save()
+            producto.delete()
+
+        orden.delete()
+        messages.success(request, f'Tu apartado {id_apartado} ha sido cancelado')
+    except Exception as e:
+        messages.error(request, f'No se pudo cancelar tu apartado {id_apartado}')
+
+    return redirect('ordenes:pedidos-usuario')
