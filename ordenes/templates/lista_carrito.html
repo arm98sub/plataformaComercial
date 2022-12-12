@@ -70,15 +70,6 @@
                                                                     <i class="bi bi-plus-square"></i>
                                                                 </a>
                                                             {% endif %}
-                                                            {#                                                            <a class="icono-minus"#}
-                                                            {#                                                               href="{% url 'ordenes:eliminar-articulo-carrito' dato.producto.id %}"><i#}
-                                                            {#                                                                    class="bi bi-dash-square"></i>#}
-                                                            {#                                                            </a>#}
-                                                            {#                                                            <span class="letras-negras">{{ dato.cantidad }}</span>#}
-                                                            {#                                                            <a class="icono-plus"#}
-                                                            {#                                                               href="{% url 'ordenes:agregar' dato.producto.id %}"><i#}
-                                                            {#                                                                    class="bi bi-plus-square"></i>#}
-                                                            {#                                                            </a>#}
 
                                                         </div>
                                                         <div style="width: 80px;">
@@ -109,7 +100,7 @@
                                             </div>
                                             {% if object.productos.all|length != 0 %}
                                                 <div class="container text-center">
-                                                    <button class="btn main-btn secondary-1-btn">Apartar</button>
+                                                    <a class="btn main-btn secondary-1-btn" href="{% url 'ordenes:apartar' %}">Apartar</a>
                                                 </div>
                                             {% endif %}
 
@@ -126,40 +117,3 @@
     </section>
 {% endblock body %}
 
-{% block js %}
-    <script src="{% static 'js/funciones.js' %}"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=AadYLycUIoRTR_N5OZYxvaZza5Y3ice4uyejnHrw6LDHRuIOFWfUgvLkYhJsRfXYVtiBrVc6A0ZWg3nG&currency=MXN"></script>
-    <script>
-        paypal.Buttons({
-            style: {
-                color: "gold",
-                shape: "rect",
-                layout: "vertical"
-            },
-            createOrder: function (data, actions) {
-                return actions.order.create({
-                    purchase_units: [
-                        {
-                            payee: {
-                                email_address: "sb-2447oe15187459@business.example.com",
-                            },
-                            amount: {
-                                value: {{ object.get_total }}
-                            }
-                        }
-                    ],
-                });
-            },
-            onApprove: (data, actions) => {
-                const captureOrderHandler = (details) => {
-                    const payerName = details.payer.name.given_name;
-                    console.log('Transaction completed');
-                };
-                return actions.order.capture().then(captureOrderHandler);
-            },
-            onError: (err) => {
-                console.error('An error prevented the buyer from checking out with PayPal');
-            }
-        }).render('#paypal-button-container');
-    </script>
-{% endblock js %}

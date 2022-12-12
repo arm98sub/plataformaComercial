@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Datos del Vendedor
+{% endblock title %}
+
+{% block body %}
+    <section class="vh-100" style="background-color: #f4f5f7;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-6 mb-4 mb-lg-0">
+        <div class="card mb-3" style="border-radius: .5rem;">
+          <div class="row g-0">
+            <div class="col-md-4 gradient-custom text-center text-white"
+              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+              <h5>Nombre</h5>
+              <p>{{ datos.first_name }}</p>
+              <i class="far fa-edit mb-5"></i>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-4 text-center">
+                <h6>Información</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Correo</h6>
+                    <p class="text-muted">{{ datos.email }}</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Teléfono</h6>
+                    <p class="text-muted">{{ datos.telefono }}</p>
+                  </div>
+                </div>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Dirección</h6>
+                    <p class="text-muted">{{ datos.direccion }}</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Most Viewed</h6>
+                    <p class="text-muted">Dolor sit amet</p>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-start">
+                  <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+                  <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                  <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    <div class="table table-responsive">
+        <h3 class="mx-3 my-3 text-center">Datos del Vendedor</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+{#              <th scope="col">Nombre del negocio</th>#}
+                <th scope="col">Nombre</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Teléfono</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ datos.first_name }}</td>
+                    <td>{{ datos.direccion }}</td>
+                    <td>{{ datos.telefono }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock body %}
+
+
