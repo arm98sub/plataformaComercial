@@ -6,6 +6,8 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from .forms import ProductoForm, ProductoFormVendedor, ServicioForm, ServicioFormVendedor
 from .models import Producto, Servicio, Usuario_Vendedor, User
+from django.contrib.auth.models import Group
+
 
 
 # Home del sitio
@@ -29,9 +31,12 @@ def admin(request):
 def lista(request):
     productos = Producto.objects.all()
     servicios = Servicio.objects.all()
+    # vendedores = Usuario_Vendedor.objects.all()
+    lista_grupos = Group.objects.get(name='vendedores')
+
 
     return render(request, 'principal/lista.html',
-                  {'productos': productos, 'servicios': servicios})
+                  {'productos': productos, 'servicios': servicios, 'grupo':lista_grupos})
 
 
 def lista_productos(request):
@@ -134,8 +139,8 @@ class EliminarServicio(PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy('principal:lista_admin')
 
 
-class AgregarProductoVendedor(PermissionRequiredMixin, CreateView):
-    permission_required = 'usuarios.permiso_vendedores'
+class AgregarProductoVendedor(CreateView):
+    # permission_required = 'usuarios.permiso_vendedores'
     model = Producto
     form_class = ProductoFormVendedor
     template_name = "principal/nuevo_producto_vendedor.html"
