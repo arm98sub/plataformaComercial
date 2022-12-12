@@ -11,7 +11,7 @@ RUN pip install -r requeriments.txt
 
 # Run permission script
 COPY usuarios_permisos.py /app
-RUN python usuarios_permisos.py
+RUN python /app/usuarios_permisos.py
 
 # Create a env
 RUN virtualenv /plataforma_env

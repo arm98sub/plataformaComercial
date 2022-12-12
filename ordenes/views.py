@@ -241,6 +241,33 @@ def detalle_orden(request, pk):
     return render(request, 'modal_orden.html', {'productos': productos_ordenados})
 
 
+def cancelar_apartado(request, id_apartado):
+    """
+    Se encarga de cancelar un apartado, usando el, id del apartado
+    @param request: Request proveniente de la vista
+    @param id_apartado: Llave primaria del apartado
+    @return: Regresa una redireccion a la vista de apartados.
+    """
+    orden = Orden.objects.get(id=id_apartado)
+    # orden2 = Orden.objects.filter(ordenado=True, productos__producto__vendedor=request.user).values('productos__producto__nombre')
+    # print(orden2)
+
+    try:
+        # Va a regresa el total de productos apartados al stock
+        for producto in orden.productos.all():
+            producto.producto.stock += producto.cantidad
+            producto.producto.save()
+            producto.delete()
+
+        orden.delete()
+        messages.success(request, f'Tu apartado {id_apartado} ha sido cancelado')
+    except Exception as e:
+        messages.error(request, f'No se pudo cancelar tu apartado {id_apartado}')
+
+    return redirect('ordenes:pedidos-usuario')
+
+
+
 def detalle_vendedor(request, pk):
     datos_vendedor = Usuario_Vendedor.objects.get(id=pk)
     context = {'datos': datos_vendedor}
