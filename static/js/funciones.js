@@ -3,6 +3,11 @@ function modalUsuario(url, first_name){
     document.getElementById('modal_body').innerHTML = `¿Deseas eliminar el usuario' + ${first_name} + ?`; 
 }
 
+function modalProducto(url, nombre){
+  document.getElementById('form_eliminarp').action = url;
+  document.getElementById('modal_body').innerHTML = `¿Deseas eliminar el producto' + ${nombre} + ?`; 
+}
+
 $("#id_estado").on('change',function () { 
     var token = $('[name="csrfmiddlewaretoken"]').val();
     $.ajax({
