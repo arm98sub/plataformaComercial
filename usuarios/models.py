@@ -24,9 +24,13 @@ class Usuario_Vendedor(User):
     foto = models.ImageField("Foto de Perfil", upload_to= "perfil", blank=True, null=True)
     direccion = models.CharField("Direccion", max_length=255, null=False, blank=False, default="")
     telefono = models.CharField("Telefono", max_length=10, null = False, blank=False, default="")
+    nombre_negocio = models.CharField("Nombre negocio", max_length=255, null=False, blank=False, default="")
+    foto_fachada = models.ImageField("Foto de Fachada de negocio", upload_to="negocios", blank = True, null = True)
+    rfc = models.CharField("RFC", max_length=13, null = False, blank=False, default="")
     password_rev = models.CharField("Verifica tu contraseña", blank=False, null=False, max_length= 62, default="")
     descripcion = models.CharField("Descripcion", max_length=255, null = True, blank = True)
     client_id = models.CharField("Client Paypal Id", max_length=60, null=True, blank=True, default="")
+    vende = models.BooleanField(default = False)
     
         
 class consulta(models.Model):
