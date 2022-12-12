@@ -6,9 +6,12 @@
 {% endblock title %}
 
 {% block body %}
-    <div class="table table-responsive">
-        <h3 class="mx-3 my-3 text-center">Mis Pedidos Apartados</h3>
-        <table class="table table-striped">
+
+    <div class="card mx-3 my-3">
+        <div class="card-header letras-negras text-center">
+            <h4>Mis Pedidos</h4>
+        </div>
+        <table class="card-table table">
             <thead>
             <tr>
                 <th scope="col">No. Pedido</th>
@@ -17,27 +20,24 @@
             </tr>
             </thead>
             <tbody>
-            {% for apartado in object %}
-                <tr>
-                    <td id="idApartado">{{ apartado.id }}</td>
-                    <td>{{ apartado.fecha_orden }}</td>
-                    <td>
-                        <a class="btn main-btn secondary-1-btn"
-                           onclick="showValuesInModal('{% url "ordenes:detalles_orden" apartado.id %}')">
-                            <i class="lni lni-eye mr-1"></i>
-                            Ver Detalles
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
+                {% for apartado in object %}
+                    <tr>
+                        <td id="idApartado">{{ apartado.id }}</td>
+                        <td>{{ apartado.fecha_orden }}</td>
+                        <td>
+                            <a class="btn main-btn secondary-1-btn"
+                               onclick="showValuesInModal('{% url "ordenes:detalles_orden" apartado.id %}')">
+                                <i class="lni lni-eye mr-1"></i>
+                                Ver Detalles
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
 
-
-    <div class="modal fade" id="orden" role="dialog">
-
-    </div>
+    <div class="modal fade" id="orden" role="dialog"></div>
 
 {% endblock body %}
 
