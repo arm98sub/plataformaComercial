@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 from django.views.generic import View
-
+from usuarios.models import Usuario_Vendedor
 from ordenes.models import Orden, ProductoOrdenado
 from principal.models import Producto
 
@@ -229,9 +229,6 @@ def cancelar_carrito(request):
 @permission_required('usuarios.permiso_usuario', raise_exception=True)
 def pedidos_usuarios(request):
     orden = Orden.objects.filter(usuario=request.user, ordenado=True)
-    # lista_ordenes = []
-    # for orden in orden:
-    #     ord
 
     context = {'object': orden}
     return render(request, 'pedidos_usuario.html', context)
@@ -241,3 +238,9 @@ def detalle_orden(request, pk):
     productos_ordenados = Orden.objects.get(id=pk).productos.all()
 
     return render(request, 'modal_orden.html', {'productos': productos_ordenados})
+
+
+def detalle_vendedor(request, pk):
+    datos_vendedor = Usuario_Vendedor.objects.get(id=pk)
+    context = {'datos': datos_vendedor}
+    return render(request, 'datos_vendedor.html', context)
