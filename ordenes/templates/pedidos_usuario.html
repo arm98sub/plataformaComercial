@@ -14,7 +14,8 @@
                 {#                    {{ message }}#}
                 {#                </div>#}
 
-                <div class="alert alert-danger alert-dismissible fade show d-flex justify-content-end mw-100" role="alert">
+                <div class="alert alert-danger alert-dismissible fade show d-flex justify-content-end mw-100"
+                     role="alert">
                     <strong>Error</strong> {{ message }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -35,9 +36,9 @@
         {% endfor %}
     {% endif %}
 
-    <div class="table table-responsive">
-        <h3 class="mx-3 my-3 text-center">Mis Pedidos Apartados</h3>
-        <table class="table table-striped">
+    {#    <div class="table table-responsive">#}
+    {#    <h3 class="mx-3 my-3 text-center">Mis Pedidos Apartados</h3>#}
+    {#    <table class="table table-striped">#}
 
     <div class="card mx-3 my-3">
         <div class="card-header letras-negras text-center">
@@ -49,28 +50,16 @@
                 <th scope="col">No. Pedido</th>
                 <th scope="col">Fecha Apartado</th>
                 <th scope="col">Detalles</th>
+                <th scope="col">Acciones</th>
             </tr>
             </thead>
             <tbody>
-                {% for apartado in object %}
-                    <tr>
-                        <td id="idApartado">{{ apartado.id }}</td>
-                        <td>{{ apartado.fecha_orden }}</td>
-                        <td>
-                            <a class="btn main-btn secondary-1-btn"
-                               onclick="showValuesInModal('{% url "ordenes:detalles_orden" apartado.id %}')">
-                                <i class="lni lni-eye mr-1"></i>
-                                Ver Detalles
-                            </a>
-                        </td>
-                    </tr>
-                {% endfor %}
             {% for apartado in object %}
                 <tr>
                     <td id="idApartado">{{ apartado.id }}</td>
                     <td>{{ apartado.fecha_orden }}</td>
                     <td>
-                        <a class="btn btn-success w-auto m-auto"
+                        <a class="btn main-btn secondary-1-btn"
                            onclick="showValuesInModal('{% url "ordenes:detalles_orden" apartado.id %}')">
                             <i class="lni lni-eye mr-1"></i>
                             Ver Detalles
