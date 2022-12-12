@@ -233,8 +233,23 @@ def pedidos_usuarios(request):
     context = {'object': orden}
     return render(request, 'pedidos_usuario.html', context)
 
+@login_required
+@permission_required('usuarios.permiso_vendedores', raise_exception=True)
+def pedidos_vendedor(request):
+    orden = Orden.objects.filter(usuario=request.user, ordenado=True)
 
+    context = {'object': orden}
+    return render(request, 'pedidos_vendedor.html', context)
+
+
+# Para usuario
 def detalle_orden(request, pk):
+    productos_ordenados = Orden.objects.get(id=pk).productos.all()
+
+    return render(request, 'modal_orden.html', {'productos': productos_ordenados})
+
+#Para vendedores
+def detalle_orden_vendedor(request, pk):
     productos_ordenados = Orden.objects.get(id=pk).productos.all()
 
     return render(request, 'modal_orden.html', {'productos': productos_ordenados})

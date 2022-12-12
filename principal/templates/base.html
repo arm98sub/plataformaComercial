@@ -300,7 +300,7 @@
                            style="color: black; font-size: large;">Mis Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: black; font-size: large;">Pedidos</a>
+                        <a class="nav-link" href="{% url 'ordenes:pedidos-vendedor' %}" style="color: black; font-size: large;">Pedidos</a>
                     </li>
                 {% elif perms.usuarios.permiso_usuario %}
                     <li class="nav-item">
