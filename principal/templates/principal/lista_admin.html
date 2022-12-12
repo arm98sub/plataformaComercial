@@ -38,14 +38,47 @@
                     <td>{{ p.stock }}</td>
                     <td>{{ p.descripcion }}</td>
                     <td>
-                        <a class="mt-1" href="{% url 'principal:editar_producto' p.id %}">Editar</a> |
-                        <a class="mt-1" href="{% url 'principal:eliminar_producto' p.id %}">Eliminar</a>
+                        <a class="btn main-btn secondary-1-btn mt-1" href="{% url 'principal:editar_producto' p.id %}">Editar</a> |
+                        <button onclick="modalProducto('{% url 'principal:eliminar_producto' p.id %}','{{ p.nombre }}')"
+                                type="button" class="btn main-btn secondary-1-btn mt-1" data-toggle="modal"
+                                data-target="#exampleModal">Eliminar
+                            </button>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
+
+
+
+<div class="modal hide justi" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Estás seguro que deseas eliminar el producto {{ p.nombre }}?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn main-btn secondary-1-btn" data-dismiss="modal">Cancelar</button>
+                    <form id="form_eliminarp" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn main-btn secondary-1-btn">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <div class="table-responsive">
         <div class="container-fluid text-center">
             <h2>Lista de Servicios</h2>
