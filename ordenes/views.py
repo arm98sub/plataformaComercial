@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 from django.views.generic import View
-
+from usuarios.models import Usuario_Vendedor
 from ordenes.models import Orden, ProductoOrdenado
 from principal.models import Producto
 
@@ -20,8 +20,6 @@ def agregar_carrito(request, pk):
             usuario=request.user,
             ordenado=False
         )
-
-        print(producto_ordenado)
 
         order_qs = Orden.objects.filter(usuario=request.user, ordenado=False)
         if order_qs.exists():
@@ -194,8 +192,6 @@ def apartar(request):
         vendedores.append(vendedor)
         producto.producto.stock -= producto.cantidad
         producto.producto.save()
-        producto.ordenado = True
-
     orden.ordenado = True
 
     orden.save()
@@ -233,22 +229,12 @@ def cancelar_carrito(request):
 @permission_required('usuarios.permiso_usuario', raise_exception=True)
 def pedidos_usuarios(request):
     orden = Orden.objects.filter(usuario=request.user, ordenado=True)
-    # lista_ordenes = []
-    # for orden in orden:
-    #     ord
 
     context = {'object': orden}
     return render(request, 'pedidos_usuario.html', context)
 
 
 def detalle_orden(request, pk):
-    """Muestra el detalle de una orden específica
-    Args:
-        pk (int): Llave primaria de la orden a mostrar.
-
-    Returns:
-        Regresa una renderizacion de una plantilla con el detalle de la orden.
-    """
     productos_ordenados = Orden.objects.get(id=pk).productos.all()
 
     return render(request, 'modal_orden.html', {'productos': productos_ordenados})
@@ -278,3 +264,10 @@ def cancelar_apartado(request, id_apartado):
         messages.error(request, f'No se pudo cancelar tu apartado {id_apartado}')
 
     return redirect('ordenes:pedidos-usuario')
+
+
+
+def detalle_vendedor(request, pk):
+    datos_vendedor = Usuario_Vendedor.objects.get(id=pk)
+    context = {'datos': datos_vendedor}
+    return render(request, 'datos_vendedor.html', context)

@@ -10,9 +10,9 @@
         <div class="modal-body">
             {% for producto in productos %}
                 <table class="table table-hover">
-                    <thead class="bg-success-variant letras-blancas">
+                    <thead class="bg-success-variant">
                     <tr>
-                        <th></th>
+                        <th>Producto</th>
                         <th>Nombre</th>
                         <th>Cantidad</th>
                         <th>Precio</th>
@@ -28,7 +28,7 @@
                         <td class="align-middle">{{ producto.producto.nombre }}</td>
                         <td class="align-middle">{{ producto.cantidad }}</td>
                         <td class="align-middle">${{ producto.producto.precio }}</td>
-                        <td class="align-middle">{{ producto.producto.vendedor.username }}</td>
+                        <td class="align-middle"><a href="{% url 'ordenes:detalles_vendedor' producto.producto.vendedor.id %}">{{ producto.producto.vendedor.username }}</a></td>
                     </tr>
                     </tbody>
                 </table>
