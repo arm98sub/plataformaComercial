@@ -6,9 +6,11 @@
 {% endblock title %}
 
 {% block body %}
-    <div class="table table-responsive">
-        <h3 class="mx-3 my-3 text-center">Mis Pedidos</h3>
-        <table class="table table-striped">
+    <div class="card mx-3 my-3">
+        <div class="card-header letras-negras text-center">
+            <h4>Pedidos</h4>
+        </div>
+        <table class="card-table table">
             <thead>
             <tr>
                 <th scope="col">No. Pedido</th>
@@ -17,13 +19,13 @@
             </tr>
             </thead>
             <tbody>
-            {% for apartado in object %}
+            {% for ordenes in object %}
                 <tr>
-                    <td id="idApartado">{{ apartado.id }}</td>
-                    <td>{{ apartado.fecha_orden }}</td>
+                    <td>{{ ordenes.id }}</td>
+                    <td>{{ ordenes.fecha_orden }}</td>
                     <td>
                         <a class="btn main-btn secondary-1-btn"
-                           onclick="showValuesInModal('{% url "ordenes:detalles_orden_vendedor" apartado.id %}')">
+                           onclick="showValuesInModal('{% url "ordenes:productos_pedidos_vendedor" %}')">
                             <i class="lni lni-eye mr-1"></i>
                             Ver Detalles
                         </a>
@@ -33,11 +35,8 @@
             </tbody>
         </table>
     </div>
+    <div class="modal fade" id="orden" role="dialog"></div>
 
-
-    <div class="modal fade" id="orden" role="dialog">
-
-    </div>
 
 {% endblock body %}
 
