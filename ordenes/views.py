@@ -2,11 +2,12 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.mail import send_mail
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 from django.views.generic import View
 
-from ordenes.models import DetalleOrden, Orden, ProductoOrdenado
+from ordenes.models import Orden, ProductoOrdenado
 from principal.models import Producto
 
 
@@ -29,21 +30,24 @@ def agregar_carrito(request, pk):
 
                 if producto_ordenado.cantidad > producto.stock:
                     messages.error(request, "No hay suficiente stock para este producto")
-                    return redirect('ordenes:lista_carrito', {'plus': 'false'})
+                    return redirect('ordenes:lista_carrito')
+                    # return render(request, reverse('ordenes:lista_carrito'))
 
                 producto_ordenado.save()
                 messages.info(request, "La cantidad a sido actualizada.")
-                return redirect('ordenes:lista_carrito', {'plus': 'true'})
+                return redirect('ordenes:lista_carrito')
+                # return render(request, reverse('ordenes:lista_carrito'))
             else:
                 orden.productos.add(producto_ordenado)
                 messages.info(request, "Este producto se agrego a tu carrito")
-                return redirect('ordenes:lista_carrito', {'plus':'true'})
+                return redirect('ordenes:lista_carrito')
+                # return render(request, reverse('ordenes:lista_carrito'))
         else:
             fecha_orden = timezone.now()
             orden = Orden.objects.create(usuario=request.user, fecha_orden=fecha_orden)
             orden.productos.add(producto_ordenado)
             messages.info(request, "Este producto fue agregado a tu carrito")
-            return redirect('ordenes:lista_carrito', {'plus': 'true'})
+            return redirect('ordenes:lista_carrito')
     else:
         messages.error(request, "Este producto no esta disponible")
         order = Orden.objects.filter(usuario=request.user, ordenado=False).delete()
@@ -54,14 +58,15 @@ def eliminar_de_carrito(request, pk):
     """
     Elimina un producto del carrito
     @param request: Request proviniente de la vista
-    @param pk:
-    @return:
+    @param pk: Llave primaria del objeto a eliminar
+    @return: Regresa un render con la vista solicitada.
     """
     producto = get_object_or_404(Producto, id=pk)
     orden_qs = Orden.objects.filter(
         usuario=request.user,
         ordenado=False
     )
+
     if orden_qs.exists():
         orden = orden_qs[0]
         if orden.productos.filter(producto__id=producto.id).exists():
@@ -91,6 +96,10 @@ def eliminar_un_producto_del_carrito(request, pk):
     )
     if orden_qs.exists():
         orden = orden_qs[0]
+        # if orden.productos.get(id=pk).cantidad == 1:
+        #     orden.productos.remove(orden.productos.get(id=pk))
+        #     return redirect('ordenes:lista_carrito')
+
         # checar si el producto esta ordenado
         if orden.productos.filter(producto__id=producto.id).exists():
             producto_ordenado = ProductoOrdenado.objects.filter(
@@ -113,45 +122,32 @@ def eliminar_un_producto_del_carrito(request, pk):
         return redirect("principal:ver_producto", slug=pk)
 
 
-# @login_required
-# @permission_required('usuarios.permiso_usuario', raise_exception=True)
-
-def add_to_cart(request):
-    if request.method == "POST":
-        pk = request.POST.get('id')
-        cantidad = 1
-        producto = get_object_or_404(Producto, pk=pk)
-        if producto.stock > 0:
-            producto.stock -= int(cantidad)
-            producto.save()
-            id = str(pk)
-            total = float(producto.precio) * float(cantidad)
-            request.session['total'] = request.session['total'] + total
-            request.session['cantidad'] = request.session['cantidad'] + \
-                                          int(cantidad)
-
-            if id in request.session['articulos']:
-                request.session['articulos'][id]['cuantos'] = request.session['articulos'][id]['cuantos']
-                + int(cantidad)
-            else:
-                request.session['articulos'][id] = {'precio': float(
-                    producto.precio), 'cuantos': int(cantidad)}
-
-    return redirect('ordenes:lista_carrito')
-
-
 class lista_carrito(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
+            productos = Producto.objects.all()
             orden = Orden.objects.get(
                 usuario=self.request.user, ordenado=False)
             context = {
-                'object': orden
+                'object': orden,
+                'productos': productos
             }
             return render(self.request, 'lista_carrito.html', context)
         except ObjectDoesNotExist:
-            messages.warning(self.request, "No tienes una orden activa")
+            messages.warning(self.request, "Tu carrito se encuentra vacio")
             return redirect("/")
+
+        # try:
+        #     orden = Orden.objects.get(usuario=self.request.user, ordenado=False)
+        # except ObjectDoesNotExist:
+        #     orden = None
+        #
+        # if orden is not None:
+        #     context = {
+        #         'object': orden
+        #     }
+        #
+        #     if orden.productos.
 
 
 @login_required
@@ -187,28 +183,28 @@ def lista_carrito2(request):
 
 @login_required
 @permission_required('usuarios.permiso_usuario', raise_exception=True)
-def comprar(request):
-    orden = Orden(usuario=1)
+def apartar(request):
+    orden = Orden.objects.get(usuario=request.user, ordenado=False)
+
+    vendedores = []
+    for producto in orden.productos.all():
+        vendedor = producto.producto.vendedor.email
+        vendedores.append(vendedor)
+        producto.producto.stock -= producto.cantidad
+        producto.producto.save()
+    orden.ordenado = True
+
     orden.save()
+    new_list = list(set(vendedores))
 
-    articulos = request.session['articulos']
-
-    for articulo in articulos:
-        prod = Producto.objects.get(id=int(articulo))
-
-        precio = articulos[articulo]['precio']
-        cantidad = articulos[articulo]['cuantos']
-        detail = DetalleOrden(
-            producto=prod,
-            orden=orden,
-            cantidad=cantidad,
-            precio=precio)
-        detail.save()
-
-    request.session['total'] = 0.0
-    request.session['cantidad'] = 0
-    request.session['articulos'] = {}
-
+    for vendedor in new_list:
+        send_mail('Tienes una nueva orden!',
+                  f'Hola,  el usuario "{request.user.username}", realizó un apartado de productos, revisa tu panel de '
+                  f'pedidos para más información.',
+                  'plataformadigitalc@gmail.com',
+                  [vendedor],
+                  fail_silently=False)
+    messages.success(request, "Tu orden ha sido procesada")
     return redirect('principal:principal')
 
 
@@ -227,3 +223,21 @@ def cancelar_carrito(request):
     request.session['cantidad'] = 0
     request.session['articulos'] = {}
     return redirect('principal:iniciar')
+
+
+@login_required
+@permission_required('usuarios.permiso_usuario', raise_exception=True)
+def pedidos_usuarios(request):
+    orden = Orden.objects.filter(usuario=request.user, ordenado=True)
+    # lista_ordenes = []
+    # for orden in orden:
+    #     ord
+
+    context = {'object': orden}
+    return render(request, 'pedidos_usuario.html', context)
+
+
+def detalle_orden(request, pk):
+    productos_ordenados = Orden.objects.get(id=pk).productos.all()
+
+    return render(request, 'modal_orden.html', {'productos': productos_ordenados})

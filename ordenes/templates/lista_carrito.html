@@ -11,13 +11,18 @@
 
 {% block body %}
     {% if messages %}
-        <div class="alert alert-success" role="alert">
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
-        </div>
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% else %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endif %}
+        {% endfor %}
     {% endif %}
-
     <section class="h-100 h-custom" style="background-color: #eee;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -54,13 +59,16 @@
                                                     <div class="d-flex flex-row align-items-center">
                                                         <div class="w-100">
                                                             <a class="icono-minus"
-                                                               href="{% url 'ordenes:eliminar-articulo-carrito' dato.producto.id %}"><i
-                                                                    class="bi bi-dash-square"></i></a>
+                                                               href="{% url 'ordenes:eliminar-articulo-carrito' dato.producto.id %}">
+                                                                <i class="bi bi-dash-square"></i>
+                                                            </a>
                                                             <span class="letras-negras">{{ dato.cantidad }}</span>
-                                                            {% if plus == 'true' %}
+
+                                                            {% if dato.cantidad < dato.producto.stock %}
                                                                 <a class="icono-plus"
-                                                                   href="{% url 'ordenes:agregar' dato.producto.id %}"><i
-                                                                        class="bi bi-plus-square"></i></a>
+                                                                   href="{% url 'ordenes:agregar' dato.producto.id %}">
+                                                                    <i class="bi bi-plus-square"></i>
+                                                                </a>
                                                             {% endif %}
 
                                                         </div>
@@ -80,10 +88,22 @@
                                     <div class="card bg-body text-white rounded-3">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between">
-                                                <h5 class="mb-2">Total</h5>
-                                                <h5 class="mb-2">${{ object.get_total }}</h5>
+                                                {% if object.productos.all|length == 0 %}
+                                                    <div class="container text-center">
+                                                        <h4> Carrito vacio</h4>
+                                                    </div>
+                                                {% else %}
+                                                    <h5 class="mb-2">Total</h5>
+                                                    <h5 class="mb-2">${{ object.get_total }}</h5>
+
+                                                {% endif %}
                                             </div>
-                                            <div class="text-center mt-5" id="paypal-button-container"></div>
+                                            {% if object.productos.all|length != 0 %}
+                                                <div class="container text-center">
+                                                    <a class="btn main-btn secondary-1-btn" href="{% url 'ordenes:apartar' %}">Apartar</a>
+                                                </div>
+                                            {% endif %}
+
                                         </div>
                                     </div>
                                 </div>
@@ -93,43 +113,7 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
 {% endblock body %}
 
-{% block js %}
-    <script src="{% static 'js/funciones.js' %}"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=AadYLycUIoRTR_N5OZYxvaZza5Y3ice4uyejnHrw6LDHRuIOFWfUgvLkYhJsRfXYVtiBrVc6A0ZWg3nG&currency=MXN"></script>
-    <script>
-        paypal.Buttons({
-            style: {
-                color: "gold",
-                shape: "rect",
-                layout: "vertical"
-            },
-            createOrder: function (data, actions) {
-                return actions.order.create({
-                    purchase_units: [
-                        {
-                            payee: {
-                                email_address: "sb-2447oe15187459@business.example.com",
-                            },
-                            amount: {
-                                value: {{ object.get_total }}
-                            }
-                        }
-                    ],
-                });
-            },
-            onApprove: (data, actions) => {
-                const captureOrderHandler = (details) => {
-                    const payerName = details.payer.name.given_name;
-                    console.log('Transaction completed');
-                };
-                return actions.order.capture().then(captureOrderHandler);
-            },
-            onError: (err) => {
-                console.error('An error prevented the buyer from checking out with PayPal');
-            }
-        }).render('#paypal-button-container');
-    </script>
-{% endblock js %}

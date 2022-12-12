@@ -20,11 +20,11 @@ class ProductoOrdenado(models.Model):
 
 
 class Orden(models.Model):
-    fecha_compra = models.DateField(auto_now_add=True)
+    fecha_compra = models.DateField(null=True, blank=True)  # Fecha de compra
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     productos = models.ManyToManyField(ProductoOrdenado)
-    fecha_inicio = models.DateTimeField(auto_now_add=True)
-    fecha_orden = models.DateTimeField()
+    fecha_inicio = models.DateTimeField(auto_now_add=True)  # Fecha de creacion de orden.
+    fecha_orden = models.DateTimeField(null=True, blank=True)                    # Fecha de apartado
     ordenado = models.BooleanField(default=False)
 
     def __str__(self):
